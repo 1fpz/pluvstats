@@ -144,6 +144,11 @@
     border-radius: 999px;
   }
 
+  .pluv-marker {
+    background: transparent;
+    border: 0;
+  }
+
   .map-marker {
     position: relative;
     display: grid;

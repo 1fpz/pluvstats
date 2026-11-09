@@ -87,7 +87,6 @@ export function OperationModeProvider({ children }) {
     }),
     [
       activeMode,
-      apiConnected,
       connection,
       hardware,
       hasValidatedHardware,

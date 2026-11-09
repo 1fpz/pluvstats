@@ -184,7 +184,6 @@ export function evaluateAlerts({ sensors, readingsBySensor = {}, alerts = [], co
   sensors.forEach((sensor) => {
     const reading = readingsBySensor[sensor.id]
     const source = sensor.source
-    const simulated = source === 'simulation'
     const existingForSensor = (type) =>
       next.find(
         (alert) => alert.sensorId === sensor.id && alert.type === type && alert.status !== 'resolved',
