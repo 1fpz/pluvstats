@@ -4,6 +4,8 @@ import { AppLayout } from '@/layouts/AppLayout'
 import { CitizenLayout } from '@/layouts/CitizenLayout'
 import { OverviewPage } from '@/pages/OverviewPage'
 import { MapPage } from '@/pages/MapPage'
+import { OccurrencesPage } from '@/pages/OccurrencesPage'
+import { SensorsPage } from '@/pages/SensorsPage'
 import { ComingSoonPage, NotFoundPage } from '@/pages/ComingSoonPage'
 
 export default function App() {
@@ -13,26 +15,8 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route index element={<OverviewPage />} />
           <Route path="mapa" element={<MapPage />} />
-          <Route
-            path="ocorrencias"
-            element={
-              <ComingSoonPage
-                eyebrow="Operação · ocorrências"
-                title="Ocorrências"
-                description="CRUD completo com validação, filtros, mapa e atualização dos indicadores."
-              />
-            }
-          />
-          <Route
-            path="sensores"
-            element={
-              <ComingSoonPage
-                eyebrow="Operação · sensores"
-                title="Sensores"
-                description="Cards, tabela, séries, histórico, diagnóstico e diferenciação entre simulação e hardware."
-              />
-            }
-          />
+          <Route path="ocorrencias" element={<OccurrencesPage />} />
+          <Route path="sensores" element={<SensorsPage />} />
           <Route
             path="alertas"
             element={

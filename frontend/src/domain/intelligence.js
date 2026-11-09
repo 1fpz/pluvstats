@@ -1,4 +1,5 @@
 import { severityRank } from '@/utils/severity'
+import { thresholds } from '@/config'
 
 /**
  * Experimental, explainable prioritisation. It is NOT a predictive model and
@@ -31,6 +32,16 @@ export function priorityBand(score) {
   if (score >= 80) return 'critical'
   if (score >= 62) return 'alert'
   if (score >= 40) return 'attention'
+  return 'normal'
+}
+
+/** Severity implied by the current level, using the shared experimental limits. */
+export function sensorSeverity(sensor) {
+  if (sensor.alertSeverity) return sensor.alertSeverity
+  if (!Number.isFinite(sensor.levelCm)) return 'normal'
+  if (sensor.levelCm >= thresholds.waterLevelCm.critical) return 'critical'
+  if (sensor.levelCm >= thresholds.waterLevelCm.alert) return 'alert'
+  if (sensor.levelCm >= thresholds.waterLevelCm.attention) return 'attention'
   return 'normal'
 }
 

@@ -26,7 +26,7 @@ import { useData, useDebouncedValue, useMediaQuery } from '@/hooks'
 import { thresholds } from '@/config'
 import { occurrenceStatusMeta, severityMeta, severityRank } from '@/utils/severity'
 import { formatCm, formatCoordinates, formatDateTime, formatRate, formatRelativeTime } from '@/utils/formatters'
-import { scoreOccurrence } from '@/domain/intelligence'
+import { scoreOccurrence, sensorSeverity } from '@/domain/intelligence'
 import { cn } from '@/utils/cn'
 
 const SEVERITY_FILTERS = [
@@ -35,15 +35,6 @@ const SEVERITY_FILTERS = [
   { value: 'alert', label: 'Alerta' },
   { value: 'critical', label: 'Crítico' },
 ]
-
-function sensorSeverity(sensor) {
-  if (sensor.alertSeverity) return sensor.alertSeverity
-  if (!Number.isFinite(sensor.levelCm)) return 'normal'
-  if (sensor.levelCm >= thresholds.waterLevelCm.critical) return 'critical'
-  if (sensor.levelCm >= thresholds.waterLevelCm.alert) return 'alert'
-  if (sensor.levelCm >= thresholds.waterLevelCm.attention) return 'attention'
-  return 'normal'
-}
 
 function SensorDetail({ sensor, onClose }) {
   const severity = sensorSeverity(sensor)
