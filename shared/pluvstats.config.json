@@ -54,7 +54,7 @@
         "description": "Chuva moderada e elevação gradual rumo ao limite de atenção.",
         "rainMmH": 18,
         "targetLevelCm": 32,
-        "approachSeconds": 300,
+        "approachSeconds": 600,
         "drainage": 0.55
       },
       "alert": {
@@ -62,7 +62,7 @@
         "description": "Chuva forte, nível acima do limite de alerta e elevação sustentada.",
         "rainMmH": 38,
         "targetLevelCm": 58,
-        "approachSeconds": 240,
+        "approachSeconds": 420,
         "drainage": 0.35
       },
       "critical": {
@@ -70,7 +70,7 @@
         "description": "Cenário extremo de demonstração: nível na faixa crítica.",
         "rainMmH": 62,
         "targetLevelCm": 86,
-        "approachSeconds": 210,
+        "approachSeconds": 300,
         "drainage": 0.2
       }
     }
