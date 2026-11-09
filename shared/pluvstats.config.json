@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "product": {
+    "name": "PLUVSTATS",
+    "signature": "Inteligência territorial para águas urbanas",
+    "slogan": "Dados que antecipam decisões"
+  },
+  "territory": {
+    "name": "Santo André/SP",
+    "center": [-23.6639, -46.5318],
+    "zoom": 13,
+    "disclaimer": "Coordenadas demonstrativas. Não representam ocorrências oficiais da Prefeitura de Santo André."
+  },
+  "operation": {
+    "defaultMode": "demo",
+    "hardwareRequiresValidation": true,
+    "readingMaxAgeSeconds": 180
+  },
+  "thresholds": {
+    "waterLevelCm": {
+      "attention": 25,
+      "alert": 50,
+      "critical": 75
+    },
+    "riseRateCmPerMin": {
+      "attention": 1.2,
+      "alert": 2.8,
+      "critical": 4.5
+    },
+    "hysteresisCm": 4,
+    "hysteresisRateCmPerMin": 0.4,
+    "staleReadingSeconds": 180,
+    "invalidDistanceRangeCm": [2, 380]
+  },
+  "sensorGeometry": {
+    "sensorHeightCm": 120,
+    "dryDistanceCm": 112,
+    "channelDepthCm": 100
+  },
+  "simulation": {
+    "tickSeconds": 5,
+    "seriesPoints": 60,
+    "scenarios": {
+      "normal": {
+        "label": "Normal",
+        "description": "Nível estável abaixo da faixa de atenção, com drenagem funcionando.",
+        "rainMmH": 0,
+        "targetLevelCm": 8,
+        "approachSeconds": 420,
+        "drainage": 0.85
+      },
+      "attention": {
+        "label": "Atenção",
+        "description": "Chuva moderada e elevação gradual rumo ao limite de atenção.",
+        "rainMmH": 18,
+        "targetLevelCm": 32,
+        "approachSeconds": 300,
+        "drainage": 0.55
+      },
+      "alert": {
+        "label": "Alerta",
+        "description": "Chuva forte, nível acima do limite de alerta e elevação sustentada.",
+        "rainMmH": 38,
+        "targetLevelCm": 58,
+        "approachSeconds": 240,
+        "drainage": 0.35
+      },
+      "critical": {
+        "label": "Crítico",
+        "description": "Cenário extremo de demonstração: nível na faixa crítica.",
+        "rainMmH": 62,
+        "targetLevelCm": 86,
+        "approachSeconds": 210,
+        "drainage": 0.2
+      }
+    }
+  }
+}
