@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "PLUVSTATS",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "sonar", "top": -140, "left": 250, "attrs": {} },
+    { "type": "wokwi-led", "id": "led-normal", "top": -60, "left": 400, "attrs": { "color": "green" } },
+    { "type": "wokwi-led", "id": "led-attention", "top": 0, "left": 400, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "led-alert", "top": 60, "left": 400, "attrs": { "color": "orange" } },
+    { "type": "wokwi-led", "id": "led-critical", "top": 120, "left": 400, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": -60, "left": 330, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 0, "left": 330, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 60, "left": 330, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r4", "top": 120, "left": 330, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 220, "left": 270, "attrs": { "volume": "0.1" } }
+  ],
+  "connections": [
+    ["esp:TX0", "$serialMonitor:RX", "", []],
+    ["esp:RX0", "$serialMonitor:TX", "", []],
+
+    ["sonar:VCC", "esp:VIN", "red", []],
+    ["sonar:GND", "esp:GND1", "black", []],
+    ["sonar:TRIG", "esp:D5", "green", []],
+    ["sonar:ECHO", "esp:D18", "blue", []],
+
+    ["esp:D25", "r1:1", "green", []],
+    ["r1:2", "led-normal:A", "green", []],
+    ["led-normal:C", "esp:GND1", "black", []],
+
+    ["esp:D26", "r2:1", "gold", []],
+    ["r2:2", "led-attention:A", "gold", []],
+    ["led-attention:C", "esp:GND1", "black", []],
+
+    ["esp:D27", "r3:1", "orange", []],
+    ["r3:2", "led-alert:A", "orange", []],
+    ["led-alert:C", "esp:GND1", "black", []],
+
+    ["esp:D14", "r4:1", "red", []],
+    ["r4:2", "led-critical:A", "red", []],
+    ["led-critical:C", "esp:GND1", "black", []],
+
+    ["esp:D12", "buzzer:1", "purple", []],
+    ["buzzer:2", "esp:GND1", "black", []]
+  ],
+  "dependencies": {}
+}

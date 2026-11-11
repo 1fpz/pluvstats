@@ -40,5 +40,9 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Edge build artefacts and local secrets
+edge/esp32/pluvstats_sensor/build/
+edge/esp32/pluvstats_sensor/secrets.h
+
 # Wokwi local artefacts
 edge/wokwi/.wokwi-cache/

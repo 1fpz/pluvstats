@@ -1,0 +1,13 @@
+# Wokwi configuration for the VS Code extension.
+# Compile first (see edge/README.md) so the build artifacts exist:
+#   arduino-cli compile --fqbn esp32:esp32:esp32 \
+#       --build-path build edge/esp32/pluvstats_sensor
+#
+# The paths below are relative to this file. The diagram is prepared but has
+# not been executed in this environment; treat Wokwi results as simulation,
+# not as physical validation.
+
+[wokwi]
+version = 1
+firmware = "../esp32/pluvstats_sensor/build/pluvstats_sensor.ino.bin"
+elf = "../esp32/pluvstats_sensor/build/pluvstats_sensor.ino.elf"
