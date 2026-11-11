@@ -6,8 +6,6 @@ Protótipo acadêmico e experimental de monitoramento de pontos de alagamento, c
 (frontend, backend, edge, matemática, design e documentação). O projeto não possui integração oficial
 com a Prefeitura de Santo André e não substitui órgãos públicos.
 
-> A documentação completa é consolidada ao final do projeto. Este README acompanha as entregas.
-
 ## Estado do projeto
 
 | Módulo | Estado |
@@ -18,9 +16,24 @@ com a Prefeitura de Santo André e não substitui órgãos públicos.
 | Backend FastAPI + SQLite | Concluído |
 | Simulador e motor de alertas | Concluído |
 | Inteligência territorial experimental | Concluído |
-| ESP32 / Wokwi | Em andamento |
-| Módulo de matemática | Em andamento |
-| Documentação e pitch | Em andamento |
+| ESP32 | Firmware e diagrama prontos — **não compilados, não testados fisicamente** |
+| Wokwi | Projeto pronto — **simulação não executada** |
+| Módulo de matemática | Concluído (25 testes) |
+| Documentação | Concluída |
+| Pitch | Concluído |
+
+Evidências automatizadas: **20 testes de frontend, 31 de backend, 25 de matemática e 4 de
+sincronização de limiares**. Detalhes e o que não foi testado em
+[documentation/testing](documentation/testing/README.md).
+
+### Documentação principal
+
+- [Arquitetura](documentation/architecture/overview.md)
+- [Contrato da API](documentation/api/README.md)
+- [Testes e evidências](documentation/testing/README.md)
+- [Requisitos, personas e jornadas](design/README.md)
+- [Pitch e slides](pitch/README.md)
+- [Uso de IA](AI.md)
 
 ## Requisitos
 
@@ -69,7 +82,14 @@ ao navegador.
 ```bash
 cd frontend && npm run test && npm run lint && npm run build
 cd backend && .\.venv\Scripts\python.exe -m pytest
+cd .. && python -m unittest discover -s mathematics/tests -p "test_*.py"
+python -m unittest discover -s edge/tools -p "test_*.py"
+python edge/tools/sync_thresholds.py --check
 ```
+
+O firmware ESP32 não é compilado nesta verificação e o diagrama do Wokwi não é
+executado. Essas ausências são registradas em [edge/README.md](edge/README.md) e em
+[documentation/testing](documentation/testing/README.md).
 
 ## Dados e segurança
 
