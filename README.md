@@ -22,7 +22,7 @@ com a Prefeitura de Santo André e não substitui órgãos públicos.
 | Documentação | Concluída |
 | Pitch | Concluído |
 
-Evidências automatizadas: **20 testes de frontend, 31 de backend, 25 de matemática e 4 de
+Evidências automatizadas: **23 testes de frontend, 31 de backend, 25 de matemática e 4 de
 sincronização de limiares**. Detalhes e o que não foi testado em
 [documentation/testing](documentation/testing/README.md).
 
@@ -34,6 +34,34 @@ sincronização de limiares**. Detalhes e o que não foi testado em
 - [Requisitos, personas e jornadas](design/README.md)
 - [Pitch e slides](pitch/README.md)
 - [Uso de IA](AI.md)
+
+## Testar agora (somente demonstração)
+
+Pré-requisito: **Node.js 20+**. Não é necessário backend, banco, conta ou
+credencial. A demonstração roda inteira no navegador, com dados fictícios
+identificados em todas as telas.
+
+```bash
+git clone https://github.com/1fpz/pluvstats.git
+cd pluvstats/frontend
+npm install
+npm run dev
+```
+
+Abra `http://127.0.0.1:5173`.
+
+Roteiro sugerido (5 minutos):
+
+1. **Visão geral** — contadores, mapa, série do sensor e meteorologia externa.
+2. **Mapa** — filtre camadas e selecione um ponto.
+3. **Sensores** — compare os 4 simulados com o hardware `PS-05` **não validado**.
+4. **Configurações** — escolha o cenário **Crítico** e aguarde um ciclo de 5 s.
+5. **Alertas** — abra um alerta, leia as métricas e use **Reconhecer**.
+6. **Área do cidadão** (`/cidadao`) — registre uma ocorrência e veja o protocolo
+   demonstrativo.
+7. **Configurações → Reiniciar dados** — volta ao estado inicial.
+
+O roteiro completo de apresentação está em [pitch/README.md](pitch/README.md).
 
 ## Requisitos
 
@@ -64,6 +92,11 @@ Copy-Item .env.example .env
 ```
 
 Consulte `backend/README.md` para endpoints, regras de hardware e testes.
+
+Em Linux/macOS, os comandos equivalentes são `python3 -m venv .venv`,
+`source .venv/bin/activate`, `pip install -r requirements.txt`,
+`cp .env.example .env` e `uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8000`.
+O backend é opcional para testar a demonstração.
 
 ### Integração frontend + backend
 

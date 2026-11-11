@@ -37,5 +37,5 @@ registra a lacuna e o roteiro de coleta.
 - sem teste em dispositivos físicos;
 - sem pesquisa de identidade visual com usuários.
 
-O design system implementado está descrito no [README do frontend](../../frontend/README.md)
+O design system implementado está descrito no [README do frontend](../frontend/README.md)
 e nos componentes em `frontend/src/components/ui`.
