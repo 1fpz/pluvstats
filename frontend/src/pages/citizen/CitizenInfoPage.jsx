@@ -65,7 +65,7 @@ const LIMITATIONS = [
   {
     title: 'Persistência local',
     description:
-      'O modo demonstrativo guarda o estado no navegador. Limpar os dados do site ou usar outro dispositivo faz o conteúdo voltar ao estado inicial.',
+      'No modo demonstrativo, o estado fica restrito a este ambiente (navegador ou banco local do protótipo). Limpar os dados ou reiniciar a demonstração restaura o conteúdo inicial.',
   },
 ]
 
@@ -149,7 +149,7 @@ export function CitizenInfoPage() {
             {
               icon: Database,
               title: '3. Consolidação e leitura',
-              text: 'Leituras validadas seriam enviadas à API e consolidadas em alertas, ocorrências e indicadores. No modo demonstrativo, tudo é gerado e persistido no navegador.',
+              text: 'Leituras validadas seriam enviadas à API e consolidadas em alertas, ocorrências e indicadores. No modo demonstrativo, tudo é gerado e mantido neste ambiente; com a API local ativa, o estado fica no banco SQLite do protótipo.',
             },
           ].map((step) => (
             <div key={step.title} className="flex gap-3 rounded-xl border border-line bg-navy-950/40 p-3">
@@ -197,9 +197,9 @@ export function CitizenInfoPage() {
             informado deve ser apenas um ponto de referência público da ocorrência.
           </p>
           <p>
-            No modo demonstrativo, ocorrências, intervenções, alertas e o estado do simulador ficam no
-            <span className="text-ink"> localStorage deste navegador</span>. Não há envio para servidor nem
-            compartilhamento entre dispositivos.
+            No modo demonstrativo, ocorrências, intervenções, alertas e o estado do simulador ficam restritos a este
+            ambiente: no <span className="text-ink">localStorage do navegador</span> ou no banco SQLite local da API.
+            Não há envio para serviços de terceiros nem compartilhamento público entre dispositivos.
           </p>
           <p>
             A condição meteorológica exibida é consultada na Open-Meteo, um serviço externo, e não é uma leitura do
@@ -225,7 +225,7 @@ export function CitizenInfoPage() {
             {
               question: 'Meu registro chega à prefeitura?',
               answer:
-                'Não. O registro fica apenas neste navegador e serve para demonstrar o fluxo do produto.',
+                'Não. O registro fica restrito a este ambiente demonstrativo e serve para demonstrar o fluxo do produto.',
             },
             {
               question: 'Por que o sistema diz que o hardware não está validado?',
@@ -235,7 +235,7 @@ export function CitizenInfoPage() {
             {
               question: 'O que é o protocolo mostrado após o envio?',
               answer:
-                'É um identificador local do registro demonstrativo. Ele não tem validade oficial e pode desaparecer ao limpar os dados do navegador.',
+                'É um identificador demonstrativo do registro. Ele não tem validade oficial e pode ser apagado ao reiniciar a demonstração.',
             },
           ].map((item) => (
             <details key={item.question} className="group rounded-xl border border-line bg-navy-950/40 p-3">

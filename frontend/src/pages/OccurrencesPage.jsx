@@ -445,7 +445,7 @@ export function OccurrencesPage() {
           </>
         )}
         <CardFooter>
-          <span className="text-[10px] text-muted">CRUD local demonstrativo · as alterações persistem neste navegador.</span>
+          <span className="text-[10px] text-muted">CRUD demonstrativo · as alterações ficam neste ambiente.</span>
           <span className="font-mono text-[10px] text-muted">{filtered.length} registro(s)</span>
         </CardFooter>
       </Card>
@@ -625,7 +625,7 @@ export function OccurrencesPage() {
         open={Boolean(deleting)}
         onClose={() => setDeleting(null)}
         title="Excluir ocorrência?"
-        description="Esta ação remove o registro demonstrativo deste navegador. Não é possível desfazer."
+        description="Esta ação remove o registro demonstrativo deste ambiente. Não é possível desfazer."
         size="sm"
         footer={
           <>

@@ -166,7 +166,7 @@ export function SettingsPage() {
                     {mode === 'demo' ? <Badge variant="cyan" size="xs">ativo</Badge> : null}
                   </div>
                   <p className="mt-2 text-[10px] leading-relaxed text-muted">
-                    Dados simulados no navegador, com séries, alertas e ocorrências fictícias. Padrão seguro do protótipo.
+                    Dados simulados mantidos neste ambiente, com séries, alertas e ocorrências fictícias. Padrão seguro do protótipo.
                   </p>
                 </button>
 
@@ -320,7 +320,7 @@ export function SettingsPage() {
                 <div>
                   <p className="text-[11px] font-medium text-ink">Restaurar demonstração</p>
                   <p className="mt-1 text-[10px] leading-relaxed text-muted">
-                    Remove alterações salvas no navegador. Não afeta nenhum sistema externo.
+                    Remove alterações salvas neste ambiente demonstrativo. Não afeta nenhum sistema externo.
                   </p>
                 </div>
                 <Button variant="danger" icon={Trash2} onClick={() => setResetOpen(true)}>
@@ -388,7 +388,7 @@ export function SettingsPage() {
         open={resetOpen}
         onClose={() => setResetOpen(false)}
         title="Reiniciar demonstração"
-        description="Esta ação restaura o estado inicial salvo no navegador."
+        description="Esta ação restaura o estado inicial deste ambiente demonstrativo."
         size="sm"
         footer={
           <div className="flex w-full justify-end gap-2">

@@ -162,13 +162,13 @@ export function CitizenReportPage() {
           </span>
           <h1 className="mt-3 text-xl font-semibold tracking-tight text-mist">Registro recebido</h1>
           <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
-            A ocorrência demonstrativa foi criada e já aparece no mapa do cidadão e na visão do gestor deste navegador.
+            A ocorrência demonstrativa foi criada e já aparece no mapa do cidadão e na visão do gestor deste ambiente.
           </p>
           <div className="mt-4 rounded-xl border border-line bg-navy-950/50 p-3">
             <p className="eyebrow text-[9px]">Protocolo demonstrativo</p>
             <p className="mt-1 font-mono text-lg font-semibold text-cyan-300">{success.id}</p>
             <p className="mt-1 text-[10px] leading-relaxed text-muted">
-              Guarde este número para acompanhar o registro. Ele é local ao navegador e não é um protocolo oficial.
+              Guarde este número para referência. Ele é demonstrativo e não é um protocolo oficial.
             </p>
           </div>
           <dl className="mt-3 space-y-2 text-[11px]">
@@ -398,7 +398,7 @@ export function CitizenReportPage() {
       </div>
 
       <p className="pb-2 text-center text-[9px] leading-relaxed text-muted">
-        Nenhum dado pessoal é solicitado ou armazenado. O registro fica apenas neste navegador.
+        Nenhum dado pessoal é solicitado. O registro demonstrativo fica neste ambiente e pode ser apagado ao reiniciar a demonstração.
       </p>
     </form>
   )
