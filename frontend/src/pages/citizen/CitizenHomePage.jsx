@@ -17,14 +17,22 @@ import { SeverityBadge } from '@/components/ui/SeverityBadge'
 import { SourceBadge } from '@/components/ui/SourceBadge'
 import { useData, useSimulation, useWeather } from '@/hooks'
 import { territory, thresholds } from '@/config'
-import { severityMeta, worstSeverity } from '@/utils/severity'
-import { formatCm, formatRelativeTime } from '@/utils/formatters'
+import { currentSituationSeverity, severityMeta, severityRank } from '@/utils/severity'
+import { formatCm, formatRate, formatRelativeTime } from '@/utils/formatters'
 import { cn } from '@/utils/cn'
 
 function attentionSensors(sensors) {
   return sensors
-    .filter((sensor) => Number.isFinite(sensor.levelCm) && sensor.levelCm >= thresholds.waterLevelCm.attention)
-    .sort((a, b) => b.levelCm - a.levelCm)
+    .filter(
+      (sensor) =>
+        severityRank(sensor.alertSeverity) > 0 ||
+        (Number.isFinite(sensor.levelCm) && sensor.levelCm >= thresholds.waterLevelCm.attention),
+    )
+    .sort(
+      (a, b) =>
+        severityRank(b.alertSeverity) - severityRank(a.alertSeverity) ||
+        (b.levelCm ?? 0) - (a.levelCm ?? 0),
+    )
     .slice(0, 3)
 }
 
@@ -40,10 +48,7 @@ export function CitizenHomePage() {
   const openOccurrences = occurrences.filter((occurrence) =>
     ['open', 'validated', 'in_progress'].includes(occurrence.status),
   )
-  const overview = worstSeverity([
-    ...sensors.map((sensor) => sensor.alertSeverity ?? 'normal'),
-    ...occurrences.map((occurrence) => occurrence.severity),
-  ])
+  const overview = currentSituationSeverity(sensors, alerts)
   const meta = severityMeta[overview]
 
   if (loading && !snapshot) {
@@ -104,7 +109,7 @@ export function CitizenHomePage() {
         <CardHeader
           icon={Waves}
           title="Pontos que merecem atenção"
-          description="Leituras simuladas acima da faixa de atenção experimental."
+          description="Sensores simulados com nível ou taxa de elevação acima da faixa de atenção experimental."
           actions={<Link to="/cidadao/mapa" className="text-[10px] font-medium text-cyan-300">Ver mapa</Link>}
         />
         <CardBody className="space-y-2 p-4 pt-3">
@@ -128,6 +133,7 @@ export function CitizenHomePage() {
                 </div>
                 <div className="text-right">
                   <p className="font-mono text-sm font-semibold text-ink">{formatCm(sensor.levelCm)}</p>
+                  <p className="mt-0.5 font-mono text-[8px] text-muted">{formatRate(sensor.rateCmPerMin)}</p>
                   <p className="mt-0.5 font-mono text-[8px] text-muted">{formatRelativeTime(sensor.lastReadingAt)}</p>
                 </div>
               </div>

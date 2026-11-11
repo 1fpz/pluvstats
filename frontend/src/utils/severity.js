@@ -59,6 +59,20 @@ export function worstSeverity(values) {
   )
 }
 
+/**
+ * Current situation for a public summary.
+ *
+ * Only live signals matter here: the severity of each sensor and of the open
+ * alerts. Historical occurrence severity must not raise the current status,
+ * otherwise a resolved event could keep the city "critical" forever.
+ */
+export function currentSituationSeverity(sensors = [], alerts = []) {
+  return worstSeverity([
+    ...sensors.map((sensor) => sensor?.alertSeverity ?? 'normal'),
+    ...alerts.map((alert) => alert?.severity ?? 'normal'),
+  ])
+}
+
 export const occurrenceStatusMeta = {
   open: { label: 'Aberta', tone: 'warning' },
   validated: { label: 'Validada', tone: 'cyan' },

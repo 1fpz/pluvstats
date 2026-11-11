@@ -68,7 +68,7 @@ Frases que devem acompanhar a demo:
 
 ## Evidências para citar
 
-- 20 testes de frontend, 31 de backend, 25 de matemática e 4 de sincronização de
+- 23 testes de frontend, 31 de backend, 25 de matemática e 4 de sincronização de
   limiares.
 - Lint e build sem erros; aviso de bundle de 1.179 kB.
 - Integração verificada em navegador: ocorrência criada no SQLite e reset

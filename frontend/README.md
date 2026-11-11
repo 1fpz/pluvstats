@@ -83,7 +83,7 @@ tamanho. Code splitting não foi implementado nesta entrega.
 
 ## Testes
 
-20 testes em Vitest:
+23 testes em Vitest:
 
 - motores de simulação, alertas e inteligência;
 - contrato do repositório HTTP, incluindo mapeamento de erros.

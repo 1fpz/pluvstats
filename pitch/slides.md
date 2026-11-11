@@ -141,7 +141,7 @@ t = (h_limite − h_atual) / v
 
 ## 10. Evidências
 
-- 20 testes de frontend;
+- 23 testes de frontend;
 - 31 testes de backend;
 - 25 testes de matemática;
 - 4 testes de sincronização de limiares;

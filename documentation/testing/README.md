@@ -7,9 +7,9 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 
 | Suíte | Comando | Resultado |
 | --- | --- | --- |
-| Frontend (domínio + API) | `cd frontend && npm run test` | **20 aprovados** |
+| Frontend (domínio + API) | `cd frontend && npm run test` | **23 aprovados** |
 | Frontend lint | `cd frontend && npm run lint` | **sem erros** |
-| Frontend build | `cd frontend && npm run build` | **sucesso**, bundle de 1.179,02 kB (326,80 kB gzip) |
+| Frontend build | `cd frontend && npm run build` | **sucesso**, bundle de 1.179,30 kB (326,88 kB gzip) |
 | Backend | `cd backend && .\.venv\Scripts\python.exe -m pytest` | **31 aprovados** em 16,70 s |
 | Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **25 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |
@@ -23,7 +23,8 @@ Arquivos de teste:
 - `frontend/src/domain/__tests__/alertEngine.test.js` — 5 testes;
 - `frontend/src/domain/__tests__/simulationEngine.test.js` — 5 testes;
 - `frontend/src/domain/__tests__/intelligence.test.js` — 4 testes;
-- `frontend/src/services/__tests__/apiRepository.test.js` — 6 testes.
+- `frontend/src/services/__tests__/apiRepository.test.js` — 6 testes;
+- `frontend/src/utils/__tests__/severity.test.js` — 3 testes.
 
 Cobertura comportamental:
 
@@ -31,6 +32,8 @@ Cobertura comportamental:
 - histerese de nível e taxa;
 - ticks determinísticos do simulador e comandos;
 - priorização explicável;
+- severidade pública calculada apenas a partir de sinais atuais (sensores e
+  alertas abertos), sem promover ocorrências históricas;
 - contrato do repositório HTTP: URL com/sem `/api`, snapshot, tick,
   mapeamento de `422` em erros de campo, envio de ocorrência e validação local
   antes da chamada.
@@ -38,8 +41,8 @@ Cobertura comportamental:
 Resultado do Vitest:
 
 ```text
-Test Files  4 passed (4)
-Tests       20 passed (20)
+Test Files  5 passed (5)
+Tests       23 passed (23)
 ```
 
 `npm run lint` termina sem saída. `npm run build` termina com sucesso e mantém o
