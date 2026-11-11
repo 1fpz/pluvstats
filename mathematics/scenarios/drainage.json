@@ -1,0 +1,15 @@
+{
+  "name": "Drenagem",
+  "description": "O nível cai de 62 cm para 44 cm em quatro minutos. A taxa negativa não permite extrapolar tempo até um limite superior.",
+  "readings": [
+    { "tSeconds": 0, "distanceCm": 58.0 },
+    { "tSeconds": 30, "distanceCm": 60.5 },
+    { "tSeconds": 60, "distanceCm": 63.0 },
+    { "tSeconds": 90, "distanceCm": 65.5 },
+    { "tSeconds": 120, "distanceCm": 68.0 },
+    { "tSeconds": 150, "distanceCm": 70.5 },
+    { "tSeconds": 180, "distanceCm": 73.0 },
+    { "tSeconds": 210, "distanceCm": 75.0 },
+    { "tSeconds": 240, "distanceCm": 76.0 }
+  ]
+}

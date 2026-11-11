@@ -1,0 +1,15 @@
+{
+  "name": "Canal estável",
+  "description": "Oscilação de poucos centímetros em torno de 8 cm, compatível com drenagem funcionando.",
+  "readings": [
+    { "tSeconds": 0, "distanceCm": 112.0 },
+    { "tSeconds": 30, "distanceCm": 111.8 },
+    { "tSeconds": 60, "distanceCm": 112.1 },
+    { "tSeconds": 90, "distanceCm": 111.7 },
+    { "tSeconds": 120, "distanceCm": 111.9 },
+    { "tSeconds": 150, "distanceCm": 112.0 },
+    { "tSeconds": 180, "distanceCm": 111.6 },
+    { "tSeconds": 240, "distanceCm": 111.9 },
+    { "tSeconds": 300, "distanceCm": 112.0 }
+  ]
+}

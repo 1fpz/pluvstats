@@ -1,0 +1,15 @@
+{
+  "name": "Elevação sustentada",
+  "description": "O nível sobe de 42 cm para 58 cm em quatro minutos: taxa de 4 cm/min, acima do limite experimental de alerta.",
+  "readings": [
+    { "tSeconds": 0, "distanceCm": 78.0 },
+    { "tSeconds": 30, "distanceCm": 76.0 },
+    { "tSeconds": 60, "distanceCm": 74.0 },
+    { "tSeconds": 90, "distanceCm": 72.0 },
+    { "tSeconds": 120, "distanceCm": 70.0 },
+    { "tSeconds": 150, "distanceCm": 68.0 },
+    { "tSeconds": 180, "distanceCm": 66.0 },
+    { "tSeconds": 210, "distanceCm": 64.0 },
+    { "tSeconds": 240, "distanceCm": 62.0 }
+  ]
+}
