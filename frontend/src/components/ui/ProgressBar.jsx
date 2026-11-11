@@ -2,7 +2,7 @@ import { cn } from '@/utils/cn'
 
 const tones = {
   cyan: 'bg-cyan',
-  petrol: 'bg-petrol',
+  petrol: 'bg-petrol-400',
   warning: 'bg-warning',
   critical: 'bg-critical',
   success: 'bg-success',
@@ -15,13 +15,13 @@ export function ProgressBar({ value, max = 100, tone = 'cyan', label, className,
   return (
     <div className={cn('space-y-1.5', className)}>
       {label || showValue ? (
-        <div className="flex items-center justify-between gap-2 text-[10px] text-muted">
+        <div className="flex items-center justify-between gap-2 text-[10.5px] text-muted">
           <span>{label}</span>
-          {showValue ? <span className="font-mono">{Math.round(pct)}%</span> : null}
+          {showValue ? <span className="tabular-nums">{Math.round(pct)}%</span> : null}
         </div>
       ) : null}
       <div
-        className="h-1.5 overflow-hidden rounded-full bg-navy-700/80"
+        className="h-1 overflow-hidden rounded-full bg-white/[0.06]"
         role="progressbar"
         aria-valuenow={Math.round(pct)}
         aria-valuemin={0}

@@ -11,11 +11,11 @@ export function ComingSoonPage({ eyebrow = 'Próxima entrega', title, descriptio
       <PageHeader eyebrow={eyebrow} title={title} description={description} />
       <Card className="p-8">
         <div className="mx-auto flex max-w-lg flex-col items-center text-center">
-          <div className="grid h-14 w-14 place-items-center rounded-2xl border border-cyan/20 bg-cyan/[0.07] text-cyan-300">
-            <Construction className="h-6 w-6" aria-hidden="true" />
+          <div className="grid h-12 w-12 place-items-center rounded-lg border border-line bg-white/[0.04] text-muted">
+            <Construction className="h-5 w-5" aria-hidden="true" />
           </div>
-          <h2 className="mt-4 text-base font-semibold text-mist">Módulo em implementação</h2>
-          <p className="mt-2 text-xs leading-relaxed text-muted">
+          <h2 className="mt-4 text-[15px] font-semibold text-mist">Módulo em implementação</h2>
+          <p className="mt-2 max-w-sm text-[12px] leading-relaxed text-muted">
             {note ??
               'Esta página faz parte do plano de fases e será entregue com dados conectados, estados completos e testes.'}
           </p>
@@ -43,9 +43,9 @@ export function NotFoundPage() {
   return (
     <div className="grid min-h-[60vh] place-items-center">
       <Card className="w-full max-w-md p-8 text-center">
-        <p className="font-mono text-4xl font-semibold text-cyan">404</p>
-        <h1 className="mt-3 text-xl font-semibold text-mist">Página não encontrada</h1>
-        <p className="mt-2 text-xs leading-relaxed text-muted">
+        <p className="text-[36px] font-semibold tracking-[-0.03em] tabular-nums text-muted">404</p>
+        <h1 className="mt-3 text-[18px] font-semibold text-mist">Página não encontrada</h1>
+        <p className="mt-2 text-[12px] leading-relaxed text-muted">
           O endereço informado não existe neste protótipo. Volte para a visão geral ou para a área do cidadão.
         </p>
         <div className="mt-5 flex flex-wrap justify-center gap-2">

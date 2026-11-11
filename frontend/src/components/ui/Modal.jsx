@@ -56,7 +56,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
   return createPortal(
     <div className="fixed inset-0 z-[1000] flex items-end justify-center p-0 sm:items-center sm:p-6" role="presentation">
       <div
-        className="absolute inset-0 bg-abyss/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -67,7 +67,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
         aria-labelledby={titleId}
         tabIndex={-1}
         className={cn(
-          'relative z-10 flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl border border-line bg-navy-900 shadow-panel outline-none animate-fade-up sm:rounded-2xl',
+          'relative z-10 flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-xl border border-line bg-navy-900 shadow-float outline-none animate-fade-up sm:rounded-xl',
           sizes[size] ?? sizes.md,
           className,
         )}

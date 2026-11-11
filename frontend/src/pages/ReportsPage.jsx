@@ -254,7 +254,7 @@ export function ReportsPage() {
                       onClick={() => setPeriod(option.value)}
                       className={`inline-flex h-8 items-center rounded-lg px-3 text-xs font-medium transition ${
                         period === option.value
-                          ? 'bg-cyan/15 text-cyan-300 shadow-[inset_0_0_0_1px_rgba(0,166,204,0.25)]'
+                          ? 'bg-white/[0.08] text-ink'
                           : 'text-muted hover:bg-navy-800/70 hover:text-ink'
                       }`}
                     >
@@ -340,8 +340,8 @@ export function ReportsPage() {
                   <CartesianGrid strokeDasharray="3 6" vertical={false} />
                   <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} interval={0} />
                   <YAxis allowDecimals={false} axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
-                  <Tooltip cursor={{ fill: 'rgba(0,166,204,0.06)' }} formatter={(value) => [value, 'Ocorrências']} />
-                  <Bar dataKey="total" fill="#00A6CC" fillOpacity={0.75} radius={[5, 5, 0, 0]} isAnimationActive={false} />
+                  <Tooltip cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(value) => [value, 'Ocorrências']} />
+                  <Bar dataKey="total" fill="#4F9E98" fillOpacity={0.85} radius={[3, 3, 0, 0]} isAnimationActive={false} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -404,8 +404,8 @@ export function ReportsPage() {
                 <CartesianGrid strokeDasharray="3 6" vertical={false} />
                 <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
                 <YAxis allowDecimals={false} axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
-                <Tooltip cursor={{ fill: 'rgba(0,166,204,0.06)' }} formatter={(value) => [value, 'Registros']} />
-                <Bar dataKey="total" fill="#33C6E0" fillOpacity={0.7} radius={[5, 5, 0, 0]} isAnimationActive={false} />
+                <Tooltip cursor={{ fill: 'rgba(255,255,255,0.04)' }} formatter={(value) => [value, 'Registros']} />
+                <Bar dataKey="total" fill="#5E9E92" fillOpacity={0.85} radius={[3, 3, 0, 0]} isAnimationActive={false} />
               </BarChart>
             </ResponsiveContainer>
           </div>

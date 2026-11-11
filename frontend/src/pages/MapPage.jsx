@@ -262,13 +262,17 @@ export function MapPage() {
         description="Sensores simulados, ocorrências demonstrativas e camadas de leitura territorial. Nenhum marcador representa dado oficial."
         meta={
           <>
-            <Badge variant="cyan" size="sm">
+            <span className="inline-flex items-center gap-1.5 text-[11px] text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden="true" />
               {filteredSensors.length} sensores
-            </Badge>
-            <Badge variant="warning" size="sm">
+            </span>
+            <span className="text-white/15">·</span>
+            <span className="inline-flex items-center gap-1.5 text-[11px] text-muted">
+              <span className="h-1.5 w-1.5 rounded-full bg-warning" aria-hidden="true" />
               {filteredOccurrences.length} ocorrências
-            </Badge>
-            <span className="font-mono text-[10px] text-muted">Santo André/SP · OSM + CARTO</span>
+            </span>
+            <span className="text-white/15">·</span>
+            <span className="text-[11px] text-muted">Santo André/SP · OpenStreetMap</span>
           </>
         }
         actions={
@@ -289,20 +293,20 @@ export function MapPage() {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Buscar ponto, bairro ou ID"
               aria-label="Buscar ponto no mapa"
-              className="h-9 w-full rounded-lg border border-line bg-navy-950/60 pl-9 pr-3 text-xs text-ink placeholder:text-muted/70 focus:border-cyan/50 focus:outline-none focus:ring-2 focus:ring-cyan/20"
+              className="h-9 w-full rounded-lg border border-line bg-navy-950 pl-9 pr-3 text-[12px] text-ink placeholder:text-muted/60 focus:border-cyan/50 focus:outline-none focus:ring-2 focus:ring-cyan/15"
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-1 rounded-lg border border-line bg-navy-950/50 p-1">
+            <div className="flex items-center gap-1 rounded-lg border border-line bg-navy-950 p-0.5">
               <Layers className="ml-1.5 h-3.5 w-3.5 text-muted" aria-hidden="true" />
               <button
                 type="button"
                 aria-pressed={layers.sensors}
                 onClick={() => setLayers((current) => ({ ...current, sensors: !current.sensors }))}
                 className={cn(
-                  'rounded-md px-2 py-1 text-[10px] font-medium transition',
-                  layers.sensors ? 'bg-cyan/15 text-cyan-300' : 'text-muted hover:text-ink',
+                  'rounded-[6px] px-2 py-1 text-[11px] font-medium transition',
+                  layers.sensors ? 'bg-white/[0.08] text-ink' : 'text-muted hover:text-ink',
                 )}
               >
                 Sensores
@@ -312,15 +316,15 @@ export function MapPage() {
                 aria-pressed={layers.occurrences}
                 onClick={() => setLayers((current) => ({ ...current, occurrences: !current.occurrences }))}
                 className={cn(
-                  'rounded-md px-2 py-1 text-[10px] font-medium transition',
-                  layers.occurrences ? 'bg-warning/15 text-warning' : 'text-muted hover:text-ink',
+                  'rounded-[6px] px-2 py-1 text-[11px] font-medium transition',
+                  layers.occurrences ? 'bg-white/[0.08] text-ink' : 'text-muted hover:text-ink',
                 )}
               >
                 Ocorrências
               </button>
             </div>
 
-            <div className="flex items-center gap-1 rounded-lg border border-line bg-navy-950/50 p-1" role="group" aria-label="Filtrar por severidade">
+            <div className="flex items-center gap-0.5 rounded-lg border border-line bg-navy-950 p-0.5" role="group" aria-label="Filtrar por severidade">
               {SEVERITY_FILTERS.map((filter) => (
                 <button
                   key={filter.value}
@@ -328,9 +332,9 @@ export function MapPage() {
                   aria-pressed={severityFilter === filter.value}
                   onClick={() => setSeverityFilter(filter.value)}
                   className={cn(
-                    'rounded-md px-2 py-1 text-[10px] font-medium transition',
+                    'rounded-[6px] px-2 py-1 text-[11px] font-medium transition',
                     severityFilter === filter.value
-                      ? 'bg-navy-700 text-ink'
+                      ? 'bg-white/[0.08] text-ink'
                       : 'text-muted hover:text-ink',
                   )}
                 >
@@ -353,16 +357,14 @@ export function MapPage() {
             onSensorSelect={(sensor) => setSelectedId(sensor.id)}
             onOccurrenceSelect={(occurrence) => setSelectedId(occurrence.id)}
           />
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-navy-900/50 px-3.5 py-2.5">
-            <span className="flex items-center gap-2 font-mono text-[9px] text-muted">
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-line bg-navy-900 px-3.5 py-2.5">
+            <span className="flex items-center gap-2 text-[10.5px] text-muted">
               <Radio className="h-3 w-3 text-cyan" aria-hidden="true" />
-              {layers.sensors ? 'camada de sensores ativa' : 'camada de sensores oculta'}
-              <span className="text-line">·</span>
-              {layers.occurrences ? 'camada de ocorrências ativa' : 'camada de ocorrências oculta'}
+              {layers.sensors ? 'Camada de sensores ativa' : 'Camada de sensores oculta'}
+              <span className="text-white/15">·</span>
+              {layers.occurrences ? 'Camada de ocorrências ativa' : 'Camada de ocorrências oculta'}
             </span>
-            <span className="font-mono text-[9px] text-warning">
-              dados simulados / demonstrativos
-            </span>
+            <span className="text-[10px] text-warning/90">dados simulados</span>
           </div>
         </div>
 

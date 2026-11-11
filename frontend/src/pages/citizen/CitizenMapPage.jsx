@@ -64,9 +64,9 @@ export function CitizenMapPage() {
   return (
     <div className="space-y-4">
       <header>
-        <p className="eyebrow text-cyan-300">Mapa demonstrativo</p>
-        <h1 className="mt-1 text-xl font-semibold tracking-tight text-mist">Pontos de atenção</h1>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
+        <p className="eyebrow">Mapa demonstrativo</p>
+        <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-mist">Pontos de atenção</h1>
+        <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
           Sensores simulados e ocorrências fictícias. Toque em um ponto para ver detalhes no mapa.
         </p>
       </header>
@@ -82,16 +82,24 @@ export function CitizenMapPage() {
 
       <div className="flex flex-wrap items-center justify-between gap-2">
         <SegmentedControl ariaLabel="Filtrar ocorrências por severidade" value={filter} onChange={setFilter} options={FILTERS} size="sm" />
-        <span className="font-mono text-[9px] text-muted">{filteredOccurrences.length} ocorrência(s)</span>
+        <span className="text-[10.5px] text-muted">{filteredOccurrences.length} ocorrência(s)</span>
       </div>
 
       {selected ? (
-        <Card className="border-cyan/25">
+        <Card>
           <CardHeader
             icon={MapPin}
             title={selected.title ?? selected.shortName ?? selected.name}
             description={selected.address ?? selected.neighborhood}
-            actions={<button type="button" className="text-[10px] text-muted" onClick={closeSelected}>Fechar</button>}
+            actions={
+              <button
+                type="button"
+                className="rounded-md px-2 py-1 text-[11px] text-muted transition hover:bg-white/[0.05] hover:text-ink"
+                onClick={closeSelected}
+              >
+                Fechar
+              </button>
+            }
           />
           <CardBody className="space-y-2 p-4 pt-3">
             <div className="flex flex-wrap gap-1.5">
@@ -99,10 +107,10 @@ export function CitizenMapPage() {
               {selected.alertSeverity ? <SeverityBadge severity={selected.alertSeverity} size="xs" /> : null}
               <Badge variant="neutral" size="xs">{selected.source === 'hardware' ? 'hardware' : 'demonstração'}</Badge>
             </div>
-            <p className="text-[10px] leading-relaxed text-muted">
+            <p className="text-[11.5px] leading-relaxed text-muted">
               {selected.description ?? selected.connectivityProof ?? 'Ponto demonstrativo sem descrição adicional.'}
             </p>
-            <p className="font-mono text-[9px] text-muted">
+            <p className="text-[10.5px] tabular-nums text-muted">
               {selected.reportedAt
                 ? `registrado ${formatRelativeTime(selected.reportedAt)}`
                 : selected.lastReadingAt
@@ -134,15 +142,15 @@ export function CitizenMapPage() {
                     key={occurrence.id}
                     type="button"
                     onClick={() => selectOccurrence(occurrence)}
-                    className="flex w-full items-start justify-between gap-3 rounded-lg border border-line bg-navy-950/40 p-3 text-left transition hover:border-cyan/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40"
+                    className="flex w-full items-start justify-between gap-3 rounded-lg border border-line bg-white/[0.02] p-3 text-left transition hover:border-white/[0.14] hover:bg-white/[0.04] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/50"
                   >
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
                         <span className={cn('h-1.5 w-1.5 rounded-full', meta.dot)} aria-hidden="true" />
-                        <span className="font-mono text-[9px] uppercase text-muted">{occurrenceTypeMeta[occurrence.type]?.label}</span>
+                        <span className="text-[10px] font-medium text-muted">{occurrenceTypeMeta[occurrence.type]?.label}</span>
                       </div>
-                      <p className="mt-1 line-clamp-2 text-[11px] font-medium text-ink">{occurrence.title}</p>
-                      <p className="mt-0.5 truncate text-[9px] text-muted">{occurrence.neighborhood} · {formatRelativeTime(occurrence.reportedAt)}</p>
+                      <p className="mt-1 line-clamp-2 text-[12px] font-medium text-ink">{occurrence.title}</p>
+                      <p className="mt-0.5 truncate text-[10px] text-muted">{occurrence.neighborhood} · {formatRelativeTime(occurrence.reportedAt)}</p>
                     </div>
                     <SeverityBadge severity={occurrence.severity} size="xs" />
                   </button>
@@ -152,9 +160,12 @@ export function CitizenMapPage() {
         </CardBody>
       </Card>
 
-      <Link to="/cidadao/registrar" className="flex items-center justify-between gap-2 rounded-xl border border-cyan/25 bg-cyan/[0.06] p-3 text-[11px] font-medium text-cyan-300">
+      <Link
+        to="/cidadao/registrar"
+        className="flex items-center justify-between gap-2 rounded-lg border border-line bg-white/[0.02] p-3 text-[12px] font-medium text-ink transition hover:border-white/[0.14] hover:bg-white/[0.04]"
+      >
         Viu um problema de drenagem? Registre uma ocorrência.
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <ArrowRight className="h-4 w-4 text-muted" aria-hidden="true" />
       </Link>
     </div>
   )

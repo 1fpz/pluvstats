@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn'
 
 /** Lightweight dependency-free sparkline used in dense cards and tables. */
-export function Sparkline({ values = [], width = 120, height = 34, stroke = '#00A6CC', className, fill = true }) {
+export function Sparkline({ values = [], width = 120, height = 34, stroke = '#4F9E98', className, fill = true }) {
   const data = values.filter((value) => Number.isFinite(Number(value))).map(Number)
   if (data.length < 2) {
     return <div className={cn('h-[34px] w-[120px] rounded bg-navy-800/50', className)} aria-hidden="true" />

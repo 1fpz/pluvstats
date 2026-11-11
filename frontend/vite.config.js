@@ -18,6 +18,17 @@ export default defineConfig({
   },
   build: {
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        // Keep the heavy visualization libraries out of the entry chunk so the
+        // first paint does not wait for the whole mapping/charting stack.
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-charts': ['recharts'],
+          'vendor-maps': ['leaflet', 'react-leaflet'],
+        },
+      },
+    },
   },
   test: {
     environment: 'jsdom',

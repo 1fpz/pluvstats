@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Topbar } from '@/components/layout/Topbar'
-import { DemoBanner } from '@/components/layout/DemoBanner'
+import { LoadingBlock } from '@/components/ui/Loading'
 import { territory } from '@/config'
 
 export function AppLayout() {
@@ -11,6 +11,7 @@ export function AppLayout() {
 
   useEffect(() => {
     setSidebarOpen(false)
+    window.scrollTo(0, 0)
   }, [location.pathname])
 
   return (
@@ -19,24 +20,19 @@ export function AppLayout() {
         Pular para o conteúdo
       </a>
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="min-w-0 lg:pl-[272px]">
+      <div className="min-w-0 lg:pl-[268px]">
         <header className="sticky top-0 z-30">
           <Topbar onMenuOpen={() => setSidebarOpen(true)} />
-          <DemoBanner />
         </header>
-        <main id="main-content" className="mx-auto w-full max-w-[1580px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          <Outlet />
+        <main id="main-content" className="mx-auto w-full max-w-[1560px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <Suspense fallback={<LoadingBlock label="Carregando página" className="min-h-[50vh]" />}>
+            <Outlet />
+          </Suspense>
         </main>
-        <footer className="mx-auto flex w-full max-w-[1580px] flex-col gap-2 border-t border-line px-4 py-6 text-[10px] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>
-            <span className="font-display font-semibold tracking-wide text-ink">PLUV</span>
-            <span className="font-display font-semibold tracking-wide text-cyan">STATS</span>
-            <span className="mx-2 text-line">·</span>
-            Protótipo acadêmico experimental · {territory.name}
-          </p>
-          <p className="max-w-2xl leading-relaxed">
-            {territory.disclaimer} A plataforma não prevê enchentes com precisão e não substitui órgãos públicos.
-          </p>
+        <footer className="mx-auto w-full max-w-[1560px] px-4 pb-8 text-[10.5px] leading-relaxed text-muted/70 sm:px-6 lg:px-8">
+          PLUVSTATS · protótipo acadêmico experimental · {territory.name}
+          <span className="mx-1.5 text-white/15">·</span>
+          coordenadas demonstrativas, sem vínculo oficial com órgãos públicos.
         </footer>
       </div>
     </div>

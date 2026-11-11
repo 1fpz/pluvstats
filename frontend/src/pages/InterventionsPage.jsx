@@ -69,7 +69,7 @@ function ComparisonChart({ intervention }) {
           <XAxis dataKey="name" axisLine={false} tickLine={false} />
           <YAxis domain={[0, 100]} axisLine={false} tickLine={false} width={32} tickFormatter={(value) => `${value}`} />
           <Tooltip
-            cursor={{ fill: 'rgba(0,166,204,0.06)' }}
+            cursor={{ fill: 'rgba(255,255,255,0.04)' }}
             formatter={(value) => [formatCm(value, 1), 'Nível']}
           />
           <Bar dataKey="value" radius={[6, 6, 0, 0]} isAnimationActive={false}>

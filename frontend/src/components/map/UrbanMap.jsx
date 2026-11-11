@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, ZoomControl, useMap } from 'react-leaflet'
-import { ArrowUpRight, Cpu, Droplets, MapPin } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { territory } from '@/config'
 import { SeverityBadge } from '@/components/ui/SeverityBadge'
 import { SourceBadge } from '@/components/ui/SourceBadge'
@@ -8,6 +8,14 @@ import { MapLegend } from './MapLegend'
 import { createDivIcon } from './mapIcons'
 import { cn } from '@/utils/cn'
 import { formatCm, formatRelativeTime } from '@/utils/formatters'
+
+const STATUS_LABEL = {
+  open: 'Aberta',
+  in_progress: 'Em intervenção',
+  resolved: 'Resolvida',
+  validated: 'Validada',
+  archived: 'Arquivada',
+}
 
 function FocusMap({ focus }) {
   const map = useMap()
@@ -24,27 +32,29 @@ function FocusMap({ focus }) {
 function SensorPopup({ sensor, onSelect }) {
   return (
     <div className="min-w-[190px]">
-      <p className="font-sans text-[11px] font-semibold text-mist">{sensor.shortName ?? sensor.name}</p>
-      <p className="mt-0.5 text-[10px] text-slate-400">{sensor.neighborhood}</p>
+      <p className="text-[12px] font-semibold text-mist">{sensor.shortName ?? sensor.name}</p>
+      <p className="mt-0.5 text-[10.5px] text-muted">{sensor.neighborhood}</p>
       <div className="mt-2 flex flex-wrap gap-1">
         <SeverityBadge severity={sensor.alertSeverity ?? 'normal'} size="xs" />
         <SourceBadge source={sensor.source} size="xs" />
       </div>
-      <dl className="mt-2 space-y-1 text-[10px] text-slate-300">
+      <dl className="mt-2.5 space-y-1 text-[10.5px]">
         <div className="flex justify-between gap-3">
-          <dt>Nível</dt>
-          <dd className="font-mono">{formatCm(sensor.levelCm)}</dd>
+          <dt className="text-muted">Nível</dt>
+          <dd className="font-medium tabular-nums text-ink">{formatCm(sensor.levelCm)}</dd>
         </div>
         <div className="flex justify-between gap-3">
-          <dt>Última leitura</dt>
-          <dd className="font-mono">{sensor.lastReadingAt ? formatRelativeTime(sensor.lastReadingAt) : '—'}</dd>
+          <dt className="text-muted">Última leitura</dt>
+          <dd className="tabular-nums text-ink">
+            {sensor.lastReadingAt ? formatRelativeTime(sensor.lastReadingAt) : '—'}
+          </dd>
         </div>
       </dl>
       {onSelect ? (
         <button
           type="button"
           onClick={() => onSelect(sensor)}
-          className="mt-2.5 inline-flex w-full items-center justify-between gap-2 rounded-lg border border-cyan/25 bg-cyan/10 px-2.5 py-1.5 text-[10px] font-medium text-cyan-300 transition hover:bg-cyan/15"
+          className="mt-3 inline-flex w-full items-center justify-between gap-2 rounded-md bg-white/[0.07] px-2.5 py-1.5 text-[10.5px] font-medium text-ink transition hover:bg-white/[0.11]"
         >
           Abrir detalhes
           <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
@@ -57,31 +67,23 @@ function SensorPopup({ sensor, onSelect }) {
 function OccurrencePopup({ occurrence, onSelect }) {
   return (
     <div className="min-w-[200px]">
-      <p className="font-sans text-[11px] font-semibold text-mist">{occurrence.title}</p>
-      <p className="mt-0.5 text-[10px] text-slate-400">{occurrence.address}</p>
+      <p className="text-[12px] font-semibold text-mist">{occurrence.title}</p>
+      <p className="mt-0.5 text-[10.5px] text-muted">{occurrence.address}</p>
       <div className="mt-2 flex flex-wrap gap-1">
         <SeverityBadge severity={occurrence.severity} size="xs" />
-        <span className="rounded-full border border-line bg-navy-800/70 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.06em] text-muted">
-          {occurrence.status === 'open'
-            ? 'Aberta'
-            : occurrence.status === 'in_progress'
-              ? 'Em intervenção'
-              : occurrence.status === 'resolved'
-                ? 'Resolvida'
-                : occurrence.status === 'validated'
-                  ? 'Validada'
-                  : 'Arquivada'}
+        <span className="rounded-md border border-line bg-white/[0.03] px-1.5 py-0.5 text-[10px] font-medium text-muted">
+          {STATUS_LABEL[occurrence.status] ?? 'Arquivada'}
         </span>
       </div>
-      <p className="mt-2 text-[10px] leading-relaxed text-slate-400">{occurrence.description}</p>
-      <p className="mt-2 font-mono text-[9px] text-slate-500">
+      <p className="mt-2 text-[10.5px] leading-relaxed text-muted">{occurrence.description}</p>
+      <p className="mt-2 text-[9.5px] text-muted/70">
         {occurrence.reportedAt ? formatRelativeTime(occurrence.reportedAt) : ''} · demonstração
       </p>
       {onSelect ? (
         <button
           type="button"
           onClick={() => onSelect(occurrence)}
-          className="mt-2.5 inline-flex w-full items-center justify-between gap-2 rounded-lg border border-cyan/25 bg-cyan/10 px-2.5 py-1.5 text-[10px] font-medium text-cyan-300 transition hover:bg-cyan/15"
+          className="mt-3 inline-flex w-full items-center justify-between gap-2 rounded-md bg-white/[0.07] px-2.5 py-1.5 text-[10.5px] font-medium text-ink transition hover:bg-white/[0.11]"
         >
           Abrir detalhes
           <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
@@ -107,7 +109,7 @@ export function UrbanMap({
   const visibleOccurrences = layers.occurrences ? occurrences : []
 
   return (
-    <div className={cn('relative overflow-hidden rounded-xl border border-line bg-navy-950', className)}>
+    <div className={cn('relative overflow-hidden rounded-lg border border-line bg-[#0E1114]', className)}>
       <MapContainer
         center={territory.center}
         zoom={territory.zoom}
@@ -117,9 +119,9 @@ export function UrbanMap({
         aria-label={ariaLabel}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          subdomains="abc"
           maxZoom={19}
         />
         <ZoomControl position="bottomright" />
@@ -160,11 +162,12 @@ export function UrbanMap({
         ))}
       </MapContainer>
 
-      <div className="pointer-events-none absolute left-3 top-3 z-[500] flex flex-wrap items-center gap-2">
-        <span className="pointer-events-auto rounded-lg border border-line bg-navy-950/85 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.1em] text-cyan-300 backdrop-blur-md">
-          Santo André/SP · demo
+      <div className="pointer-events-none absolute left-3 top-3 z-[500] flex flex-wrap items-center gap-1.5">
+        <span className="pointer-events-auto inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-[#0B0D10]/85 px-2.5 py-1 text-[10px] font-medium text-ink backdrop-blur-md">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300" aria-hidden="true" />
+          Santo André/SP
         </span>
-        <span className="pointer-events-auto rounded-lg border border-line bg-navy-950/85 px-2.5 py-1 font-mono text-[9px] text-muted backdrop-blur-md">
+        <span className="pointer-events-auto rounded-md border border-white/10 bg-[#0B0D10]/85 px-2.5 py-1 text-[10px] text-muted backdrop-blur-md">
           {visibleSensors.length} sensores · {visibleOccurrences.length} ocorrências
         </span>
       </div>
@@ -174,13 +177,6 @@ export function UrbanMap({
           <MapLegend />
         </div>
       ) : null}
-
-      <div className="pointer-events-none absolute right-3 top-3 z-[500] hidden items-center gap-1.5 rounded-lg border border-line bg-navy-950/85 px-2 py-1 text-[9px] text-muted backdrop-blur-md md:flex">
-        <Cpu className="h-3 w-3 text-cyan" aria-hidden="true" />
-        <Droplets className="h-3 w-3 text-petrol-400" aria-hidden="true" />
-        <MapPin className="h-3 w-3 text-warning" aria-hidden="true" />
-        Camadas demonstrativas
-      </div>
     </div>
   )
 }

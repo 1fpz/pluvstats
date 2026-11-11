@@ -45,7 +45,7 @@ Pré-requisitos:
 
 Passos:
 
-1. Abrir a **Visão geral**. Apontar o banner permanente e os contadores.
+1. Abrir a **Visão geral**. Apontar o indicador de demonstração no topo e os contadores.
 2. Ir ao **Mapa** e selecionar uma ocorrência. Mostrar origem e vínculo com
    sensor.
 3. Em **Sensores**, mostrar um sensor simulado e o dispositivo `PS-05` de
@@ -70,7 +70,7 @@ Frases que devem acompanhar a demo:
 
 - 23 testes de frontend, 31 de backend, 25 de matemática e 4 de sincronização de
   limiares.
-- Lint e build sem erros; aviso de bundle de 1.179 kB.
+- Lint e build sem erros; entrada de ~300 kB e rotas carregadas sob demanda.
 - Integração verificada em navegador: ocorrência criada no SQLite e reset
   restaurando 9 ocorrências e 0 alertas.
 - Fallback verificado com API configurada e indisponível.

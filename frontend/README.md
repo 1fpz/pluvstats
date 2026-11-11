@@ -78,8 +78,9 @@ npm run lint     # ESLint
 npm run test     # Vitest
 ```
 
-O build atual gera um chunk de aproximadamente 1.179 kB e mantém o aviso de
-tamanho. Code splitting não foi implementado nesta entrega.
+O build usa code splitting por rota e por biblioteca: a entrada fica em torno de
+300 kB (92 kB gzip), enquanto React, Leaflet e Recharts são carregados em chunks
+separados. Não há benchmark de rede real nesta entrega.
 
 ## Testes
 

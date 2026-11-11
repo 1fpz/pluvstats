@@ -7,7 +7,7 @@ de observação de usuários reais.
 
 **Objetivo:** decidir onde atuar primeiro.
 
-1. Abre a **Visão geral** e confere o banner de demonstração.
+1. Abre a **Visão geral** e confere o indicador de demonstração no topo.
 2. Lê os contadores de alertas, ocorrências e sensores.
 3. Abre o **Mapa** e filtra por severidade.
 4. Seleciona um ponto; o painel mostra origem, nível, taxa e ocorrências.

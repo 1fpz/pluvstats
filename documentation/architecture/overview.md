@@ -254,7 +254,8 @@ Lacunas conhecidas:
 - sem deploy, observabilidade ou fila;
 - sem integração oficial ou importação de dados municipais;
 - sem Supabase; o backend usa SQLite;
-- bundle do frontend acima de 500 kB, sem code splitting;
+- bundle de entrada de 299,79 kB com code splitting por rota e vendor, mas sem
+  medição de desempenho em rede real;
 - nenhum teste físico, de carga, de acessibilidade com usuários ou de segurança
   ofensiva;
 - Wokwi preparado, mas não executado.

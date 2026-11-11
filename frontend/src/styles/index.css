@@ -17,26 +17,23 @@
 
   body {
     @apply bg-abyss font-sans text-ink antialiased;
-    background-image:
-      radial-gradient(1100px 480px at 8% -12%, rgba(0, 166, 204, 0.12), transparent 62%),
-      radial-gradient(900px 420px at 96% 2%, rgba(20, 139, 134, 0.1), transparent 58%);
-    background-attachment: fixed;
+    font-feature-settings: 'cv11' 1, 'ss01' 1;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display tracking-tight text-mist;
+    @apply font-display tracking-[-0.015em] text-mist;
   }
 
   ::selection {
-    background: rgba(0, 166, 204, 0.35);
-    color: #f4f8fc;
+    background: rgba(79, 158, 152, 0.32);
+    color: #f3f5f6;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-cyan/70 ring-offset-2 ring-offset-abyss;
+    @apply outline-none ring-2 ring-cyan/60 ring-offset-2 ring-offset-abyss;
   }
 
   ::-webkit-scrollbar {
@@ -49,14 +46,14 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(138, 164, 184, 0.22);
+    background: rgba(255, 255, 255, 0.11);
     border: 3px solid transparent;
     background-clip: content-box;
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(138, 164, 184, 0.4);
+    background: rgba(255, 255, 255, 0.2);
     border: 3px solid transparent;
     background-clip: content-box;
   }
@@ -64,19 +61,19 @@
 
 @layer components {
   .panel {
-    @apply rounded-2xl border border-line bg-navy-900/70 shadow-panel backdrop-blur-sm;
+    @apply rounded-xl border border-line bg-navy-900 shadow-panel;
   }
 
   .panel-interactive {
-    @apply panel transition duration-300 hover:border-cyan/25 hover:bg-navy-850/80;
+    @apply panel transition duration-200 hover:border-white/[0.14] hover:bg-navy-850;
   }
 
   .eyebrow {
-    @apply font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-muted;
+    @apply font-sans text-[10.5px] font-semibold uppercase tracking-[0.1em] text-muted;
   }
 
   .metric {
-    @apply font-mono text-2xl font-semibold tabular-nums text-mist;
+    @apply font-sans text-2xl font-semibold tabular-nums tracking-[-0.02em] text-mist;
   }
 
   .divider {
@@ -84,131 +81,182 @@
   }
 
   .skeleton {
-    @apply rounded-lg bg-gradient-to-r from-navy-800 via-navy-700 to-navy-800 bg-[length:600px_100%] animate-shimmer;
+    @apply rounded-lg bg-gradient-to-r from-navy-850 via-navy-800 to-navy-850 bg-[length:600px_100%] animate-shimmer;
   }
 
   .link-quiet {
-    @apply text-muted transition-colors hover:text-cyan-300;
+    @apply text-muted transition-colors hover:text-ink;
   }
 
   .skip-link {
-    @apply absolute left-4 top-4 z-[999] -translate-y-20 rounded-lg bg-cyan px-4 py-2 text-sm font-semibold text-abyss transition-transform focus:translate-y-0;
-  }
-
-  .leaflet-container {
-    background: #061725;
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  .leaflet-control-zoom a {
-    background: #0d2b42 !important;
-    color: #e6f1f8 !important;
-    border-color: rgba(148, 184, 208, 0.18) !important;
-  }
-
-  .leaflet-control-zoom a:hover {
-    background: #123650 !important;
-  }
-
-  .leaflet-control-attribution {
-    background: rgba(4, 18, 31, 0.82) !important;
-    color: #8aa4b8 !important;
-    font-size: 10px !important;
-  }
-
-  .leaflet-control-attribution a {
-    color: #7fe0f5 !important;
-  }
-
-  .leaflet-popup-content-wrapper,
-  .leaflet-popup-tip {
-    background: #0a2438 !important;
-    color: #e6f1f8 !important;
-    border: 1px solid rgba(148, 184, 208, 0.16);
-    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.9);
-  }
-
-  .leaflet-popup-content {
-    margin: 14px 16px !important;
-    font-size: 12px;
-    line-height: 1.55;
-  }
-
-  .leaflet-popup-close-button {
-    color: #8aa4b8 !important;
-  }
-
-  .leaflet-marker-icon:focus-visible {
-    outline: 2px solid #00a6cc;
-    outline-offset: 3px;
-    border-radius: 999px;
-  }
-
-  .pluv-marker {
-    background: transparent;
-    border: 0;
-  }
-
-  .map-marker {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 999px;
-    border: 2px solid rgba(244, 248, 252, 0.9);
-    box-shadow:
-      0 0 0 3px rgba(4, 18, 31, 0.65),
-      0 8px 20px -6px rgba(0, 0, 0, 0.9);
-  }
-
-  .map-marker::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: inherit;
-    border: 1px solid currentColor;
-    opacity: 0.45;
-  }
-
-  .map-marker-pulse {
-    position: absolute;
-    inset: -6px;
-    border-radius: inherit;
-    background: currentColor;
-    opacity: 0.2;
-    animation: ping-slow 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  .map-cluster {
-    display: grid;
-    place-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 999px;
-    border: 2px solid rgba(0, 166, 204, 0.75);
-    background: rgba(8, 31, 51, 0.94);
-    color: #7fe0f5;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    box-shadow: 0 0 0 6px rgba(0, 166, 204, 0.1);
-  }
-
-  .recharts-cartesian-grid line {
-    stroke: rgba(148, 184, 208, 0.1);
-  }
-
-  .recharts-text {
-    fill: #8aa4b8;
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .recharts-tooltip-wrapper {
-    outline: none;
+    @apply absolute left-4 top-4 z-[999] -translate-y-20 rounded-lg bg-mist px-4 py-2 text-sm font-semibold text-abyss transition-transform focus:translate-y-0;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Leaflet and Recharts are injected at runtime, so these rules live outside
+   @layer components. Otherwise Tailwind's content scan drops them and the
+   basemap silently falls back to the default light tiles.
+--------------------------------------------------------------------------- */
+.leaflet-container {
+  background: #0e1114;
+  font-family: 'Public Sans Variable', 'Public Sans', system-ui, sans-serif;
+}
+
+/* Keyless OpenStreetMap tiles, rendered as a calibrated dark basemap. */
+.leaflet-tile-pane {
+  filter: grayscale(1) invert(0.92) brightness(0.68) contrast(0.92);
+}
+
+.leaflet-control-zoom {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.9) !important;
+}
+
+.leaflet-control-zoom a {
+  background: #14181c !important;
+  color: #d5dbdf !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 29px !important;
+  font-weight: 400 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #1d2228 !important;
+  color: #f3f5f6 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(11, 13, 16, 0.82) !important;
+  color: #7c858c !important;
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px 0 0 0;
+}
+
+.leaflet-control-attribution a {
+  color: #a9b3b9 !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #14181c !important;
+  color: #d5dbdf !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px !important;
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.95) !important;
+}
+
+.leaflet-popup-tip {
+  border: 0;
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px !important;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.leaflet-popup-close-button {
+  color: #8b949b !important;
+  padding: 6px 6px 0 0 !important;
+}
+
+.leaflet-marker-icon:focus-visible {
+  outline: 2px solid #8fd0ca;
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.pluv-marker {
+  background: transparent;
+  border: 0;
+}
+
+.map-marker {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  background: #101317;
+  box-shadow:
+    0 0 0 4px rgba(10, 11, 13, 0.55),
+    0 6px 14px -6px rgba(0, 0, 0, 0.95);
+  transition: transform 150ms ease;
+}
+
+.map-marker:hover {
+  transform: scale(1.08);
+}
+
+.map-marker svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.95;
+}
+
+.map-marker-pulse {
+  position: absolute;
+  inset: -5px;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.16;
+  animation: pluv-ping 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.map-marker--occurrence {
+  border-radius: 9px;
+}
+
+.map-cluster {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(143, 208, 202, 0.6);
+  background: #14181c;
+  color: #cfe6e3;
+  font-family: 'Public Sans Variable', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 5px rgba(10, 11, 13, 0.55);
+}
+
+@keyframes pluv-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  80%,
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.06);
+}
+
+.recharts-text {
+  fill: #8b949b;
+  font-size: 10px;
+  font-family: 'Public Sans Variable', system-ui, sans-serif;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
 
 @layer utilities {
   .text-balance {

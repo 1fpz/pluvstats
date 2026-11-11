@@ -18,15 +18,15 @@ export function Toggle({ checked, onChange, label, description, disabled = false
         disabled={disabled}
         onClick={() => onChange(!checked)}
         className={cn(
-          'relative mt-0.5 inline-flex h-6 w-11 shrink-0 items-center rounded-full border transition',
-          checked ? 'border-cyan/50 bg-cyan/30' : 'border-line bg-navy-700',
+          'relative mt-0.5 inline-flex h-5 w-9 shrink-0 items-center rounded-full border transition',
+          checked ? 'border-cyan/50 bg-cyan/40' : 'border-line bg-navy-700',
           disabled && 'cursor-not-allowed opacity-50',
         )}
       >
         <span
           className={cn(
-            'inline-block h-4 w-4 rounded-full shadow transition',
-            checked ? 'translate-x-6 bg-cyan' : 'translate-x-1 bg-muted',
+            'inline-block h-3.5 w-3.5 rounded-full transition',
+            checked ? 'translate-x-[18px] bg-mist' : 'translate-x-[3px] bg-muted',
           )}
         />
       </button>

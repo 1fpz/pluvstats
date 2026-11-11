@@ -11,7 +11,6 @@ import {
 } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { StatCard } from '@/components/ui/StatCard'
-import { Badge } from '@/components/ui/Badge'
 import { Card, CardHeader } from '@/components/ui/Card'
 import { buttonClass } from '@/components/ui/Button'
 import { SkeletonCard } from '@/components/ui/Loading'
@@ -95,15 +94,17 @@ export function OverviewPage() {
         description="Leituras simuladas, ocorrências demonstrativas e meteorologia externa em um único painel. Cada camada mantém sua origem explícita."
         meta={
           <>
-            <Badge variant={isRunning ? 'cyan' : 'warning'} dot pulse={isRunning} size="sm">
+            <span className="inline-flex items-center gap-1.5 text-[11px] text-muted">
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${isRunning ? 'bg-cyan' : 'bg-warning'}`}
+                aria-hidden="true"
+              />
               {isRunning ? 'Simulação ativa' : 'Simulação pausada'}
-            </Badge>
-            <Badge variant="neutral" size="sm">
-              Cenário {scenarioMeta.label}
-            </Badge>
-            <span className="font-mono text-[10px] text-muted">
-              Atualizado {formatRelativeTime(snapshot.updatedAt)}
             </span>
+            <span className="text-white/15">·</span>
+            <span className="text-[11px] text-muted">Cenário {scenarioMeta.label}</span>
+            <span className="text-white/15">·</span>
+            <span className="text-[11px] text-muted">Atualizado {formatRelativeTime(snapshot.updatedAt)}</span>
           </>
         }
         actions={
@@ -180,13 +181,13 @@ export function OverviewPage() {
             />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-4 py-2.5">
-            <span className="flex items-center gap-2 font-mono text-[9px] text-muted">
+            <span className="flex items-center gap-2 text-[10.5px] text-muted">
               <Radio className="h-3 w-3 text-cyan" aria-hidden="true" />
               {derived.simulated.length} sensores simulados
-              <span className="text-line">·</span>
+              <span className="text-white/15">·</span>
               {derived.activeOccurrences.length} ocorrências ativas
             </span>
-            <span className="font-mono text-[9px] text-warning">coordenadas demonstrativas</span>
+            <span className="text-[10px] text-warning/90">coordenadas demonstrativas</span>
           </div>
         </Card>
 

@@ -67,7 +67,7 @@ export function OriginPanel({ snapshot, className }) {
           tone="neutral"
         />
       </CardBody>
-      <div className="flex items-center justify-between border-t border-line px-4 py-2.5 font-mono text-[9px] text-muted">
+      <div className="flex items-center justify-between border-t border-line px-4 py-2.5 text-[10px] text-muted">
         <span>Atualizado {formatRelativeTime(snapshot?.updatedAt)}</span>
         <span>{snapshot?.sourceKind === 'api' ? 'API' : 'runtime local'}</span>
       </div>

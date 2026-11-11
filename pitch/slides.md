@@ -126,7 +126,7 @@ t = (h_limite − h_atual) / v
 
 ## 9. Demonstração
 
-1. Visão geral e banner.
+1. Visão geral e indicador de demonstração.
 2. Mapa e detalhe de ocorrência.
 3. Sensores: simulado x hardware não validado.
 4. Cenário crítico e alerta.

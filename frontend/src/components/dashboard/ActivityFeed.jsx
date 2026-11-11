@@ -33,7 +33,7 @@ export function ActivityFeed({ activity = [], className, limit = 6 }) {
                   <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-[11px] font-medium leading-snug text-ink">{event.title}</p>
-                      <span className="shrink-0 font-mono text-[9px] text-muted">{formatRelativeTime(event.at)}</span>
+                      <span className="shrink-0 text-[9.5px] tabular-nums text-muted">{formatRelativeTime(event.at)}</span>
                     </div>
                     <p className="mt-0.5 line-clamp-2 text-[10px] leading-relaxed text-muted">{event.description}</p>
                     <div className="mt-1 flex items-center gap-1.5">

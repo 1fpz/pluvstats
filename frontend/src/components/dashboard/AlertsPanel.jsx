@@ -48,10 +48,10 @@ export function AlertsPanel({ alerts = [], limit = 4, className }) {
         )}
       </CardBody>
       <div className="flex items-center justify-between gap-2 border-t border-line px-4 py-2.5">
-        <span className="font-mono text-[9px] text-muted">
+        <span className="text-[10px] text-muted">
           {active.length} ativo(s) · todos identificados por origem
         </span>
-        <span className="font-mono text-[9px] text-cyan-300">histerese ativa</span>
+        <span className="text-[10px] text-muted/80">histerese ativa</span>
       </div>
     </Card>
   )

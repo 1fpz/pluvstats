@@ -9,7 +9,6 @@ import {
   ShieldAlert,
   Waves,
 } from 'lucide-react'
-import { Badge } from '@/components/ui/Badge'
 import { buttonClass } from '@/components/ui/Button'
 import { Card, CardBody, CardHeader } from '@/components/ui/Card'
 import { EmptyState } from '@/components/ui/EmptyState'
@@ -64,32 +63,33 @@ export function CitizenHomePage() {
   return (
     <div className="space-y-5">
       <header>
-        <p className="eyebrow text-cyan-300">Área do cidadão</p>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight text-mist">Olá. Veja como está a cidade hoje.</h1>
-        <p className="mt-2 text-xs leading-relaxed text-muted">
+        <p className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-muted">Área do cidadão</p>
+        <h1 className="mt-1.5 text-[26px] font-semibold tracking-[-0.02em] text-mist">Olá. Veja como está a cidade hoje.</h1>
+        <p className="mt-2 text-[12.5px] leading-relaxed text-muted">
           Informações demonstrativas sobre pontos de atenção em {territory.name}. Este protótipo não substitui os
           canais oficiais de emergência.
         </p>
       </header>
 
-      <Card className={cn('border', meta.border)}>
+      <Card>
         <CardBody className="space-y-3 p-4">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="eyebrow text-[9px]">Situação geral demonstrativa</p>
-              <p className={cn('mt-1 text-xl font-semibold', meta.text)}>{meta.label}</p>
+              <p className="text-[9.5px] font-semibold uppercase tracking-[0.1em] text-muted">Situação geral demonstrativa</p>
+              <p className={cn('mt-1 text-xl font-semibold tracking-[-0.01em]', meta.text)}>{meta.label}</p>
               <p className="mt-1 text-[11px] leading-relaxed text-muted">{meta.description}</p>
             </div>
-            <span className={cn('grid h-10 w-10 shrink-0 place-items-center rounded-xl border', meta.bg, meta.border, meta.text)}>
-              {overview === 'normal' ? <ShieldAlert className="h-5 w-5" aria-hidden="true" /> : <BellRing className="h-5 w-5" aria-hidden="true" />}
-            </span>
+            <span className={cn('mt-1 h-2.5 w-2.5 shrink-0 rounded-full', meta.dot)} aria-hidden="true" />
           </div>
-          <div className="flex flex-wrap gap-1.5 border-t border-line pt-3">
-            <Badge variant={isRunning ? 'cyan' : 'warning'} size="xs" dot pulse={isRunning}>
-              {isRunning ? 'monitoramento demonstrativo ativo' : 'simulação pausada'}
-            </Badge>
-            <Badge variant="neutral" size="xs">cenário {scenarioMeta.label}</Badge>
-            <Badge variant="neutral" size="xs">{alerts.length} alerta(s) aberto(s)</Badge>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 border-t border-line pt-3 text-[10.5px] text-muted">
+            <span className="inline-flex items-center gap-1.5">
+              <span className={cn('h-1.5 w-1.5 rounded-full', isRunning ? 'bg-cyan' : 'bg-warning')} aria-hidden="true" />
+              {isRunning ? 'Monitoramento demonstrativo ativo' : 'Simulação pausada'}
+            </span>
+            <span className="text-white/15">·</span>
+            <span>Cenário {scenarioMeta.label}</span>
+            <span className="text-white/15">·</span>
+            <span>{alerts.length} alerta(s) aberto(s)</span>
           </div>
         </CardBody>
       </Card>
@@ -122,7 +122,7 @@ export function CitizenHomePage() {
             />
           ) : (
             highlighted.map((sensor) => (
-              <div key={sensor.id} className="flex items-center justify-between gap-3 rounded-lg border border-line bg-navy-950/40 p-3">
+              <div key={sensor.id} className="flex items-center justify-between gap-3 rounded-lg border border-line bg-white/[0.02] p-3">
                 <div className="min-w-0">
                   <p className="truncate text-[11px] font-medium text-ink">{sensor.shortName ?? sensor.name}</p>
                   <p className="mt-0.5 truncate text-[9px] text-muted">{sensor.neighborhood} · {sensor.address}</p>
@@ -132,9 +132,9 @@ export function CitizenHomePage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-mono text-sm font-semibold text-ink">{formatCm(sensor.levelCm)}</p>
-                  <p className="mt-0.5 font-mono text-[8px] text-muted">{formatRate(sensor.rateCmPerMin)}</p>
-                  <p className="mt-0.5 font-mono text-[8px] text-muted">{formatRelativeTime(sensor.lastReadingAt)}</p>
+                  <p className="text-sm font-semibold tabular-nums text-ink">{formatCm(sensor.levelCm)}</p>
+                  <p className="mt-0.5 text-[8.5px] tabular-nums text-muted">{formatRate(sensor.rateCmPerMin)}</p>
+                  <p className="mt-0.5 text-[8.5px] tabular-nums text-muted">{formatRelativeTime(sensor.lastReadingAt)}</p>
                 </div>
               </div>
             ))
@@ -155,7 +155,7 @@ export function CitizenHomePage() {
             ) : weather.data ? (
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="font-mono text-xl font-semibold text-mist">{weather.data.current.temperatureC ?? '—'}°C</p>
+                  <p className="text-xl font-semibold tabular-nums text-mist">{weather.data.current.temperatureC ?? '—'}°C</p>
                   <p className="mt-0.5 text-[10px] capitalize text-muted">{weather.data.current.condition}</p>
                   <p className="mt-0.5 text-[9px] text-muted">
                     chuva {weather.data.current.precipitationMm ?? 0} mm · umidade {weather.data.current.humidity ?? '—'}%
@@ -172,7 +172,7 @@ export function CitizenHomePage() {
         <Card>
           <CardHeader icon={BellRing} title="Ocorrências abertas" description="Registros demonstrativos na área." />
           <CardBody className="p-4 pt-3">
-            <p className="font-mono text-xl font-semibold text-mist">{openOccurrences.length}</p>
+            <p className="text-xl font-semibold tabular-nums text-mist">{openOccurrences.length}</p>
             <p className="mt-1 text-[10px] leading-relaxed text-muted">
               {openOccurrences.length === 0
                 ? 'Nenhuma ocorrência aberta neste momento.'

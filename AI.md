@@ -56,7 +56,8 @@ foi inventado para preencher lacunas.
 - os testes verificam o que foi implementado, não a utilidade do produto;
 - a documentação de design usa personas e jornadas explicitamente hipotéticas;
 - o firmware não foi compilado neste ambiente;
-- o bundle do frontend não foi otimizado com code splitting.
+- o frontend usa code splitting por rota e por vendor, mas não foi submetido a
+  medição de desempenho em rede real.
 
 ## Como verificar
 

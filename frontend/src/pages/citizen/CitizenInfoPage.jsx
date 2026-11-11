@@ -74,7 +74,7 @@ function GuidanceList({ items, tone }) {
   return (
     <ul className="space-y-2">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-2 text-[11px] leading-relaxed text-muted">
+        <li key={item} className="flex items-start gap-2 text-[11.5px] leading-relaxed text-muted">
           <span
             className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${positive ? 'bg-success' : 'bg-critical'}`}
             aria-hidden="true"
@@ -90,20 +90,20 @@ export function CitizenInfoPage() {
   return (
     <div className="space-y-4">
       <header>
-        <p className="eyebrow text-cyan-300">Orientações</p>
-        <h1 className="mt-1 text-xl font-semibold tracking-tight text-mist">Segurança e limites do protótipo</h1>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
+        <p className="eyebrow">Orientações</p>
+        <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-mist">Segurança e limites do protótipo</h1>
+        <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
           Leia antes de usar as informações deste ambiente demonstrativo em {territory.name}.
         </p>
       </header>
 
-      <div className="rounded-2xl border border-critical/30 bg-critical/[0.07] p-4">
+      <div className="rounded-lg border border-critical/25 bg-critical/[0.05] p-4">
         <div className="flex items-center gap-2 text-critical">
           <Phone className="h-4 w-4" aria-hidden="true" />
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em]">Risco imediato</p>
+          <p className="text-[10.5px] font-semibold uppercase tracking-[0.08em]">Risco imediato</p>
         </div>
-        <p className="mt-2 text-sm font-medium text-mist">Ligue para os canais oficiais de emergência.</p>
-        <p className="mt-1 text-[11px] leading-relaxed text-muted">
+        <p className="mt-2 text-[13px] font-medium text-mist">Ligue para os canais oficiais de emergência.</p>
+        <p className="mt-1 text-[11.5px] leading-relaxed text-muted">
           No Brasil, acione o Corpo de Bombeiros (193) e a Defesa Civil (199). Para informações municipais, procure a
           Prefeitura de Santo André pelos canais oficiais. O PLUVSTATS não recebe chamadas nem despacha equipes.
         </p>
@@ -152,17 +152,17 @@ export function CitizenInfoPage() {
               text: 'Leituras validadas seriam enviadas à API e consolidadas em alertas, ocorrências e indicadores. No modo demonstrativo, tudo é gerado e mantido neste ambiente; com a API local ativa, o estado fica no banco SQLite do protótipo.',
             },
           ].map((step) => (
-            <div key={step.title} className="flex gap-3 rounded-xl border border-line bg-navy-950/40 p-3">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-cyan/25 bg-cyan/10 text-cyan-300">
+            <div key={step.title} className="flex gap-3 rounded-lg border border-line bg-white/[0.02] p-3">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-line bg-white/[0.04] text-muted">
                 <step.icon className="h-4 w-4" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-[11px] font-medium text-ink">{step.title}</p>
-                <p className="mt-0.5 text-[10px] leading-relaxed text-muted">{step.text}</p>
+                <p className="text-[12px] font-medium text-ink">{step.title}</p>
+                <p className="mt-0.5 text-[11px] leading-relaxed text-muted">{step.text}</p>
               </div>
             </div>
           ))}
-          <p className="text-[9px] leading-relaxed text-muted">
+          <p className="text-[10.5px] leading-relaxed text-muted">
             A fórmula de altura e a estimativa de tempo até um limite são documentadas no módulo de matemática do
             projeto. Elas são um apoio experimental, não uma previsão oficial de alagamento.
           </p>
@@ -178,8 +178,8 @@ export function CitizenInfoPage() {
         <CardBody className="space-y-3 p-4 pt-3">
           {LIMITATIONS.map((limitation) => (
             <div key={limitation.title} className="border-b border-line pb-3 last:border-0 last:pb-0">
-              <p className="text-[11px] font-medium text-ink">{limitation.title}</p>
-              <p className="mt-0.5 text-[10px] leading-relaxed text-muted">{limitation.description}</p>
+              <p className="text-[12px] font-medium text-ink">{limitation.title}</p>
+              <p className="mt-0.5 text-[11px] leading-relaxed text-muted">{limitation.description}</p>
             </div>
           ))}
         </CardBody>
@@ -191,7 +191,7 @@ export function CitizenInfoPage() {
           title="Dados e privacidade"
           description="O que é coletado e onde fica armazenado."
         />
-        <CardBody className="space-y-2 p-4 pt-3 text-[10px] leading-relaxed text-muted">
+        <CardBody className="space-y-2 p-4 pt-3 text-[11.5px] leading-relaxed text-muted">
           <p>
             O formulário do cidadão não pede nome, documento, telefone, e-mail ou endereço residencial. O endereço
             informado deve ser apenas um ponto de referência público da ocorrência.
@@ -238,12 +238,12 @@ export function CitizenInfoPage() {
                 'É um identificador demonstrativo do registro. Ele não tem validade oficial e pode ser apagado ao reiniciar a demonstração.',
             },
           ].map((item) => (
-            <details key={item.question} className="group rounded-xl border border-line bg-navy-950/40 p-3">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[11px] font-medium text-ink">
+            <details key={item.question} className="group rounded-lg border border-line bg-white/[0.02] p-3">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[12px] font-medium text-ink">
                 {item.question}
                 <ArrowRight className="h-3.5 w-3.5 shrink-0 text-muted transition group-open:rotate-90" aria-hidden="true" />
               </summary>
-              <p className="mt-2 text-[10px] leading-relaxed text-muted">{item.answer}</p>
+              <p className="mt-2 text-[11px] leading-relaxed text-muted">{item.answer}</p>
             </details>
           ))}
         </CardBody>
@@ -265,12 +265,12 @@ export function CitizenInfoPage() {
         </Link>
       </div>
 
-      <p className="pb-2 text-center text-[9px] leading-relaxed text-muted">
+      <p className="pb-2 text-center text-[10.5px] leading-relaxed text-muted">
         <BookOpen className="mr-1 inline h-3 w-3" aria-hidden="true" />
         Documentação e limitações detalhadas ficam na área do gestor e nos arquivos do projeto.
       </p>
 
-      <div className="flex items-center justify-center gap-2 pb-2 text-[9px] text-muted">
+      <div className="flex items-center justify-center gap-2 pb-2 text-[10.5px] text-muted">
         <ShieldAlert className="h-3 w-3" aria-hidden="true" />
         Em caso de dúvida, priorize sempre os canais oficiais.
       </div>

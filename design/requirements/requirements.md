@@ -28,7 +28,7 @@ inexistentes.
 
 | ID | Requisito | Estado | Evidência |
 | --- | --- | --- | --- |
-| FR-01 | Iniciar em modo demonstração com banner permanente e dados identificados | Implementado | `DemoBanner`, `data/demo*`, `shared` |
+| FR-01 | Iniciar em modo demonstração com identificação persistente e dados rotulados | Implementado | `DemoIndicator`, `data/demo*`, `shared` |
 | FR-02 | Exibir visão geral com contadores, níveis, clima e atividade recente | Implementado | `OverviewPage` |
 | FR-03 | Exibir mapa territorial com ocorrências, sensores e seleção por deep link | Implementado | `MapPage`, `CitizenMapPage` |
 | FR-04 | Permitir CRUD de ocorrências com validação e confirmação | Implementado | `OccurrencesPage`, `OccurrenceForm` |
@@ -58,14 +58,14 @@ inexistentes.
 | NFR-01 | Separação de responsabilidades entre UI, domínio, serviços, persistência e borda | Implementado | `documentation/architecture/overview.md` |
 | NFR-02 | Nenhum segredo no frontend | Implementado | apenas `VITE_*` públicos; revisão manual |
 | NFR-03 | Hardware nunca inferido a partir de simulação | Implementado | validação no serviço e testes de hardware |
-| NFR-04 | Dados simulados sempre identificados | Implementado | badges, banner, metadados |
+| NFR-04 | Dados simulados sempre identificados | Implementado | badges, indicador no topo, metadados |
 | NFR-05 | Testes automatizados nas regras críticas | Implementado | 23 frontend + 31 backend + 25 matemática + 4 edge |
 | NFR-06 | Lint e build sem erros | Implementado | ver `documentation/testing` |
 | NFR-07 | Resiliência a API indisponível | Implementado | fallback verificado em navegador |
 | NFR-08 | Acessibilidade básica (skip link, foco, rótulos, contraste) | Parcial | sem auditoria WCAG ou teste com leitor de tela |
 | NFR-09 | Responsividade mobile-first no cidadão | Parcial | verificado em viewport de desenvolvimento; sem teste em dispositivo físico |
 | NFR-10 | Privacidade: registro do cidadão sem dados pessoais | Implementado | formulário e texto de privacidade |
-| NFR-11 | Desempenho aceitável em desenvolvimento | Parcial | bundle de 1.179 kB; code splitting pendente |
+| NFR-11 | Desempenho aceitável em desenvolvimento | Parcial | code splitting por rota e vendor; entrada de 299,79 kB (91,69 kB gzip); sem benchmark de rede |
 | NFR-12 | Reprodutibilidade | Implementado | comandos documentados; versões fixadas no backend |
 | NFR-13 | Portabilidade local | Implementado | Node 20+, Python 3.11+; SQLite |
 | NFR-14 | Autenticação e autorização | Fora do escopo | lacuna explícita |

@@ -25,7 +25,5 @@ export const runtimeConfig = {
   isConfiguredApi: Boolean(env.VITE_API_BASE_URL),
 }
 
-export const DEMO_LABEL = 'AMBIENTE DE DEMONSTRAÇÃO — DADOS SIMULADOS'
-
 export const HARDWARE_ABSENCE_MESSAGE =
   'Nenhum sensor físico validado. O sistema está apresentando uma demonstração funcional da experiência de monitoramento.'

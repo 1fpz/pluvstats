@@ -43,7 +43,7 @@ export function PriorityList({ occurrences = [], sensors = [], limit = 5, classN
                     to={`/ocorrencias?selected=${occurrence.id}`}
                     className="flex items-center gap-3 px-4 py-3 transition hover:bg-navy-850/60"
                   >
-                    <span className="w-6 shrink-0 font-mono text-[10px] text-muted/60">
+                    <span className="w-6 shrink-0 text-[10px] tabular-nums text-muted/60">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <span className={cn('h-8 w-0.5 shrink-0 rounded-full', meta.dot)} aria-hidden="true" />
@@ -60,8 +60,8 @@ export function PriorityList({ occurrences = [], sensors = [], limit = 5, classN
                     </div>
                     <SeverityBadge severity={occurrence.severity} size="xs" className="hidden sm:inline-flex" />
                     <div className="w-10 shrink-0 text-right">
-                      <p className={cn('font-mono text-sm font-semibold', meta.text)}>{priority.score}</p>
-                      <p className="font-mono text-[8px] uppercase tracking-[0.06em] text-muted">score</p>
+                      <p className={cn('text-sm font-semibold tabular-nums', meta.text)}>{priority.score}</p>
+                      <p className="text-[8.5px] text-muted">prioridade</p>
                     </div>
                   </Link>
                 </li>

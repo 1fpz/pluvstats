@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import { DEMO_LABEL, HARDWARE_ABSENCE_MESSAGE, operationConfig, runtimeConfig } from '@/config'
+import { HARDWARE_ABSENCE_MESSAGE, operationConfig, runtimeConfig } from '@/config'
 
 const OperationModeContext = createContext(null)
 
@@ -79,8 +79,6 @@ export function OperationModeProvider({ children }) {
       connection,
       reportHardware,
       reportConnection,
-      showDemoBanner: activeMode === 'demo' || !hasValidatedHardware,
-      demoLabel: DEMO_LABEL,
       hardwareAbsenceMessage: HARDWARE_ABSENCE_MESSAGE,
       readingMaxAgeSeconds: operationConfig.readingMaxAgeSeconds,
       maxMode: operationConfig.defaultMode,

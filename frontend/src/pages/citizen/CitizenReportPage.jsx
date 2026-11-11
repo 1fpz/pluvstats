@@ -156,22 +156,22 @@ export function CitizenReportPage() {
   if (success) {
     return (
       <div className="space-y-4">
-        <div className="rounded-2xl border border-success/30 bg-success/[0.06] p-5">
-          <span className="grid h-11 w-11 place-items-center rounded-xl border border-success/30 bg-success/10 text-success">
+        <div className="rounded-lg border border-success/25 bg-success/[0.05] p-5">
+          <span className="grid h-11 w-11 place-items-center rounded-md border border-success/25 bg-success/10 text-success">
             <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
           </span>
-          <h1 className="mt-3 text-xl font-semibold tracking-tight text-mist">Registro recebido</h1>
-          <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
+          <h1 className="mt-3 text-[22px] font-semibold tracking-[-0.02em] text-mist">Registro recebido</h1>
+          <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
             A ocorrência demonstrativa foi criada e já aparece no mapa do cidadão e na visão do gestor deste ambiente.
           </p>
-          <div className="mt-4 rounded-xl border border-line bg-navy-950/50 p-3">
-            <p className="eyebrow text-[9px]">Protocolo demonstrativo</p>
-            <p className="mt-1 font-mono text-lg font-semibold text-cyan-300">{success.id}</p>
-            <p className="mt-1 text-[10px] leading-relaxed text-muted">
+          <div className="mt-4 rounded-lg border border-line bg-white/[0.02] p-3">
+            <p className="eyebrow">Protocolo demonstrativo</p>
+            <p className="mt-1 text-[17px] font-semibold tabular-nums text-ink">{success.id}</p>
+            <p className="mt-1 text-[11px] leading-relaxed text-muted">
               Guarde este número para referência. Ele é demonstrativo e não é um protocolo oficial.
             </p>
           </div>
-          <dl className="mt-3 space-y-2 text-[11px]">
+          <dl className="mt-3 space-y-2 text-[12px]">
             <div className="flex items-start justify-between gap-3 border-b border-line pb-2">
               <dt className="text-muted">Situação</dt>
               <dd className="text-right text-ink">{success.title}</dd>
@@ -224,9 +224,9 @@ export function CitizenReportPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <header>
-        <p className="eyebrow text-cyan-300">Canal do cidadão</p>
-        <h1 className="mt-1 text-xl font-semibold tracking-tight text-mist">Registrar ocorrência</h1>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-muted">
+        <p className="eyebrow">Canal do cidadão</p>
+        <h1 className="mt-1.5 text-[22px] font-semibold tracking-[-0.02em] text-mist">Registrar ocorrência</h1>
+        <p className="mt-1.5 text-[12px] leading-relaxed text-muted">
           Descreva o ponto de drenagem que você observou em {territory.name}. Não inclua nomes, documentos, telefones
           ou outros dados pessoais.
         </p>
@@ -239,7 +239,7 @@ export function CitizenReportPage() {
 
       {errorCount > 0 ? (
         <div
-          className="flex items-start gap-2 rounded-xl border border-critical/30 bg-critical/[0.06] px-3 py-2 text-[11px] text-critical"
+          className="flex items-start gap-2 rounded-lg border border-critical/25 bg-critical/[0.05] px-3 py-2 text-[11.5px] text-critical"
           role="alert"
         >
           <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
@@ -263,15 +263,15 @@ export function CitizenReportPage() {
                     if (errors.type) setErrors((current) => ({ ...current, type: undefined }))
                   }}
                   className={cn(
-                    'rounded-xl border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40',
+                    'rounded-lg border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/50',
                     active
-                      ? 'border-cyan/45 bg-cyan/10 text-ink'
-                      : 'border-line bg-navy-950/40 text-muted hover:border-cyan/25 hover:text-ink',
+                      ? 'border-white/[0.16] bg-white/[0.06] text-ink'
+                      : 'border-line bg-white/[0.02] text-muted hover:border-white/[0.13] hover:text-ink',
                   )}
                 >
                   <option.icon className={cn('h-4 w-4', active ? 'text-cyan-300' : 'text-muted')} aria-hidden="true" />
-                  <span className="mt-2 block text-[11px] font-medium">{option.label}</span>
-                  <span className="mt-0.5 block text-[9px] leading-snug text-muted">{option.hint}</span>
+                  <span className="mt-2 block text-[12px] font-medium">{option.label}</span>
+                  <span className="mt-0.5 block text-[10px] leading-snug text-muted">{option.hint}</span>
                 </button>
               )
             })}
@@ -308,7 +308,7 @@ export function CitizenReportPage() {
               ))}
             </datalist>
           </div>
-          <p className="text-[9px] leading-relaxed text-muted">
+          <p className="text-[10.5px] leading-relaxed text-muted">
             A posição no mapa é aproximada a partir do bairro informado. Este protótipo não solicita sua localização
             exata.
           </p>
@@ -331,20 +331,20 @@ export function CitizenReportPage() {
                   if (errors.severity) setErrors((current) => ({ ...current, severity: undefined }))
                 }}
                 className={cn(
-                  'flex w-full items-start justify-between gap-3 rounded-xl border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/40',
-                  active ? cn(meta.border, meta.bg) : 'border-line bg-navy-950/40 hover:border-cyan/25',
+                  'flex w-full items-start justify-between gap-3 rounded-lg border p-3 text-left transition focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/50',
+                  active ? cn(meta.border, meta.bg) : 'border-line bg-white/[0.02] hover:border-white/[0.13]',
                 )}
               >
                 <span className="min-w-0">
-                  <span className={cn('block text-[11px] font-medium', active ? meta.text : 'text-ink')}>{option.title}</span>
-                  <span className="mt-0.5 block text-[10px] leading-relaxed text-muted">{option.description}</span>
+                  <span className={cn('block text-[12px] font-medium', active ? meta.text : 'text-ink')}>{option.title}</span>
+                  <span className="mt-0.5 block text-[11px] leading-relaxed text-muted">{option.description}</span>
                 </span>
                 <span className={cn('mt-1 h-2 w-2 shrink-0 rounded-full', meta.dot)} aria-hidden="true" />
               </button>
             )
           })}
           {form.severity === 'critical' ? (
-            <div className="rounded-xl border border-critical/30 bg-critical/[0.06] p-3 text-[10px] leading-relaxed text-muted">
+            <div className="rounded-lg border border-critical/25 bg-critical/[0.05] p-3 text-[11px] leading-relaxed text-muted">
               <span className="font-medium text-critical">Risco imediato:</span> não se aproxime da água e acione os
               canais oficiais de emergência antes de concluir este registro.
             </div>
@@ -370,8 +370,8 @@ export function CitizenReportPage() {
         </CardBody>
       </Card>
 
-      <div className="rounded-xl border border-line bg-navy-950/40 p-3">
-        <label className="flex items-start gap-3 text-[10px] leading-relaxed text-muted">
+      <div className="rounded-lg border border-line bg-white/[0.02] p-3">
+        <label className="flex items-start gap-3 text-[11px] leading-relaxed text-muted">
           <input
             type="checkbox"
             checked={form.consent}
@@ -397,7 +397,7 @@ export function CitizenReportPage() {
         </Link>
       </div>
 
-      <p className="pb-2 text-center text-[9px] leading-relaxed text-muted">
+      <p className="pb-2 text-center text-[10.5px] leading-relaxed text-muted">
         Nenhum dado pessoal é solicitado. O registro demonstrativo fica neste ambiente e pode ser apagado ao reiniciar a demonstração.
       </p>
     </form>

@@ -57,22 +57,20 @@ export function WeatherPanel({ className }) {
           <>
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl border border-cyan/20 bg-cyan/[0.07] text-cyan-300">
-                  <WeatherIcon icon={data.current.icon} className="h-6 w-6" />
-                </span>
+                <WeatherIcon icon={data.current.icon} className="h-9 w-9 text-ink" />
                 <div>
                   <div className="flex items-baseline gap-1.5">
-                    <span className="font-mono text-[28px] font-semibold leading-none text-mist">
+                    <span className="text-[30px] font-semibold leading-none tracking-[-0.03em] tabular-nums text-mist">
                       {formatNumber(data.current.temperatureC)}
                     </span>
-                    <span className="font-mono text-xs text-muted">°C</span>
+                    <span className="text-xs text-muted">°C</span>
                   </div>
                   <p className="mt-1 text-[11px] text-muted">{data.current.condition}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="eyebrow">Chuva agora</p>
-                <p className="mt-1 font-mono text-sm font-semibold text-cyan-300">
+                <p className="text-[9.5px] font-medium uppercase tracking-[0.08em] text-muted">Chuva agora</p>
+                <p className="mt-1 text-sm font-semibold tabular-nums text-ink">
                   {formatNumber(data.current.precipitationMm)} mm
                 </p>
                 {fromCache ? <p className="mt-0.5 text-[9px] text-muted">cache</p> : null}
@@ -80,30 +78,30 @@ export function WeatherPanel({ className }) {
             </div>
 
             <dl className="mt-4 grid grid-cols-3 gap-2">
-              <div className="rounded-lg border border-line bg-navy-950/40 p-2">
-                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.08em] text-muted">
+              <div className="rounded-lg border border-line bg-white/[0.02] p-2">
+                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.06em] text-muted">
                   <Droplets className="h-3 w-3" aria-hidden="true" />
                   Umidade
                 </dt>
-                <dd className="mt-1 font-mono text-xs text-ink">
+                <dd className="mt-1 text-xs tabular-nums text-ink">
                   {data.current.humidity !== null ? `${Math.round(data.current.humidity)}%` : '—'}
                 </dd>
               </div>
-              <div className="rounded-lg border border-line bg-navy-950/40 p-2">
-                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.08em] text-muted">
+              <div className="rounded-lg border border-line bg-white/[0.02] p-2">
+                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.06em] text-muted">
                   <Wind className="h-3 w-3" aria-hidden="true" />
                   Vento
                 </dt>
-                <dd className="mt-1 font-mono text-xs text-ink">
+                <dd className="mt-1 text-xs tabular-nums text-ink">
                   {data.current.windKmh !== null ? `${formatNumber(data.current.windKmh)} km/h` : '—'}
                 </dd>
               </div>
-              <div className="rounded-lg border border-line bg-navy-950/40 p-2">
-                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.08em] text-muted">
+              <div className="rounded-lg border border-line bg-white/[0.02] p-2">
+                <dt className="flex items-center gap-1 text-[9px] uppercase tracking-[0.06em] text-muted">
                   <Thermometer className="h-3 w-3" aria-hidden="true" />
                   Chuva 24h
                 </dt>
-                <dd className="mt-1 font-mono text-xs text-ink">
+                <dd className="mt-1 text-xs tabular-nums text-ink">
                   {formatNumber(data.daily?.[0]?.precipitationMm ?? 0)} mm
                 </dd>
               </div>
@@ -111,8 +109,8 @@ export function WeatherPanel({ className }) {
 
             <div className="mt-4">
               <div className="mb-2 flex items-center justify-between">
-                <p className="eyebrow">Próximas horas · precipitação</p>
-                <span className="font-mono text-[9px] text-muted">probabilidade / mm</span>
+                <p className="text-[10px] font-medium uppercase tracking-[0.08em] text-muted">Próximas horas · precipitação</p>
+                <span className="text-[9px] text-muted/70">probabilidade / mm</span>
               </div>
               <div className="flex items-end gap-1.5" aria-hidden="true">
                 {(data.hourly ?? []).slice(0, 8).map((hour) => {
@@ -120,16 +118,16 @@ export function WeatherPanel({ className }) {
                   const rainy = hour.probability >= 40
                   return (
                     <div key={hour.time} className="flex flex-1 flex-col items-center gap-1">
-                      <span className="font-mono text-[8px] text-muted">
+                      <span className="text-[8px] tabular-nums text-muted">
                         {formatNumber(hour.precipitationMm)}
                       </span>
-                      <div className="flex h-12 w-full items-end justify-center rounded bg-navy-800/50">
+                      <div className="flex h-12 w-full items-end justify-center rounded-[3px] bg-white/[0.04]">
                         <div
-                          className={rainy ? 'w-full rounded bg-cyan/70' : 'w-full rounded bg-petrol/50'}
+                          className={rainy ? 'w-full rounded-[3px] bg-cyan/60' : 'w-full rounded-[3px] bg-white/20'}
                           style={{ height }}
                         />
                       </div>
-                      <span className="font-mono text-[8px] text-muted">{formatTime(hour.time).slice(0, 2)}h</span>
+                      <span className="text-[8px] tabular-nums text-muted">{formatTime(hour.time).slice(0, 2)}h</span>
                     </div>
                   )
                 })}
@@ -145,7 +143,7 @@ export function WeatherPanel({ className }) {
               >
                 Fonte: {data.source}
               </a>
-              <span className="font-mono text-[9px] text-muted">
+              <span className="text-[9px] tabular-nums text-muted">
                 Atualizado {data.fetchedAt ? formatRelativeTime(data.fetchedAt) : '—'}
               </span>
             </div>

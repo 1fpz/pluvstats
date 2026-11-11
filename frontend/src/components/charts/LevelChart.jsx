@@ -75,7 +75,7 @@ export function LevelChart({
                   setInternalId(event.target.value)
                   onSelectedChange?.(event.target.value)
                 }}
-                className="h-8 max-w-[190px] rounded-lg border border-line bg-navy-950/70 px-2 text-[11px] text-ink focus:border-cyan/50 focus:outline-none"
+                className="h-8 max-w-[190px] rounded-lg border border-line bg-navy-950 px-2 text-[11px] text-ink focus:border-cyan/50 focus:outline-none"
               >
                 {simulatedSensors.map((sensor) => (
                   <option key={sensor.id} value={sensor.id}>
@@ -102,13 +102,13 @@ export function LevelChart({
               <div className="flex flex-wrap items-center gap-1.5">
                 <SourceBadge source={selected.source} />
                 <SeverityBadge severity={severity} />
-                <span className="font-mono text-[10px] text-muted">{selected.deviceId}</span>
+                <span className="text-[10px] text-muted">{selected.deviceId}</span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className={cn('font-mono text-xl font-semibold tabular-nums', meta.text)}>
+                <span className={cn('text-xl font-semibold tabular-nums tracking-[-0.02em]', meta.text)}>
                   {formatCm(selected.levelCm)}
                 </span>
-                <span className="font-mono text-[10px] text-muted">{formatRate(selected.rateCmPerMin)}</span>
+                <span className="text-[10px] tabular-nums text-muted">{formatRate(selected.rateCmPerMin)}</span>
               </div>
             </div>
 
@@ -146,7 +146,7 @@ export function LevelChart({
                         valueFormatter={(value) => formatCm(value, 1)}
                       />
                     }
-                    cursor={{ stroke: 'rgba(0,166,204,0.25)', strokeDasharray: '3 3' }}
+                    cursor={{ stroke: 'rgba(143,208,202,0.22)', strokeDasharray: '3 3' }}
                   />
                   {THRESHOLD_LINES.map((line) => (
                     <ReferenceLine
@@ -160,7 +160,7 @@ export function LevelChart({
                         position: 'insideTopRight',
                         fill: severityMeta[line.key].hex,
                         fontSize: 9,
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'Public Sans, system-ui, sans-serif',
                       }}
                     />
                   ))}
@@ -179,8 +179,8 @@ export function LevelChart({
               </ResponsiveContainer>
             </div>
 
-            <div className="mt-2 flex flex-wrap items-center justify-between gap-2 font-mono text-[9px] text-muted">
-              <span>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[9.5px] text-muted">
+              <span className="tabular-nums">
                 {formatCm(selected.levelCm)} · atualizado {formatRelativeTime(selected.lastReadingAt)}
               </span>
               <span className="flex items-center gap-3">
@@ -206,7 +206,7 @@ export function LevelChart({
           </span>
           <Link
             to={`/sensores?selected=${selected?.id ?? ''}`}
-            className="inline-flex items-center gap-0.5 text-[10px] font-medium text-cyan-300 hover:text-cyan-400"
+            className="inline-flex items-center gap-0.5 text-[10.5px] font-medium text-muted hover:text-ink"
           >
             Detalhes
             <ArrowUpRight className="h-3 w-3" aria-hidden="true" />

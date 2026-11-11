@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './app/App.jsx'
+import '@fontsource-variable/public-sans'
 import './styles/index.css'
 import 'leaflet/dist/leaflet.css'
 

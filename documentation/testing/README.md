@@ -9,7 +9,7 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 | --- | --- | --- |
 | Frontend (domínio + API) | `cd frontend && npm run test` | **23 aprovados** |
 | Frontend lint | `cd frontend && npm run lint` | **sem erros** |
-| Frontend build | `cd frontend && npm run build` | **sucesso**, bundle de 1.179,30 kB (326,88 kB gzip) |
+| Frontend build | `cd frontend && npm run build` | **sucesso**, entrada de 299,79 kB (91,69 kB gzip), vendors e rotas separados |
 | Backend | `cd backend && .\.venv\Scripts\python.exe -m pytest` | **31 aprovados** em 16,70 s |
 | Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **25 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |

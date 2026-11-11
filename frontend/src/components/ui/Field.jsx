@@ -3,7 +3,7 @@ import { AlertCircle } from 'lucide-react'
 import { cn } from '@/utils/cn'
 
 const controlBase =
-  'w-full rounded-xl border bg-navy-950/60 px-3 text-sm text-ink placeholder:text-muted/70 transition focus:border-cyan/50 focus:outline-none focus:ring-2 focus:ring-cyan/20 disabled:cursor-not-allowed disabled:opacity-60'
+  'w-full rounded-lg border bg-navy-950 px-3 text-sm text-ink placeholder:text-muted/60 transition focus:border-cyan/50 focus:outline-none focus:ring-2 focus:ring-cyan/15 disabled:cursor-not-allowed disabled:opacity-60'
 
 export function FormField({ label, htmlFor, hint, error, required, children, className }) {
   return (
@@ -11,7 +11,7 @@ export function FormField({ label, htmlFor, hint, error, required, children, cla
       {label ? (
         <label htmlFor={htmlFor} className="flex items-center gap-1 text-xs font-medium text-ink">
           {label}
-          {required ? <span className="text-cyan">*</span> : null}
+          {required ? <span className="text-muted">*</span> : null}
         </label>
       ) : null}
       {children}
