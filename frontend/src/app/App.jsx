@@ -11,7 +11,11 @@ import { InterventionsPage } from '@/pages/InterventionsPage'
 import { ReportsPage } from '@/pages/ReportsPage'
 import { SettingsPage } from '@/pages/SettingsPage'
 import { DiagnosticsPage } from '@/pages/DiagnosticsPage'
-import { ComingSoonPage, NotFoundPage } from '@/pages/ComingSoonPage'
+import { CitizenHomePage } from '@/pages/citizen/CitizenHomePage'
+import { CitizenMapPage } from '@/pages/citizen/CitizenMapPage'
+import { CitizenReportPage } from '@/pages/citizen/CitizenReportPage'
+import { CitizenInfoPage } from '@/pages/citizen/CitizenInfoPage'
+import { NotFoundPage } from '@/pages/ComingSoonPage'
 
 export default function App() {
   return (
@@ -30,34 +34,10 @@ export default function App() {
         </Route>
 
         <Route path="cidadao" element={<CitizenLayout />}>
-          <Route
-            index
-            element={
-              <ComingSoonPage
-                eyebrow="Cidadão"
-                title="Área do cidadão"
-                description="Experiência mobile-first para consultar pontos de atenção e registrar ocorrências."
-              />
-            }
-          />
-          <Route
-            path="mapa"
-            element={
-              <ComingSoonPage eyebrow="Cidadão" title="Mapa de atenção" description="Pontos de atenção demonstrativos." />
-            }
-          />
-          <Route
-            path="registrar"
-            element={
-              <ComingSoonPage eyebrow="Cidadão" title="Registrar ocorrência" description="Formulário simplificado e acessível." />
-            }
-          />
-          <Route
-            path="informacoes"
-            element={
-              <ComingSoonPage eyebrow="Cidadão" title="Orientações" description="Informações de segurança e limitações do protótipo." />
-            }
-          />
+          <Route index element={<CitizenHomePage />} />
+          <Route path="mapa" element={<CitizenMapPage />} />
+          <Route path="registrar" element={<CitizenReportPage />} />
+          <Route path="informacoes" element={<CitizenInfoPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
