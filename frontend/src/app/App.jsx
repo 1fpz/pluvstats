@@ -6,6 +6,11 @@ import { OverviewPage } from '@/pages/OverviewPage'
 import { MapPage } from '@/pages/MapPage'
 import { OccurrencesPage } from '@/pages/OccurrencesPage'
 import { SensorsPage } from '@/pages/SensorsPage'
+import { AlertsPage } from '@/pages/AlertsPage'
+import { InterventionsPage } from '@/pages/InterventionsPage'
+import { ReportsPage } from '@/pages/ReportsPage'
+import { SettingsPage } from '@/pages/SettingsPage'
+import { DiagnosticsPage } from '@/pages/DiagnosticsPage'
 import { ComingSoonPage, NotFoundPage } from '@/pages/ComingSoonPage'
 
 export default function App() {
@@ -17,56 +22,11 @@ export default function App() {
           <Route path="mapa" element={<MapPage />} />
           <Route path="ocorrencias" element={<OccurrencesPage />} />
           <Route path="sensores" element={<SensorsPage />} />
-          <Route
-            path="alertas"
-            element={
-              <ComingSoonPage
-                eyebrow="Operação · alertas"
-                title="Central de alertas"
-                description="Severidade, histórico, reconhecimento e resolução com identificação de origem."
-              />
-            }
-          />
-          <Route
-            path="intervencoes"
-            element={
-              <ComingSoonPage
-                eyebrow="Gestão · intervenções"
-                title="Intervenções"
-                description="Cadastro, histórico e comparação antes/depois de nível."
-              />
-            }
-          />
-          <Route
-            path="relatorios"
-            element={
-              <ComingSoonPage
-                eyebrow="Gestão · relatórios"
-                title="Relatórios"
-                description="Filtros, gráficos e exportação CSV com dados demonstrativos."
-              />
-            }
-          />
-          <Route
-            path="diagnostico"
-            element={
-              <ComingSoonPage
-                eyebrow="Sistema · diagnóstico"
-                title="Diagnóstico"
-                description="Conectividade, validação de leituras, origem dos dados e erros de comunicação."
-              />
-            }
-          />
-          <Route
-            path="configuracoes"
-            element={
-              <ComingSoonPage
-                eyebrow="Sistema · configurações"
-                title="Configurações"
-                description="Modo de operação, simulador, limites experimentais e dados da demonstração."
-              />
-            }
-          />
+          <Route path="alertas" element={<AlertsPage />} />
+          <Route path="intervencoes" element={<InterventionsPage />} />
+          <Route path="relatorios" element={<ReportsPage />} />
+          <Route path="diagnostico" element={<DiagnosticsPage />} />
+          <Route path="configuracoes" element={<SettingsPage />} />
         </Route>
 
         <Route path="cidadao" element={<CitizenLayout />}>

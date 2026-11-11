@@ -119,6 +119,10 @@ export function OccurrencesPage() {
   }, [debouncedQuery, neighborhoodFilter, occurrences, sensors, severityFilter, sort, statusFilter])
 
   const selected = occurrences.find((occurrence) => occurrence.id === detailId) ?? null
+  const editingInitial = useMemo(
+    () => (editing ? occurrenceToForm(editing) : null),
+    [editing],
+  )
   const selectedPriority = selected ? scoreOccurrence(selected, { sensors }) : null
   const activeOccurrences = occurrences.filter((occurrence) =>
     ['open', 'validated', 'in_progress'].includes(occurrence.status),
@@ -485,7 +489,7 @@ export function OccurrencesPage() {
         {editing ? (
           <OccurrenceForm
             key={editing.id}
-            initial={occurrenceToForm(editing)}
+            initial={editingInitial}
             sensors={sensors}
             onSubmit={handleUpdate}
             onCancel={() => setEditing(null)}

@@ -86,6 +86,12 @@ export const sensorStatusMeta = {
   hardware_stale: { label: 'Sem leitura recente', tone: 'warning' },
 }
 
+export const interventionStatusMeta = {
+  planned: { label: 'Planejada', tone: 'neutral', text: 'text-muted', dot: 'bg-muted' },
+  in_progress: { label: 'Em execução', tone: 'petrol', text: 'text-petrol-400', dot: 'bg-petrol-400' },
+  completed: { label: 'Concluída', tone: 'success', text: 'text-success', dot: 'bg-success' },
+}
+
 export const alertTypeMeta = {
   water_level: { label: 'Nível de água' },
   rise_rate: { label: 'Velocidade de elevação' },
