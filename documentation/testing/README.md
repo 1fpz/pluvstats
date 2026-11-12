@@ -1,6 +1,6 @@
 # Testes e evidências — PLUVSTATS
 
-Evidências coletadas em **2026-11-11** neste ambiente de desenvolvimento. Nenhum
+Evidências coletadas em **2026-11-12** neste ambiente de desenvolvimento. Nenhum
 teste físico, de carga, de segurança ofensiva ou com usuários reais foi realizado.
 
 ## Resumo
@@ -9,9 +9,10 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 | --- | --- | --- |
 | Frontend (domínio + API) | `cd frontend && npm run test` | **23 aprovados** |
 | Frontend lint | `cd frontend && npm run lint` | **sem erros** |
-| Frontend build | `cd frontend && npm run build` | **sucesso**, entrada de 299,79 kB (91,69 kB gzip), vendors e rotas separados |
-| Backend | `cd backend && .\.venv\Scripts\python.exe -m pytest` | **31 aprovados** em 16,70 s |
-| Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **25 aprovados** |
+| Frontend build | `cd frontend && npm run build` | **sucesso**, entrada de 299,84 kB (91,70 kB gzip), vendors e rotas separados |
+| Backend | `cd backend && .\.venv\Scripts\python.exe -m pytest` | **31 aprovados** |
+| Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **35 aprovados** |
+| Aplicação Python | `python -m unittest discover -s python-app/tests -p "test_*.py"` | **12 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |
 | Firmware físico | — | **não executado** |
 | Wokwi | — | **não executado** |
@@ -45,8 +46,9 @@ Test Files  5 passed (5)
 Tests       23 passed (23)
 ```
 
-`npm run lint` termina sem saída. `npm run build` termina com sucesso e mantém o
-aviso de chunk acima de 500 kB; não há code splitting nesta entrega.
+`npm run lint` termina sem saída. `npm run build` termina com sucesso e separa
+React, Leaflet e Recharts em chunks próprios; as rotas também são carregadas sob
+demanda.
 
 ## Backend
 
@@ -77,14 +79,29 @@ StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprec
 
 ## Matemática
 
-25 testes cobrem as fórmulas e os cenários:
+35 testes cobrem as fórmulas e os cenários:
 
 - `h = H - d`, saturação e rejeição de distância negativa/NaN;
 - taxa em cm/min, drenagem e `Δt` inválido;
 - tempo até o limite, `v ≤ 0` e limite já atingido;
 - projeção linear e saturação;
 - tendência por mínimos quadrados;
+- volume acumulado (`+32 m³`, `−36 m³`, `0 m³`) e validação de geometria;
+- exposição integrada (`200 cm·min`) e timestamps repetidos;
+- limite de longo prazo (`h_∞`) com taxa positiva, nula e negativa;
 - cenários e consistência com o JSON compartilhado.
+
+## Aplicação Python
+
+12 testes cobrem:
+
+- conversão de distância em nível e saturação;
+- taxa, tempo até o limite e casos indefinidos;
+- validação de entradas e mensagens de erro;
+- leitura e gravação do JSON;
+- recuperação de arquivo corrompido;
+- cenários e cálculo de volume/exposição;
+- menu e fluxo de cadastro sem depender de entrada interativa real.
 
 ## Edge
 
@@ -174,9 +191,10 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pytest
 
-# matemática e edge
+# matemática, Python e edge
 cd ..
 python -m unittest discover -s mathematics/tests -p "test_*.py"
+python -m unittest discover -s python-app/tests -p "test_*.py"
 python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```

@@ -276,6 +276,57 @@
   }
 }
 
+/*
+ * Área do cidadão: piso tipográfico para leitura confortável.
+ * O briefing pede linguagem simples e telas pequenas; parte do público é idosa.
+ * As classes utilitárias originais foram mantidas para não duplicar componentes,
+ * e este escopo garante tamanho mínimo sem afetar o painel de gestão.
+ */
+.citizen-readable [class*='text-[8.5px]'],
+.citizen-readable [class*='text-[9px]'],
+.citizen-readable [class*='text-[9.5px]'],
+.citizen-readable [class*='text-[10px]'] {
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+}
+
+.citizen-readable [class*='text-[10.5px]'],
+.citizen-readable [class*='text-[11px]'] {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+}
+
+.citizen-readable [class*='text-[11.5px]'],
+.citizen-readable [class*='text-[12px]'],
+.citizen-readable [class*='text-xs'] {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.citizen-readable [class*='text-[12.5px]'],
+.citizen-readable [class*='text-[13px]'],
+.citizen-readable [class*='text-sm'] {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+.citizen-readable [class*='text-[17px]'] {
+  font-size: 19px !important;
+}
+
+.citizen-readable [class*='text-xl'] {
+  font-size: 23px !important;
+}
+
+.citizen-readable [class*='text-[22px]'] {
+  font-size: 24px !important;
+}
+
+.citizen-readable [class*='text-[26px]'] {
+  font-size: 28px !important;
+  line-height: 1.25 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

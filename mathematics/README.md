@@ -4,7 +4,7 @@ Modelo experimental de nível, taxa de elevação e tempo até um limite. É um
 conjunto pequeno de fórmulas explícitas, não uma simulação hidráulica e não uma
 previsão oficial de enchentes.
 
-> **Estado:** implementado e testado (25 testes). Os gráficos são gerados a
+> **Estado:** implementado e testado (35 testes). Os gráficos são gerados a
 > partir dos mesmos cenários dos testes. Nada aqui foi calibrado com dados de
 > campo.
 
@@ -17,7 +17,8 @@ mathematics/
 ├── scenarios/               séries didáticas de distância no tempo
 ├── tools/plot_scenarios.py  gerador de SVG (somente biblioteca padrão)
 ├── graphs/                  gráficos versionados
-├── tests/test_model.py      25 testes com unittest
+├── report/                  relatório técnico (HTML e PDF)
+├── tests/test_model.py      35 testes com unittest
 └── README.md
 ```
 
@@ -31,6 +32,11 @@ mathematics/
 | `v` | taxa de variação do nível | cm/min |
 | `h_limite` | limite crítico experimental | cm |
 | `t` | tempo estimado até o limite | min |
+| `w` | largura adotada para o trecho | m |
+| `L` | comprimento adotado para o trecho | m |
+| `V` | volume líquido acumulado no trecho | m³ |
+| `E` | exposição integrada do nível | cm·min |
+| `h_∞` | limite do modelo quando `t → ∞` | cm |
 
 Geometria e limiares vêm de `shared/pluvstats.config.json`, a mesma fonte do
 frontend e do backend. Valores atuais: `H = 120 cm`, profundidade do canal
@@ -99,6 +105,49 @@ v = 60 · Σ((tᵢ - t̄)(hᵢ - h̄)) / Σ(tᵢ - t̄)²
 Exige pelo menos três pontos e timestamps distintos. É uma descrição da série,
 não uma previsão.
 
+### 6. Volume líquido acumulado (integral da vazão)
+
+Se o trecho tem largura `w` e comprimento `L`, a vazão líquida instantânea é
+`Q(t) = w · L · h'(t)`. Integrando de `t₀` a `t₁`:
+
+```text
+V = ∫[t₀,t₁] Q(t) dt = w · L · ∫[t₀,t₁] h'(t) dt
+  = w · L · (h(t₁) - h(t₀)) / 100
+```
+
+A divisão por 100 converte centímetros em metros. O sinal é preservado:
+`V > 0` indica ganho de volume (elevação) e `V < 0` indica perda (drenagem).
+O modelo adota `w = 2,0 m` e `L = 100 m` apenas como hipótese didática; não é
+uma calibração hidráulica do canal.
+
+### 7. Exposição integrada do nível
+
+Para medir "quanto nível persistiu" no intervalo, usa-se a integral de `h(t)`,
+calculada pela regra dos trapézios:
+
+```text
+E = ∫[t₀,t₁] h(t) dt ≈ Σ (hᵢ + hᵢ₊₁)/2 · Δtᵢ / 60
+```
+
+A unidade é **cm·min**. É uma grandeza acumulada didática: não é volume, não é
+energia e não é previsão de inundação. Ela permite comparar dois eventos com
+durações diferentes.
+
+### 8. Limite de longo prazo do modelo
+
+Se `v > 0` e permanecesse constante, `h(t) = h₀ + v·t` cresceria sem limite.
+O modelo impõe a saturação física do canal:
+
+```text
+h_∞ = lim[t→∞] min(channelDepthCm, h₀ + v·t)
+    = channelDepthCm,  se v > 0
+    = h₀,              se v ≤ 0
+```
+
+Esse limite é uma propriedade **do modelo**, não uma previsão de campo. Ele
+serve para mostrar por que a extrapolação linear só vale enquanto as hipóteses
+se mantiverem.
+
 ## Exemplos resolvidos
 
 ### Exemplo 1 — nível, taxa e tempo até o limite
@@ -146,13 +195,42 @@ v = (58 - 42) / 4 = 4,0 cm/min
 t = (75 - 58) / 4,0 = 4,25 min
 ```
 
+### Exemplo 5 — volume acumulado
+
+Com `w = 2 m`, `L = 100 m` e a mesma elevação de 42 cm para 58 cm:
+
+```text
+V = 2 · 100 · (58 - 42) / 100 = 32 m³
+```
+
+No cenário de drenagem, o nível cai de 62 cm para 44 cm:
+
+```text
+V = 2 · 100 · (44 - 62) / 100 = -36 m³
+```
+
+O sinal negativo indica que o trecho perdeu volume no intervalo. Nenhum dos
+dois valores foi comparado com medição de campo.
+
+### Exemplo 6 — exposição integrada
+
+Para a elevação de 42 cm a 58 cm em 4 min, com variação linear:
+
+```text
+E = ((42 + 58) / 2) · 4 = 50 · 4 = 200 cm·min
+```
+
+O cenário de drenagem, por ter mais nível médio no intervalo, resulta em
+`208,75 cm·min`; o canal estável fica em `40,65 cm·min`. A exposição não
+classifica risco sozinha: só descreve quanto nível persistiu.
+
 ## Cenários
 
-| Arquivo | Nível inicial → final | Taxa | Tempo até 75 cm |
-| --- | --- | --- | --- |
-| `normal.json` | 8,0 → 8,0 cm | 0,0 cm/min | indefinido (v = 0) |
-| `rising-alert.json` | 42,0 → 58,0 cm | +4,0 cm/min | 4,25 min |
-| `drainage.json` | 62,0 → 44,0 cm | −4,5 cm/min | indefinido (v < 0) |
+| Arquivo | Nível inicial → final | Taxa | Tempo até 75 cm | Volume | Exposição |
+| --- | --- | --- | --- | --- | --- |
+| `normal.json` | 8,0 → 8,0 cm | 0,0 cm/min | indefinido (v = 0) | 0,0 m³ | 40,65 cm·min |
+| `rising-alert.json` | 42,0 → 58,0 cm | +4,0 cm/min | 4,25 min | +32,0 m³ | 200,00 cm·min |
+| `drainage.json` | 62,0 → 44,0 cm | −4,5 cm/min | indefinido (v < 0) | −36,0 m³ | 208,75 cm·min |
 
 Os cenários guardam apenas `tSeconds` e `distanceCm`; o nível é derivado pela
 mesma função usada nos testes. Nenhum cenário duplica os limiares.
@@ -177,13 +255,20 @@ Gerados por `python mathematics/tools/plot_scenarios.py`:
 
 ![Tempo até o limite](graphs/tempo-ate-limite.svg)
 
+### Volume líquido acumulado
+
+![Volume acumulado](graphs/volume-acumulado.svg)
+
+O gráfico mostra `V(t) = w · L · (h(t) - h(0)) / 100` para os três cenários:
+elevação ganha 32 m³, drenagem perde 36 m³ e o canal estável permanece em zero.
+
 ## Testes
 
 ```bash
 python -m unittest discover -s mathematics/tests -p "test_*.py" -v
 ```
 
-Resultado atual: **25 testes aprovados**. A suíte cobre:
+Resultado atual: **35 testes aprovados**. A suíte cobre:
 
 - nível, sinal e saturação física;
 - rejeição de distância inválida;
@@ -192,6 +277,9 @@ Resultado atual: **25 testes aprovados**. A suíte cobre:
 - projeção linear e saturação;
 - tendência por mínimos quadrados e validações;
 - cenários, ordem temporal e valores esperados;
+- integrais de volume (`+32 m³`, `-36 m³`, `0 m³`) e validação de geometria;
+- exposição integrada (`200 cm·min`) e rejeição de timestamps repetidos;
+- limite de longo prazo (`h_∞`) com taxa positiva, nula e negativa;
 - uso dos limiares compartilhados.
 
 ## Limitações
@@ -213,6 +301,9 @@ Resultado atual: **25 testes aprovados**. A suíte cobre:
    detritos, vento e temperatura. Não é um medidor de nível certificado.
 7. **Sem previsão oficial.** Nenhum resultado deve ser apresentado como alerta
    da Defesa Civil ou da Prefeitura de Santo André.
+8. **Volume didático.** A integral de volume adota um trecho retangular de
+   `2 m × 100 m`, sem seção transversal real, declividade ou capacidade. O
+   valor em m³ serve para comparar cenários, não para dimensionar drenagem.
 
 ## Integração com o restante do projeto
 

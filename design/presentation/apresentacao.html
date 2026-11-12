@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PLUVSTATS — CitizenTech: da proposta ao roadmap</title>
+<style>
+  @page { size: 338.7mm 190.5mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #0b0d10; }
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #e8edf2;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    padding: 54px 68px 58px;
+    background: #0b0d10;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+  .slide::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(56, 189, 248, 0.12), transparent 60%),
+      radial-gradient(700px 380px at -10% 110%, rgba(45, 212, 191, 0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .slide > * { position: relative; z-index: 1; }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #5eead4;
+  }
+  h1 { font-size: 46px; line-height: 1.06; margin: 10px 0 14px; letter-spacing: -0.025em; }
+  h2 { font-size: 32px; line-height: 1.12; margin: 8px 0 10px; letter-spacing: -0.02em; }
+  h3 { font-size: 16px; margin: 0 0 6px; color: #f1f5f9; }
+  p { margin: 0; font-size: 14px; line-height: 1.5; color: #aeb9c4; }
+  .lead { font-size: 16px; color: #c7d2dc; max-width: 980px; }
+  .muted { color: #8b98a5; }
+  .accent { color: #7dd3fc; }
+  .teal { color: #5eead4; }
+  .warn { color: #fbbf24; }
+  .slide-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+  .slide-head .index { font-size: 11px; font-weight: 700; color: #5b6b7c; letter-spacing: 0.12em; }
+  .footer {
+    position: absolute;
+    left: 68px;
+    right: 68px;
+    bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #5f6c7a;
+    border-top: 1px solid rgba(148, 163, 184, 0.16);
+    padding-top: 8px;
+    letter-spacing: 0.04em;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card {
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .card h3 { display: flex; align-items: center; gap: 8px; }
+  .card p { font-size: 13px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.12);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+  }
+  .tag.warn { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3); }
+  .tag.rose { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border-color: rgba(248, 113, 113, 0.3); }
+  .tag.teal { background: rgba(45, 212, 191, 0.12); color: #5eead4; border-color: rgba(45, 212, 191, 0.3); }
+  ul.clean { margin: 8px 0 0; padding-left: 18px; }
+  ul.clean li { font-size: 13.5px; line-height: 1.55; color: #b6c1cc; margin: 5px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: #7dd3fc; border-bottom: 1px solid rgba(56, 189, 248, 0.3); padding: 7px 8px; }
+  td { padding: 7px 8px; border-bottom: 1px solid rgba(148, 163, 184, 0.12); color: #b6c1cc; vertical-align: top; line-height: 1.4; }
+  td strong { color: #e8edf2; }
+  .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.14);
+    color: #7dd3fc;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    flex: none;
+  }
+  .cover { justify-content: space-between; }
+  .cover .brand-row { display: flex; align-items: center; gap: 14px; }
+  .cover .mark {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: linear-gradient(135deg, #0ea5e9, #2dd4bf);
+    display: grid; place-items: center; color: #06121f; font-weight: 900; font-size: 20px;
+  }
+  .cover h1 { font-size: 86px; letter-spacing: -0.04em; margin: 12px 0 4px; }
+  .cover .signature { font-size: 22px; color: #7dd3fc; letter-spacing: -0.01em; }
+  .cover .slogan { font-size: 14px; color: #8b98a5; margin-top: 6px; }
+  .cover .team { display: flex; gap: 14px; }
+  .cover .person {
+    flex: 1;
+    border-top: 2px solid rgba(56, 189, 248, 0.5);
+    padding-top: 10px;
+  }
+  .cover .person strong { display: block; font-size: 14px; color: #f1f5f9; }
+  .cover .person span { font-size: 11.5px; color: #8b98a5; }
+  .path { display: flex; align-items: stretch; gap: 12px; margin-top: 24px; }
+  .path .step { flex: 1; position: relative; }
+  .path .step .bar { height: 4px; border-radius: 999px; background: linear-gradient(90deg, #0ea5e9, #2dd4bf); margin-bottom: 14px; }
+  .path .step h3 { font-size: 14px; }
+  .path .step p { font-size: 12px; }
+  .shot {
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0f172a;
+  }
+  .shot img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .shot figcaption { font-size: 10px; color: #8b98a5; padding: 7px 10px; border-top: 1px solid rgba(148, 163, 184, 0.14); }
+  .phone {
+    width: 250px;
+    border-radius: 26px;
+    border: 6px solid #1e293b;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+  .phone img { width: 100%; display: block; }
+  .phones { display: flex; gap: 40px; align-items: center; justify-content: center; }
+  .claim { font-size: 12px; line-height: 1.5; color: #b6c1cc; }
+  .big { font-size: 44px; font-weight: 700; letter-spacing: -0.03em; color: #f1f5f9; }
+  .stat { display: flex; gap: 12px; align-items: baseline; }
+  .stat span { font-size: 11px; color: #8b98a5; }
+  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .roadmap .phase { border-left: 3px solid #38bdf8; padding: 12px 14px; background: rgba(15, 23, 42, 0.6); border-radius: 0 10px 10px 0; }
+  .roadmap .phase .when { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #5eead4; font-weight: 700; }
+  .roadmap .phase h3 { margin: 4px 0; font-size: 14px; }
+  .roadmap .phase p { font-size: 11.5px; }
+  .quote { font-size: 13px; color: #e8edf2; border-left: 3px solid #2dd4bf; padding-left: 12px; margin: 8px 0; }
+  .quote small { display: block; color: #8b98a5; font-size: 10px; margin-top: 3px; letter-spacing: 0.04em; }
+  .heuristic { min-height: 94px; }
+  .heuristic h3 { font-size: 12.5px; }
+  .heuristic p { font-size: 11px; line-height: 1.4; }
+  .risk { border-left: 3px solid #f59e0b; }
+  .note-strip {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    color: #fcd34d;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide cover">
+  <div>
+    <div class="brand-row">
+      <div class="mark">P</div>
+      <div>
+        <div class="kicker">Global Solution 2026.2 · CitizenTech · Engenharia de Software · 1º ano</div>
+        <div class="muted" style="font-size:11px;margin-top:3px">Software &amp; Total Experience Design</div>
+      </div>
+    </div>
+    <h1>PLUVSTATS</h1>
+    <div class="signature">CitizenTech: da proposta ao roadmap</div>
+    <div class="slogan">Inteligência territorial para águas urbanas · Dados que antecipam decisões</div>
+    <p class="lead" style="margin-top:18px;max-width:900px">
+      Uma proposta de monitoramento de pontos de alagamento que conecta problema,
+      pessoas, requisitos, protótipo e próximos passos — sem esconder o que ainda
+      é hipótese.
+    </p>
+    <div class="grid-3" style="margin-top:34px;max-width:880px">
+      <div class="card"><div class="big" style="font-size:34px">5</div><p>pontos monitorados na demonstração</p></div>
+      <div class="card"><div class="big" style="font-size:34px">2</div><p>experiências: gestão e cidadania</p></div>
+      <div class="card"><div class="big" style="font-size:34px">0</div><p>sensores físicos validados em campo</p></div>
+    </div>
+  </div>
+  <div>
+    <div class="team">
+      <div class="person"><strong>Felipe Ilek</strong><span>RM 571322 · Front-end, experiência do cidadão e identidade visual</span></div>
+      <div class="person"><strong>Michel Tatsuya Hanada</strong><span>RM 571987 · Backend, API, persistência e integração</span></div>
+      <div class="person"><strong>Marcos Vinícius Tudisco</strong><span>RM 569366 · Edge, matemática e validação de dados</span></div>
+    </div>
+    <div class="note-strip" style="margin-top:16px">
+      Protótipo acadêmico experimental. Não há dados oficiais, integração com a Prefeitura,
+      hardware validado em campo ou promessa de previsão de enchentes.
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>1 / 18</span></div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">A história em quatro atos</div>
+      <h2>Problema → solução → experiência → próximos passos</h2>
+    </div>
+    <div class="index">02 / 18</div>
+  </div>
+  <p class="lead">
+    A apresentação segue a mesma sequência que a equipe usou para decidir o produto.
+    Cada ato responde a uma pergunta da banca e termina em uma evidência verificável.
+  </p>
+  <div class="path">
+    <div class="step">
+      <div class="bar"></div>
+      <span class="tag">1 · Problema</span>
+      <h3>O que acontece hoje?</h3>
+      <p>Informação fragmentada, origem incerta e dificuldade de transformar sinal em decisão.</p>
+    </div>
+    <div class="step">
+      <div class="bar"></div>
+      <span class="tag teal">2 · Solução</span>
+      <h3>O que o PLUVSTATS faz?</h3>
+      <p>Lê distância, calcula nível e tendência, prioriza pontos e conecta gestão e cidadão.</p>
+    </div>
+    <div class="step">
+      <div class="bar"></div>
+      <span class="tag warn">3 · Experiência</span>
+      <h3>Como a pessoa usa?</h3>
+      <p>Painel denso para gestão; área simples e legível para o cidadão, com limites explícitos.</p>
+    </div>
+    <div class="step">
+      <div class="bar"></div>
+      <span class="tag rose">4 · Próximos passos</span>
+      <h3>O que falta para continuar?</h3>
+      <p>Pesquisa com pessoas, teste de bancada, acessibilidade, deploy e parceria institucional.</p>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:26px">
+    <div class="card"><h3>Escopo honesto</h3><p>O que está dentro e fora está escrito antes do protótipo. Nada é prometido sem evidência.</p></div>
+    <div class="card"><h3>Experiência coerente</h3><p>As duas áreas compartilham a mesma fonte de limiares e o mesmo compromisso de proveniência.</p></div>
+    <div class="card"><h3>Continuidade</h3><p>O roadmap não é uma lista de desejos: cada etapa tem objetivo, resultado esperado e critério de parada.</p></div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>2 / 18</span></div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 2 · Problema</div>
+      <h2>O problema não é falta de sensor. É falta de contexto para decidir.</h2>
+    </div>
+    <div class="index">03 / 18</div>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <h3><span class="num">1</span>O que acontece</h3>
+      <p>Chuva forte, drenagem insuficiente e obstruções produzem pontos de alagamento.
+      A informação chega por relatos, canais separados e planilhas, muitas vezes sem horário,
+      origem ou vínculo com um dispositivo.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">2</span>Quem é afetado</h3>
+      <p>Moradores, pedestres, motoristas, idosos e pessoas com mobilidade reduzida.
+      Na gestão, analistas e equipes de campo precisam priorizar vistorias e prestar contas
+      com pouco contexto.</p>
+    </div>
+    <div class="card">
+      <h3><span class="num">3</span>Por que importa</h3>
+      <p>Sem proveniência, um número parece oficial sem ser. Sem linguagem simples,
+      o cidadão não sabe se o ponto é seguro nem a quem recorrer. A decisão fica mais lenta
+      e menos transparente.</p>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:24px">
+    <div class="card">
+      <h3>O que o PLUVSTATS propõe</h3>
+      <ul class="clean">
+        <li>Transformar distância medida em nível, taxa e tempo até um limite.</li>
+        <li>Mostrar a origem e a idade de cada leitura em todas as camadas.</li>
+        <li>Separar claramente simulação, demonstração e hardware não validado.</li>
+        <li>Oferecer uma experiência de gestão e outra de cidadania, com a mesma base.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color: rgba(245, 158, 11, 0.3);">
+      <h3 class="warn">O que ainda não sabemos</h3>
+      <p>Não há entrevista, pesquisa de campo ou medição física nesta entrega. O problema
+      acima é uma <strong>hipótese de projeto</strong> construída a partir do briefing e de
+      observação informal do território. O plano de pesquisa define como validá-la.</p>
+      <p style="margin-top:8px"><span class="tag warn">lacuna declarada</span></p>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>3 / 18</span></div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 2 · Evidências</div>
+      <h2>O que sabemos, o que supomos e o que falta medir</h2>
+    </div>
+    <div class="index">04 / 18</div>
+  </div>
+  <table>
+    <thead>
+      <tr><th style="width:24%">Afirmação</th><th style="width:22%">Status</th><th>Como tratamos na entrega</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>O território tem pontos de alagamento</strong></td><td><span class="tag">fato público</span></td><td>O projeto usa Santo André/SP como território demonstrativo, sem afirmar ocorrências oficiais ou localizações exatas.</td></tr>
+      <tr><td><strong>A informação é fragmentada</strong></td><td><span class="tag warn">hipótese qualitativa</span></td><td>O produto foi desenhado para evidenciar origem, idade e limite de cada dado; a hipótese será testada com pessoas.</td></tr>
+      <tr><td><strong>O cidadão precisa de linguagem simples</strong></td><td><span class="tag warn">hipótese de design</span></td><td>A área do cidadão usa frases curtas, piso tipográfico maior e nenhum dado pessoal no registro.</td></tr>
+      <tr><td><strong>O hardware funciona em campo</strong></td><td><span class="tag rose">não validado</span></td><td>O firmware e o diagrama estão preparados, mas não foram testados fisicamente. O status aparece no produto.</td></tr>
+      <tr><td><strong>O modelo prevê enchentes</strong></td><td><span class="tag rose">não</span></td><td>O modelo é linear e didático. Ele calcula nível, taxa e tempo até um limite; não é hidrologia calibrada.</td></tr>
+    </tbody>
+  </table>
+  <div class="note-strip" style="margin-top:18px">
+    A ausência de dados de campo não é escondida: ela aparece no README, no Diagnóstico
+    do produto, no relatório de matemática e neste deck. Essa é uma decisão de experiência,
+    não apenas de documentação.
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>4 / 18</span></div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 3 · Escopo</div>
+      <h2>O que a solução fará — e o que ela deliberadamente não fará</h2>
+    </div>
+    <div class="index">05 / 18</div>
+  </div>
+  <div class="grid-2">
+    <div class="card" style="border-color: rgba(45, 212, 191, 0.35);">
+      <span class="tag teal">dentro do escopo</span>
+      <ul class="clean">
+        <li><strong>Monitorar</strong> pontos com leituras simuladas e contrato para hardware.</li>
+        <li><strong>Calcular</strong> nível, taxa de elevação, tempo até o limite e volume didático.</li>
+        <li><strong>Priorizar</strong> ocorrências, alertas e intervenções em um painel de gestão.</li>
+        <li><strong>Comunicar</strong> ao cidadão com mapa, registro e orientações de segurança.</li>
+        <li><strong>Diagnosticar</strong> origem dos dados, fallback e ausência de hardware validado.</li>
+        <li><strong>Demonstrar</strong> o fluxo completo sem API, com dados identificados.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color: rgba(248, 113, 113, 0.3);">
+      <span class="tag rose">fora do escopo</span>
+      <ul class="clean">
+        <li>Previsão oficial de enchentes ou alerta de Defesa Civil.</li>
+        <li>Integração com Prefeitura, central de emergência ou órgão público.</li>
+        <li>Login, perfis, autenticação e autorização.</li>
+        <li>Calibração hidráulica, Manning ou curva cota-vazão.</li>
+        <li>Uso em decisões de segurança pública.</li>
+        <li>Aplicativo nativo, SLA, alta disponibilidade e observabilidade de produção.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:22px">
+    <div class="card"><h3>Limite de responsabilidade</h3><p>O sistema não aciona equipes. Em risco imediato, a interface orienta procurar os canais oficiais.</p></div>
+    <div class="card"><h3>Limite de dados</h3><p>Nada é apresentado como oficial. Simulação, demonstração e hardware têm marcadores distintos.</p></div>
+    <div class="card"><h3>Limite técnico</h3><p>O modelo é linear e o sensor é de baixo custo. A incerteza é declarada, não maquiada.</p></div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>5 / 18</span></div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 4 · Requisitos funcionais</div>
+      <h2>O que o sistema deve fazer — e por que cada item existe</h2>
+    </div>
+    <div class="index">06 / 18</div>
+  </div>
+  <table>
+    <thead><tr><th style="width:9%">ID</th><th style="width:34%">Requisito</th><th style="width:17%">Classificação</th><th>Justificativa ligada ao problema</th></tr></thead>
+    <tbody>
+      <tr><td>RF-01</td><td><strong>Iniciar em demonstração identificada</strong></td><td>Funcional · obrigatório</td><td>Permite avaliar sem hardware e sem confundir dado simulado com real.</td></tr>
+      <tr><td>RF-02</td><td><strong>Exibir visão territorial consolidada</strong></td><td>Funcional · obrigatório</td><td>O gestor precisa de contexto antes de agir, não de números soltos.</td></tr>
+      <tr><td>RF-03</td><td><strong>Permitir CRUD de ocorrências</strong></td><td>Funcional · obrigatório</td><td>É o registro mínimo para triagem, priorização e prestação de contas.</td></tr>
+      <tr><td>RF-04</td><td><strong>Listar sensores com origem e qualidade</strong></td><td>Funcional · obrigatório</td><td>Sem origem e idade, uma leitura não é confiável nem auditável.</td></tr>
+      <tr><td>RF-05</td><td><strong>Gerar alertas com severidade e recomendação</strong></td><td>Funcional · obrigatório</td><td>Transforma sinal em ação: reconhecer, resolver ou encaminhar.</td></tr>
+      <tr><td>RF-06</td><td><strong>Registrar intervenção vinculada à ocorrência</strong></td><td>Funcional · obrigatório</td><td>Fecha o ciclo entre detecção, vistoria e normalização.</td></tr>
+      <tr><td>RF-07</td><td><strong>Oferecer área do cidadão mobile-first</strong></td><td>Funcional · obrigatório</td><td>O benefício precisa chegar a quem está na rua, não só ao gabinete.</td></tr>
+      <tr><td>RF-08</td><td><strong>Diagnosticar fallback e hardware</strong></td><td>Funcional · obrigatório</td><td>Torna a limitação visível para avaliador, gestor e equipe técnica.</td></tr>
+      <tr><td>RF-09</td><td><strong>Exportar indicadores experimentais</strong></td><td>Funcional · desejável</td><td>Apoia apresentação de resultados, desde que com ressalvas visíveis.</td></tr>
+    </tbody>
+  </table>
+  <p class="muted" style="margin-top:10px;font-size:10.5px">Rastreabilidade completa em <span class="accent">design/requirements/requirements.md</span> e <span class="accent">documentation/testing/README.md</span>.</p>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>6 / 18</span></div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 4 · RNF e regras de negócio</div>
+      <h2>Qualidade, privacidade e condições que o processo precisa respeitar</h2>
+    </div>
+    <div class="index">07 / 18</div>
+  </div>
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:13px;color:#7dd3fc;margin-bottom:8px">Requisitos não funcionais</h3>
+      <table>
+        <thead><tr><th style="width:16%">ID</th><th>Condição e justificativa</th></tr></thead>
+        <tbody>
+          <tr><td>RNF-01</td><td><strong>Sem segredo no frontend.</strong> Só variáveis públicas; reduz exposição e facilita auditoria.</td></tr>
+          <tr><td>RNF-02</td><td><strong>Simulação nunca vira hardware.</strong> Evita que uma demonstração seja lida como sensor real.</td></tr>
+          <tr><td>RNF-03</td><td><strong>Fallback explícito.</strong> A interface continua útil e informa por que a API não respondeu.</td></tr>
+          <tr><td>RNF-04</td><td><strong>Testes nas regras críticas.</strong> 23 frontend, 31 backend, 35 matemática, 12 Python e 4 edge.</td></tr>
+          <tr><td>RNF-05</td><td><strong>Privacidade por padrão.</strong> Registro do cidadão não pede nome, telefone ou documento.</td></tr>
+          <tr><td>RNF-06</td><td><strong>Acessibilidade básica.</strong> Skip link, foco visível, rótulos e contraste; auditoria formal é lacuna.</td></tr>
+          <tr><td>RNF-07</td><td><strong>Reprodutibilidade.</strong> Comandos documentados, dependências fixadas e dados de exemplo versionados.</td></tr>
+          <tr><td>RNF-08</td><td><strong>Uma fonte de limiares.</strong> JSON compartilhado evita divergência entre frontend, API, edge e Python.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:13px;color:#fbbf24;margin-bottom:8px">Regras de negócio</h3>
+      <table>
+        <thead><tr><th style="width:16%">ID</th><th>Regra e consequência</th></tr></thead>
+        <tbody>
+          <tr><td>RN-01</td><td><strong>h = H − d</strong>, limitado a [0, profundidade]. Impede nível negativo ou acima do canal.</td></tr>
+          <tr><td>RN-02</td><td><strong>v = Δh/Δt</strong> com Δt &gt; 0. Sem intervalo válido, não há taxa.</td></tr>
+          <tr><td>RN-03</td><td><strong>Tempo até o limite</strong> só quando v &gt; 0 e h &lt; limite; caso contrário, indefinido.</td></tr>
+          <tr><td>RN-04</td><td><strong>Histerese</strong> mantém a severidade dentro da banda e evita oscilação visual.</td></tr>
+          <tr><td>RN-05</td><td><strong>Leitura inválida é auditada</strong>, mas não valida o dispositivo.</td></tr>
+          <tr><td>RN-06</td><td><strong>Leitura antiga não comprova conexão.</strong> A janela de validade é explícita.</td></tr>
+          <tr><td>RN-07</td><td><strong>Intervenção concluída</strong> exige nível final e data; sem isso, fica em andamento.</td></tr>
+          <tr><td>RN-08</td><td><strong>Alerta resolvido</strong> não pode ser reconhecido novamente; o histórico é preservado.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="note-strip" style="margin-top:14px">
+    Cada regra tem teste automatizado ou verificação documentada. Nenhuma delas depende de dado oficial inexistente.
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>7 / 18</span></div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 5 · Diagrama de caso de uso</div>
+      <h2>Quem interage, com qual objetivo e dentro de qual fronteira</h2>
+    </div>
+    <div class="index">08 / 18</div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;height:520px">
+    <img src="caso-de-uso-deck.svg" alt="Diagrama de caso de uso do PLUVSTATS" style="max-width:100%;max-height:100%">
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>8 / 18</span></div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 5 · Atores</div>
+      <h2>Cada ator tem um objetivo concreto — e um limite de atuação</h2>
+    </div>
+    <div class="index">09 / 18</div>
+  </div>
+  <table>
+    <thead><tr><th style="width:19%">Ator</th><th style="width:28%">Objetivo principal</th><th>O que faz no sistema</th><th style="width:20%">Limite</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Cidadão</strong><br><span class="muted">morador ou pedestre</span></td>
+        <td>Entender se o ponto próximo está em atenção e registrar um problema.</td>
+        <td>Consulta o mapa de atenção, registra ocorrência sem dados pessoais e lê orientações de segurança.</td>
+        <td>Não vê dados internos, não reconhece alertas e não aciona equipes.</td>
+      </tr>
+      <tr>
+        <td><strong>Gestor municipal</strong><br><span class="muted">operação e priorização</span></td>
+        <td>Priorizar pontos, acompanhar alertas e prestar contas com contexto.</td>
+        <td>Monitora o painel, gerencia ocorrências, acompanha sensores, reconhece alertas, exporta relatórios e verifica o diagnóstico.</td>
+        <td>Não tem integração oficial nem poderes de emergência.</td>
+      </tr>
+      <tr>
+        <td><strong>Técnico de campo</strong><br><span class="muted">vistoria e intervenção</span></td>
+        <td>Registrar a intervenção e comprovar a normalização do ponto.</td>
+        <td>Consulta a ocorrência, registra a vistoria e informa o nível final ao concluir.</td>
+        <td>Não altera limiares nem valida hardware sem leitura válida.</td>
+      </tr>
+      <tr>
+        <td><strong>ESP32 + HC-SR04</strong><br><span class="muted">ator secundário</span></td>
+        <td>Enviar leituras de distância com identificação do dispositivo.</td>
+        <td>Executa a decisão local, publica leitura quando há conectividade e mantém o estado seguro sem rede.</td>
+        <td>Não foi validado fisicamente; não é tratado como hardware real nesta entrega.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="grid-2" style="margin-top:16px">
+    <div class="card"><h3>Relações principais</h3><p><strong>«include»</strong> Acompanhar sensores inclui Reconhecer alerta. <strong>«extend»</strong> Exportar relatório e Verificar diagnóstico estendem o painel. <strong>«include»</strong> Registrar intervenção inclui informar o nível final.</p></div>
+    <div class="card"><h3>Coerência com o escopo</h3><p>Não há caso de uso de login, envio a órgão público, previsão de enchente ou aplicativo nativo. O que não está no escopo não aparece no diagrama.</p></div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>9 / 18</span></div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 6 · Protótipo de média fidelidade</div>
+      <h2>Gestão: densidade com hierarquia, origem e ação</h2>
+    </div>
+    <div class="index">10 / 18</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:18px;flex:1;min-height:0">
+    <figure class="shot" style="margin:0">
+      <img src="assets/gestao-visao-geral.png" alt="Visão geral do painel de gestão" style="height:470px;object-fit:cover;object-position:top left">
+      <figcaption>Visão geral territorial — indicadores, mapa e central de alertas na mesma dobra.</figcaption>
+    </figure>
+    <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+      <div class="card"><h3>Hierarquia</h3><p>Primeiro o estado geral e os contadores; depois mapa, alertas e atividade. O olho sabe onde começar.</p></div>
+      <div class="card"><h3>Proveniência</h3><p>O selo “Demonstração” fica no topo. Cada sensor mostra origem, idade e validação.</p></div>
+      <div class="card"><h3>Ação</h3><p>“Registrar ocorrência” é a ação primária; “Abrir mapa” é secundária. Nada compete com o fluxo principal.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>10 / 18</span></div>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 6 · Estado crítico</div>
+      <h2>O alerta explica o que aconteceu, por que importa e o que fazer</h2>
+    </div>
+    <div class="index">11 / 18</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.55fr 1fr;gap:18px;flex:1;min-height:0">
+    <figure class="shot" style="margin:0">
+      <img src="assets/gestao-alertas-critico.png" alt="Central de alertas com quatro alertas críticos simulados" style="height:470px;object-fit:cover;object-position:top left">
+      <figcaption>Cenário crítico demonstrativo — 4 alertas simulados, severidade, métrica e recomendação.</figcaption>
+    </figure>
+    <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+      <div class="card"><h3>O que aconteceu</h3><p>“Elevação crítica (simulado)” com sensor, bairro, métrica e horário. O título não sugere emergência real.</p></div>
+      <div class="card"><h3>Por que importa</h3><p>A severidade vem de regras determinísticas sobre limiares experimentais. O selo “Simulado” acompanha o cartão.</p></div>
+      <div class="card"><h3>O que fazer</h3><p>Reconhecer ou resolver. Um alerta reconhecido continua aberto até a condição normalizar.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>11 / 18</span></div>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 6 · Experiência do cidadão</div>
+      <h2>Menos densidade, mais clareza — e um piso tipográfico legível</h2>
+    </div>
+    <div class="index">12 / 18</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:26px;flex:1;min-height:0;align-items:center">
+    <div class="phones">
+      <figure style="margin:0;text-align:center">
+        <div class="phone"><img src="assets/cidadao-inicio.png" alt="Início da área do cidadão"></div>
+        <figcaption class="muted" style="font-size:10px;margin-top:8px">Início: situação geral e atalhos</figcaption>
+      </figure>
+      <figure style="margin:0;text-align:center">
+        <div class="phone"><img src="assets/cidadao-registrar.png" alt="Registro de ocorrência na área do cidadão"></div>
+        <figcaption class="muted" style="font-size:10px;margin-top:8px">Registro: tipo, local e consentimento</figcaption>
+      </figure>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card"><h3>Leitura confortável</h3><p>Texto-base de 14–15 px, títulos maiores e contraste alto. O público inclui idosos e pessoas com baixa visão.</p></div>
+      <div class="card"><h3>Sem jargão</h3><p>“Pontos que merecem atenção”, “O que você observou?” e “Em caso de risco imediato”.</p></div>
+      <div class="card"><h3>Privacidade</h3><p>Nenhum nome, telefone ou documento. O protocolo é demonstrativo e o texto diz isso.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>12 / 18</span></div>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 6 · Heurísticas</div>
+      <h2>Oito princípios que aparecem na interface — com evidência</h2>
+    </div>
+    <div class="index">13 / 18</div>
+  </div>
+  <div class="grid-4" style="gap:12px">
+    <div class="card heuristic"><h3>1 · Visibilidade do estado</h3><p>Selo “Demonstração”, cenário ativo, idade da leitura e status do hardware no topo de cada área.</p></div>
+    <div class="card heuristic"><h3>2 · Correspondência com o mundo</h3><p>Nível em cm, taxa em cm/min e “tempo até o limite” — unidades que o gestor já usa.</p></div>
+    <div class="card heuristic"><h3>3 · Controle e liberdade</h3><p>Cancelar registro, limpar filtros, pausar simulação e restaurar a demonstração.</p></div>
+    <div class="card heuristic"><h3>4 · Consistência</h3><p>Mesmos badges de severidade, origem e status nas duas áreas; uma fonte de limiares.</p></div>
+    <div class="card heuristic"><h3>5 · Prevenção de erro</h3><p>Validação de faixa na leitura, confirmação antes de apagar e nível final obrigatório na intervenção.</p></div>
+    <div class="card heuristic"><h3>6 · Reconhecer em vez de lembrar</h3><p>O alerta mostra a métrica que o gerou; o diagnóstico lista o que falta para validar hardware.</p></div>
+    <div class="card heuristic"><h3>7 · Flexibilidade e eficiência</h3><p>Mapa com deep link, filtros, busca e visão em cards ou tabela para perfis diferentes.</p></div>
+    <div class="card heuristic"><h3>8 · Estética e minimalismo</h3><p>Gestão densa e hierarquizada; cidadão com uma decisão por tela e texto curto.</p></div>
+  </div>
+  <div class="grid-2" style="margin-top:18px">
+    <div class="card"><h3>9 · Ajuda a reconhecer e corrigir erros</h3><p>Mensagens dizem o que aconteceu e como corrigir: “Digite um número entre 25 e 375 cm”, “API indisponível; usando demonstração local”.</p></div>
+    <div class="card"><h3>10 · Ajuda e documentação</h3><p>Orientações do cidadão, Diagnóstico e README explicam limites, fallback e o que é simulado — sem prometer emergência.</p></div>
+  </div>
+  <div class="note-strip" style="margin-top:14px">
+    Método: inspeção heurística interna sobre o protótipo e os textos reais da interface.
+    Ainda não houve teste com usuários nem auditoria WCAG — as duas lacunas estão no roadmap.
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>13 / 18</span></div>
+</section>
+
+<!-- 14 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 6 · Tom de voz</div>
+      <h2>Claro, sóbrio e honesto: a interface não grita nem esconde</h2>
+    </div>
+    <div class="index">14 / 18</div>
+  </div>
+  <div class="grid-2">
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <h3>Princípios</h3>
+        <ul class="clean">
+          <li><strong>Claro:</strong> frase curta, verbo direto, unidade explícita.</li>
+          <li><strong>Sóbrio:</strong> sem “salve vidas”, “tempo real” ou “oficial”.</li>
+          <li><strong>Honesto:</strong> diz o que é simulado, o que falta e o que não faz.</li>
+          <li><strong>Respeitoso:</strong> orienta sem culpar o cidadão e sem pedir dados pessoais.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>O que evitar</h3>
+        <ul class="clean">
+          <li>“Alerta de enchente” — o sistema não prevê enchentes.</li>
+          <li>“Dados oficiais” — não há convênio nem base municipal.</li>
+          <li>“Sensor conectado” — sem leitura válida e recente, não há prova.</li>
+          <li>“Emergência” como chamada de ação — o canal é acadêmico.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <h3>Exemplos na interface</h3>
+        <div class="quote">“Não é um canal de emergência. Se houver risco imediato à vida, saia da área alagada e acione os canais oficiais do seu município.”<small>REGISTRO DO CIDADÃO · AVISO</small></div>
+        <div class="quote">“Nenhum sensor físico validado. O sistema está apresentando uma demonstração funcional.”<small>DIAGNÓSTICO · HARDWARE</small></div>
+        <div class="quote">“As leituras simuladas permanecem abaixo do limite demonstrativo.”<small>ÁREA DO CIDADÃO · ESTADO VAZIO</small></div>
+        <div class="quote">“Com a API fora do ar, a interface continua, mas informa o fallback.”<small>DIAGNÓSTICO · FALLBACK</small></div>
+      </div>
+      <div class="note-strip">O tom muda de densidade entre gestão e cidadão, mas não muda de compromisso: origem, incerteza e limite sempre visíveis.</div>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>14 / 18</span></div>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Entregável 7 · Roadmap</div>
+      <h2>O que faríamos depois da entrega — em ordem, com objetivo</h2>
+    </div>
+    <div class="index">15 / 18</div>
+  </div>
+  <div class="roadmap">
+    <div class="phase"><div class="when">Etapa 1 · agora</div><h3>Conversar com pessoas</h3><p>Entrevistas semiestruturadas com moradores, gestores e técnicos. Resultado: hipóteses validadas ou corrigidas.</p></div>
+    <div class="phase"><div class="when">Etapa 2 · curto prazo</div><h3>Testar o protótipo</h3><p>Teste de usabilidade com tarefas no celular e no desktop. Resultado: lista priorizada de ajustes de linguagem e fluxo.</p></div>
+    <div class="phase"><div class="when">Etapa 3 · curto prazo</div><h3>Bancada do sensor</h3><p>Medir distâncias conhecidas com HC-SR04 em diferentes superfícies. Resultado: erro, faixa confiável e necessidade de calibração.</p></div>
+    <div class="phase"><div class="when">Etapa 4 · médio prazo</div><h3>Firmware e Wokwi</h3><p>Compilar, simular todos os estados e gravar o vídeo. Resultado: decisão local comprovada e links públicos.</p></div>
+    <div class="phase"><div class="when">Etapa 5 · médio prazo</div><h3>Acessibilidade e segurança</h3><p>Auditoria WCAG, teste com leitor de tela, autenticação e revisão de privacidade. Resultado: uso responsável em produção.</p></div>
+    <div class="phase"><div class="when">Etapa 6 · depois</div><h3>Piloto com parceiro</h3><p>Definir indicadores, governança e integração com um parceiro real. Resultado: impacto medido, não prometido.</p></div>
+  </div>
+  <div class="note-strip" style="margin-top:16px">
+    Sem datas exatas: cada etapa só avança quando o resultado anterior existe. O critério de parada é explícito —
+    não há “piloto” sem pessoa real, calibração e acordo institucional.
+  </div>
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card"><h3>Sem entrevista</h3><p>não há validação de problema ou de linguagem. A primeira etapa é conversar.</p></div>
+    <div class="card"><h3>Sem bancada</h3><p>não há hardware validado. O firmware continua marcado como não testado.</p></div>
+    <div class="card"><h3>Sem parceiro</h3><p>não há piloto nem impacto medido. O sistema não substitui órgão público.</p></div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>15 / 18</span></div>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Decisões e riscos</div>
+      <h2>O que escolhemos, o que abrimos mão e o que pode dar errado</h2>
+    </div>
+    <div class="index">16 / 18</div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>Decisões de experiência</h3>
+      <ul class="clean">
+        <li><strong>Duas áreas, uma base.</strong> Gestão e cidadão compartilham dados e limiares, mas não a mesma densidade.</li>
+        <li><strong>Proveniência primeiro.</strong> Origem e idade aparecem antes do número em situações críticas.</li>
+        <li><strong>Fallback visível.</strong> A demo local continua, mas o Diagnóstico explica a ausência da API.</li>
+        <li><strong>Piso tipográfico no cidadão.</strong> Legibilidade venceu a tentação de microtipografia.</li>
+        <li><strong>Sem login nesta entrega.</strong> Escopo acadêmico; autenticação é etapa de produção.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Riscos e mitigação</h3>
+      <ul class="clean">
+        <li><strong>Hipótese não validada.</strong> Mitigação: entrevistas e teste de usabilidade no roadmap.</li>
+        <li><strong>Sensor de baixo custo.</strong> Mitigação: mediana de amostras, faixa válida e bancada antes de campo.</li>
+        <li><strong>Modelo linear.</strong> Mitigação: limite explícito, vocabulário sem “previsão” e relatório técnico.</li>
+        <li><strong>Dado simulado confundido com real.</strong> Mitigação: selos, origem e testes que impedem promoção.</li>
+        <li><strong>Acessibilidade incompleta.</strong> Mitigação: auditoria WCAG e leitor de tela antes de produção.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:18px">
+    <div class="card"><h3>Critério de sucesso acadêmico</h3><p>Uma pessoa externa entende o problema, o escopo e os limites sem a equipe explicar.</p></div>
+    <div class="card"><h3>Critério de sucesso técnico</h3><p>Testes, build e fluxo demonstrativo reproduzíveis em outra máquina.</p></div>
+    <div class="card"><h3>Critério de sucesso humano</h3><p>O cidadão encontra o registro e entende que o canal não é emergência.</p></div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>16 / 18</span></div>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <div class="slide-head">
+    <div>
+      <div class="kicker">Evidências da entrega</div>
+      <h2>O que está pronto, o que foi testado e o que continua aberto</h2>
+    </div>
+    <div class="index">17 / 18</div>
+  </div>
+  <div class="grid-4">
+    <div class="card"><div class="big">23</div><p>testes de frontend (Vitest)</p></div>
+    <div class="card"><div class="big">31</div><p>testes de backend (pytest)</p></div>
+    <div class="card"><div class="big">35</div><p>testes de matemática (unittest)</p></div>
+    <div class="card"><div class="big">12</div><p>testes da aplicação Python</p></div>
+  </div>
+  <div class="grid-2" style="margin-top:20px">
+    <div class="card">
+      <h3>Também verificado</h3>
+      <ul class="clean">
+        <li>Build e lint do frontend sem erros.</li>
+        <li>Fluxo de ocorrência persistido no SQLite com API local.</li>
+        <li>Fallback com API configurada e indisponível.</li>
+        <li>4 testes de sincronização de limiares do firmware.</li>
+        <li>PDFs e gráficos gerados a partir do código.</li>
+        <li>Nomes e RMs no README, no deck e no firmware.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color: rgba(248, 113, 113, 0.3);">
+      <h3 class="warn">Ainda não executado</h3>
+      <ul class="clean">
+        <li>Hardware físico e simulação no Wokwi.</li>
+        <li>Vídeo de demonstração no YouTube.</li>
+        <li>Deploy público na Vercel.</li>
+        <li>Entrevistas, pesquisa de campo e teste com usuários.</li>
+        <li>Auditoria WCAG e teste com leitor de tela.</li>
+        <li>Teste de carga, segurança ofensiva e observabilidade.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>17 / 18</span></div>
+</section>
+
+<!-- 18 -->
+<section class="slide cover" style="justify-content:space-between">
+  <div>
+    <div class="kicker">Obrigado</div>
+    <h2 style="font-size:54px;max-width:1000px">Um protótipo pequeno, com limites grandes e visíveis.</h2>
+    <p class="lead" style="max-width:980px;margin-top:10px">
+      O PLUVSTATS não promete prever enchentes. Ele organiza sinais, mostra a origem
+      e ajuda pessoas a decidir melhor — com espaço para evoluir com evidência.
+    </p>
+  </div>
+  <div>
+    <div class="grid-3" style="margin-bottom:18px">
+      <div class="card"><h3>Problema</h3><p>Informação fragmentada e decisão sem contexto.</p></div>
+      <div class="card"><h3>Solução</h3><p>Monitoramento, priorização e cidadania com proveniência.</p></div>
+      <div class="card"><h3>Próximo passo</h3><p>Conversar com pessoas, testar a bancada e medir o que funciona.</p></div>
+    </div>
+    <div class="team">
+      <div class="person"><strong>Felipe Ilek</strong><span>RM 571322</span></div>
+      <div class="person"><strong>Michel Tatsuya Hanada</strong><span>RM 571987</span></div>
+      <div class="person"><strong>Marcos Vinícius Tudisco</strong><span>RM 569366</span></div>
+    </div>
+    <p class="muted" style="font-size:10.5px;margin-top:14px">Global Solution 2026.2 · CitizenTech · Engenharia de Software · 1º ano · FIAP</p>
+  </div>
+  <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>18 / 18</span></div>
+</section>
+
+</body>
+</html>

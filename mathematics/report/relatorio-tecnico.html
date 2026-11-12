@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PLUVSTATS — Relatório técnico de matemática</title>
+<style>
+  @page { size: A4; margin: 17mm 16mm 15mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #172033;
+    background: #ffffff;
+  }
+  h1, h2, h3 { color: #0b3b5c; line-height: 1.2; }
+  h1 { font-size: 22pt; margin: 0 0 8px; }
+  h2 {
+    font-size: 15pt;
+    margin: 26px 0 8px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #d7e3ec;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 11.5pt; margin: 16px 0 5px; page-break-after: avoid; }
+  p { margin: 6px 0; text-align: justify; }
+  ul, ol { margin: 6px 0 6px 20px; padding: 0; }
+  li { margin: 3px 0; }
+  code { font-family: "Cascadia Mono", Consolas, monospace; font-size: 9.5pt; }
+  pre {
+    background: #f3f7fa;
+    border-left: 4px solid #2f7ea8;
+    padding: 9px 12px;
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 9.5pt;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9.5pt; }
+  th, td { border: 1px solid #cdd9e3; padding: 5px 7px; text-align: left; vertical-align: top; }
+  th { background: #e8f0f6; color: #0b3b5c; }
+  tbody tr:nth-child(even) { background: #f8fbfd; }
+  .cover {
+    min-height: 245mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+  }
+  .cover .brand {
+    margin-top: 18mm;
+    padding: 22px 24px;
+    background: #0b1220;
+    color: #e2e8f0;
+    border-radius: 12px;
+  }
+  .cover .brand .product { font-size: 30pt; font-weight: 700; letter-spacing: 1px; }
+  .cover .brand .signature { color: #7dd3fc; font-size: 13pt; margin-top: 4px; }
+  .cover .brand .slogan { color: #94a3b8; font-size: 10.5pt; margin-top: 14px; }
+  .cover .meta { margin-top: 16mm; }
+  .cover .meta table { font-size: 10pt; }
+  .cover .meta td:first-child { width: 34%; font-weight: 600; color: #0b3b5c; }
+  .cover .note { font-size: 9pt; color: #52647a; border-top: 1px solid #d7e3ec; padding-top: 8px; }
+  .summary {
+    background: #f3f7fa;
+    border: 1px solid #d7e3ec;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+  }
+  .summary strong { color: #0b3b5c; }
+  .badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #075985;
+    border-radius: 999px;
+    padding: 1px 9px;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+  .warning {
+    background: #fff8e6;
+    border: 1px solid #f0d18a;
+    border-left: 4px solid #d99b1b;
+    border-radius: 6px;
+    padding: 9px 12px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .chart { margin: 12px 0 16px; page-break-inside: avoid; }
+  .chart svg { width: 100%; height: auto; border-radius: 8px; }
+  .chart figcaption { font-size: 8.5pt; color: #52647a; margin-top: 4px; text-align: center; }
+  .avoid { page-break-inside: avoid; }
+  .page-break { page-break-before: always; }
+  footer { margin-top: 25px; border-top: 1px solid #d7e3ec; padding-top: 6px; font-size: 8pt; color: #64748b; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div>
+    <div class="brand">
+      <div class="product">PLUVSTATS</div>
+      <div class="signature">Inteligência territorial para águas urbanas</div>
+      <div class="slogan">Dados que antecipam decisões</div>
+    </div>
+    <div class="meta">
+      <h1>Relatório técnico de matemática</h1>
+      <p>Modelo de nível, taxa de elevação, tempo até o limite, integrais e
+      limites de longo prazo — com hipóteses explícitas.</p>
+      <table>
+        <tr><td>Disciplina</td><td>Differentiated Problem Solving</td></tr>
+        <tr><td>Curso</td><td>Engenharia de Software · 1º ano</td></tr>
+        <tr><td>Global Solution</td><td>2026.2 · CitizenTech</td></tr>
+        <tr><td>Território demonstrativo</td><td>Santo André/SP</td></tr>
+        <tr><td>Data do relatório</td><td>12/11/2026</td></tr>
+      </table>
+      <h3>Equipe</h3>
+      <table>
+        <thead><tr><th>Integrante</th><th>RM</th><th>Frente de apresentação</th></tr></thead>
+        <tbody>
+        <tr><td>Felipe Ilek</td><td>571322</td><td>Front-end, experiência do cidadão e identidade visual</td></tr>
+<tr><td>Michel Tatsuya Hanada</td><td>571987</td><td>Backend, API, persistência e integração</td></tr>
+<tr><td>Marcos Vinícius Tudisco</td><td>569366</td><td>Edge, matemática e validação de dados</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="note">
+    Protótipo acadêmico experimental. Este documento não descreve um sistema em
+    operação, não usa dados oficiais e não substitui a Defesa Civil ou a
+    Prefeitura. Nenhuma medição de campo foi realizada.
+  </div>
+</section>
+
+<h2>Resumo</h2>
+<div class="summary">
+  <strong>Em uma frase:</strong> o PLUVSTATS converte a distância medida por um
+  sensor em nível de água, calcula a taxa de elevação e estima quanto tempo falta
+  para um limite crítico, mantendo a hipótese de linearidade visível.
+  <br><strong>Resultados reproduzíveis:</strong> elevação de 42 → 58 cm em 4 min
+  gera +4,0 cm/min, 4,25 min até 75 cm e +32 m³ de volume no trecho; drenagem de
+  62 → 44 cm gera −4,5 cm/min e −36 m³. Há <span class="badge">35 testes</span>
+  automatizados.
+</div>
+
+<h2>1. Problema e pergunta</h2>
+<p>
+  Em um ponto de alagamento, o dado bruto do sensor é uma distância. Decidir o
+  que fazer com ela exige três perguntas objetivas: <em>qual é o nível agora?</em>,
+  <em>ele está subindo ou descendo, e a que velocidade?</em> e
+  <em>quanto tempo resta até um limite?</em> Este relatório formaliza essas
+  perguntas com funções explícitas e mostra, em cada etapa, o que o modelo
+  assume.
+</p>
+<p>
+  O escopo é deliberadamente pequeno. O objetivo não é prever enchentes, e sim
+  oferecer uma camada de cálculo legível, testável e consistente entre firmware,
+  backend, frontend e a aplicação Python. A mesma configuração
+  (<code>shared/pluvstats.config.json</code>) alimenta todas as camadas.
+</p>
+
+<h2>2. Dados, parâmetros e hipóteses</h2>
+<p>
+  A tabela abaixo reproduz os parâmetros usados nos cálculos. Eles são
+  <strong>parâmetros de projeto</strong>, não resultados de calibração.
+</p>
+<table class="avoid">
+  <thead><tr><th>Parâmetro</th><th>Símbolo</th><th>Valor</th><th>Origem</th></tr></thead>
+  <tbody>
+    <tr><td>Altura do sensor</td><td><code>H</code></td><td>120 cm</td><td><code>sensorGeometry</code></td></tr>
+    <tr><td>Profundidade do canal</td><td><code>channelDepthCm</code></td><td>100 cm</td><td><code>sensorGeometry</code></td></tr>
+    <tr><td>Largura adotada do trecho</td><td><code>w</code></td><td>2,0 m</td><td><code>sensorGeometry</code></td></tr>
+    <tr><td>Comprimento adotado do trecho</td><td><code>L</code></td><td>100 m</td><td><code>sensorGeometry</code></td></tr>
+    <tr><td>Faixa de distância válida</td><td><code>d</code></td><td>2 a 380 cm</td><td><code>thresholds</code></td></tr>
+    <tr><td>Limiares de nível</td><td>—</td><td>25 / 50 / 75 cm</td><td><code>thresholds</code></td></tr>
+    <tr><td>Limiares de taxa</td><td>—</td><td>1,2 / 2,8 / 4,5 cm/min</td><td><code>thresholds</code></td></tr>
+  </tbody>
+</table>
+<div class="warning">
+  <strong>Hipóteses centrais.</strong> (1) O sensor mede verticalmente do topo do
+  canal até a superfície. (2) O nível é a diferença entre a altura do sensor e a
+  distância. (3) A taxa é constante no intervalo extrapolado. (4) O trecho de
+  volume é retangular, com <code>w = 2 m</code> e <code>L = 100 m</code>. Nenhuma
+  dessas hipóteses foi validada em campo.
+</div>
+
+<h2>3. Modelo de nível e taxa</h2>
+<h3>3.1 Nível a partir da distância</h3>
+<pre>h(t) = H - d(t),  com h(t) ∈ [0, channelDepthCm]</pre>
+<p>
+  Se a distância for maior que a altura do sensor, o canal é tratado como seco
+  (<code>h = 0</code>). Se a distância for pequena a ponto de produzir uma lâmina
+  maior que a profundidade do canal, o resultado satura em
+  <code>channelDepthCm</code>. Distâncias negativas ou não finitas são rejeitadas
+  porque o sensor não as produz e aceitá-las criaria um nível fictício.
+</p>
+
+<h3>3.2 Taxa de elevação</h3>
+<pre>v = Δh / Δt = (h(t₂) - h(t₁)) / ((t₂ - t₁) / 60)   [cm/min]</pre>
+<p>
+  O sinal é preservado: <code>v &gt; 0</code> indica elevação,
+  <code>v &lt; 0</code> indica drenagem e <code>v = 0</code> indica estabilidade.
+  Um intervalo nulo é inválido, porque a razão não existe. No firmware, a
+  mediana de cinco amostras reduz ruído antes desta etapa, mas não substitui
+  calibração.
+</p>
+
+<h3>3.3 Tempo até o limite</h3>
+<pre>t = (h_limite - h_atual) / v</pre>
+<table class="avoid">
+  <thead><tr><th>Situação</th><th>Resultado</th><th>Justificativa</th></tr></thead>
+  <tbody>
+    <tr><td><code>h_atual ≥ h_limite</code></td><td>0 min</td><td>o limite já foi atingido ou ultrapassado</td></tr>
+    <tr><td><code>v ≤ 0</code></td><td>indefinido</td><td>o modelo linear nunca alcança um limite superior</td></tr>
+    <tr><td><code>v &gt; 0</code></td><td><code>(h_limite - h_atual) / v</code></td><td>extrapolação enquanto <code>v</code> for constante</td></tr>
+  </tbody>
+</table>
+
+<h3>3.4 Projeção e tendência</h3>
+<pre>h(t + Δt) = h(t) + v · Δt
+v_LSQ = 60 · Σ((tᵢ - t̄)(hᵢ - h̄)) / Σ(tᵢ - t̄)²</pre>
+<p>
+  A projeção é uma reta limitada ao canal. A tendência por mínimos quadrados
+  descreve a série com pelo menos três pontos e timestamps distintos. Nenhuma
+  das duas é uma previsão hidrológica: ambas repetem a hipótese de taxa
+  constante.
+</p>
+
+<h2>4. Cálculo diferencial e integral</h2>
+<h3>4.1 A derivada como taxa</h3>
+<p>
+  A taxa <code>v</code> é a derivada do nível em relação ao tempo,
+  <code>v = dh/dt</code>, aproximada por diferenças finitas. A escolha de
+  diferenças entre a primeira e a última leitura do cenário evita que ruído de
+  uma única amostra domine o resultado. Para séries mais longas, a inclinação de
+  mínimos quadrados é a alternativa documentada.
+</p>
+
+<h3>4.2 Volume como integral da vazão</h3>
+<p>
+  Em um trecho de largura <code>w</code> e comprimento <code>L</code>, a vazão
+  líquida instantânea associada à variação de nível é
+  <code>Q(t) = w · L · h'(t)</code>. Integrando no intervalo:
+</p>
+<pre>V = ∫[t₀,t₁] Q(t) dt
+  = w · L · ∫[t₀,t₁] h'(t) dt
+  = w · L · (h(t₁) - h(t₀)) / 100   [m³]</pre>
+<p>
+  O fator <code>100</code> converte centímetros em metros. O resultado é o
+  <em>volume líquido</em>: positivo quando o trecho ganha volume, negativo quando
+  perde. A implementação valida que a série tem pelo menos dois pontos, que os
+  tempos são estritamente crescentes e que a geometria é positiva e finita.
+</p>
+
+<h3>4.3 Exposição integrada do nível</h3>
+<pre>E = ∫[t₀,t₁] h(t) dt ≈ Σ (hᵢ + hᵢ₊₁)/2 · Δtᵢ / 60   [cm·min]</pre>
+<p>
+  A regra dos trapézios é exata para trechos lineares e suficiente para séries
+  curtas. A exposição permite comparar eventos com durações diferentes: um
+  nível alto por pouco tempo pode expor menos que um nível médio por muito
+  tempo. Ela não é volume, não é energia e não classifica risco sozinha.
+</p>
+
+<h3>4.4 Limite de longo prazo</h3>
+<pre>h_∞ = lim[t→∞] min(channelDepthCm, h₀ + v·t)
+    = channelDepthCm,  se v &gt; 0
+    = h₀,              se v ≤ 0</pre>
+<p>
+  O limite existe apenas no modelo, não no fenômeno. Ele deixa explícito por que
+  a extrapolação linear é uma hipótese: se <code>v</code> permanecesse positivo
+  para sempre, o nível cresceria sem limite; a saturação no fundo do canal
+  impede que o código produza números fisicamente impossíveis.
+</p>
+
+<h2>5. Exemplos resolvidos</h2>
+<h3>5.1 Nível, taxa e tempo até o limite</h3>
+<p>
+  Um sensor a 120 cm do fundo mede <code>d = 70 cm</code>:
+  <code>h = 120 − 70 = 50 cm</code>. Dois minutos depois, mede
+  <code>d = 65 cm</code>, então <code>h = 55 cm</code>:
+</p>
+<pre>v = (55 - 50) / (120 / 60) = 5 / 2 = 2,5 cm/min
+t = (75 - 55) / 2,5 = 20 / 2,5 = 8 min</pre>
+<p>
+  Se a taxa permanecer em 2,5 cm/min, faltam <strong>8 minutos</strong> para o
+  limite crítico de 75 cm.
+</p>
+
+<h3>5.2 Saturação física</h3>
+<pre>d = 5 cm   → h = 115 cm → limitado a 100 cm
+d = 125 cm → h = −5 cm  → limitado a 0 cm</pre>
+
+<h3>5.3 Volume e exposição</h3>
+<p>
+  No cenário de elevação, o nível vai de 42 cm a 58 cm em 4 min. Com
+  <code>w = 2 m</code> e <code>L = 100 m</code>:
+</p>
+<pre>V = 2 · 100 · (58 - 42) / 100 = 32 m³
+E = ((42 + 58) / 2) · 4 = 200 cm·min</pre>
+<p>
+  No cenário de drenagem, o nível cai de 62 cm para 44 cm:
+  <code>V = 2 · 100 · (44 − 62) / 100 = −36 m³</code> e
+  <code>E = 208,75 cm·min</code>. O sinal negativo do volume indica perda de
+  volume no trecho, não erro de cálculo.
+</p>
+
+<h2>6. Cenários e resultados</h2>
+<p>
+  Os três cenários são séries didáticas de distância no tempo. A tabela é
+  reproduzida pelo mesmo código que gera os gráficos e executa os testes.
+</p>
+<table class="avoid">
+  <thead>
+    <tr><th>Cenário</th><th>Nível (cm)</th><th>Taxa (cm/min)</th><th>Até 75 cm (min)</th><th>Volume (m³)</th><th>Exposição (cm·min)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>drainage.json</code></td><td>62,0 → 44,0</td><td>-4,50</td><td>indefinido</td><td>-36,00</td><td>208,75</td></tr>
+<tr><td><code>normal.json</code></td><td>8,0 → 8,0</td><td>0,00</td><td>indefinido</td><td>0,00</td><td>40,65</td></tr>
+<tr><td><code>rising-alert.json</code></td><td>42,0 → 58,0</td><td>4,00</td><td>4,25</td><td>32,00</td><td>200,00</td></tr>
+  </tbody>
+</table>
+<figure class="chart"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Elevação sustentada">
+<defs>
+  <style>
+    .title { font: 600 22px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .subtitle { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .axis { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .note { font: 400 10px 'Segoe UI', Arial, sans-serif; fill: #64748b; }
+  </style>
+</defs>
+<rect width="960" height="480" fill="#0b1220"/>
+<rect x="16" y="16" width="928" height="448" rx="14" fill="#0e1a2b" stroke="#1e293b"/>
+<text class="title" x="82" y="54">Elevação sustentada</text>
+<text class="subtitle" x="82" y="76">v = 4,0 cm/min · última leitura 58,0 cm · limite 75,0 cm</text>
+<rect x="82" y="331.5" width="836" height="78.5" fill="#22c55e" opacity="0.07"/>
+<text class="note" x="88" y="344.5" opacity="0.9">normal</text>
+<rect x="82" y="253.0" width="836" height="78.5" fill="#facc15" opacity="0.07"/>
+<text class="note" x="88" y="266.0" opacity="0.9">atenção</text>
+<rect x="82" y="174.5" width="836" height="78.5" fill="#fb923c" opacity="0.07"/>
+<text class="note" x="88" y="187.5" opacity="0.9">alerta</text>
+<rect x="82" y="96.0" width="836" height="78.5" fill="#f87171" opacity="0.07"/>
+<text class="note" x="88" y="109.0" opacity="0.9">crítico</text>
+<line x1="82" y1="410.0" x2="918" y2="410.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="414.0" text-anchor="end">0 cm</text>
+<line x1="82" y1="347.2" x2="918" y2="347.2" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="351.2" text-anchor="end">20 cm</text>
+<line x1="82" y1="284.4" x2="918" y2="284.4" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="288.4" text-anchor="end">40 cm</text>
+<line x1="82" y1="221.6" x2="918" y2="221.6" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="225.6" text-anchor="end">60 cm</text>
+<line x1="82" y1="158.8" x2="918" y2="158.8" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="162.8" text-anchor="end">80 cm</text>
+<line x1="82" y1="96.0" x2="918" y2="96.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="100.0" text-anchor="end">100 cm</text>
+<line x1="82.0" y1="96" x2="82.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="82.0" y="430" text-anchor="middle">0,0 min</text>
+<line x1="253.8" y1="96" x2="253.8" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="253.8" y="430" text-anchor="middle">2,0 min</text>
+<line x1="425.5" y1="96" x2="425.5" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="425.5" y="430" text-anchor="middle">4,0 min</text>
+<line x1="597.3" y1="96" x2="597.3" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="597.3" y="430" text-anchor="middle">6,0 min</text>
+<line x1="769.0" y1="96" x2="769.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="769.0" y="430" text-anchor="middle">8,0 min</text>
+<line x1="82" y1="410" x2="918" y2="410" stroke="#334155" stroke-width="1.2"/>
+<line x1="82" y1="96" x2="82" y2="410" stroke="#334155" stroke-width="1.2"/>
+<polyline points="82.0,278.1 124.9,271.8 167.9,265.6 210.8,259.3 253.8,253.0 296.7,246.7 339.6,240.4 382.6,234.2 425.5,227.9" fill="none" stroke="#38bdf8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="82.0" cy="278.1" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="124.9" cy="271.8" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="167.9" cy="265.6" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="210.8" cy="259.3" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="253.8" cy="253.0" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="296.7" cy="246.7" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="339.6" cy="240.4" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="382.6" cy="234.2" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="425.5" cy="227.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<line x1="425.5" y1="227.9" x2="790.5" y2="174.5" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6 5"/>
+<circle cx="790.5" cy="174.5" r="4" fill="#f59e0b"/>
+<text class="label" x="770.0" y="166.5">t = 4,2 min</text>
+<text class="note" x="82" y="450">PLUVSTATS · modelo experimental, não é previsão oficial de enchente.</text>
+</svg><figcaption>Elevação sustentada: 42 → 58 cm em 4 min, com projeção até o limite crítico.</figcaption></figure>
+<figure class="chart"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Drenagem">
+<defs>
+  <style>
+    .title { font: 600 22px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .subtitle { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .axis { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .note { font: 400 10px 'Segoe UI', Arial, sans-serif; fill: #64748b; }
+  </style>
+</defs>
+<rect width="960" height="480" fill="#0b1220"/>
+<rect x="16" y="16" width="928" height="448" rx="14" fill="#0e1a2b" stroke="#1e293b"/>
+<text class="title" x="82" y="54">Drenagem</text>
+<text class="subtitle" x="82" y="76">v = -4,5 cm/min · última leitura 44,0 cm · limite 75,0 cm</text>
+<rect x="82" y="331.5" width="836" height="78.5" fill="#22c55e" opacity="0.07"/>
+<text class="note" x="88" y="344.5" opacity="0.9">normal</text>
+<rect x="82" y="253.0" width="836" height="78.5" fill="#facc15" opacity="0.07"/>
+<text class="note" x="88" y="266.0" opacity="0.9">atenção</text>
+<rect x="82" y="174.5" width="836" height="78.5" fill="#fb923c" opacity="0.07"/>
+<text class="note" x="88" y="187.5" opacity="0.9">alerta</text>
+<rect x="82" y="96.0" width="836" height="78.5" fill="#f87171" opacity="0.07"/>
+<text class="note" x="88" y="109.0" opacity="0.9">crítico</text>
+<line x1="82" y1="410.0" x2="918" y2="410.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="414.0" text-anchor="end">0 cm</text>
+<line x1="82" y1="347.2" x2="918" y2="347.2" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="351.2" text-anchor="end">20 cm</text>
+<line x1="82" y1="284.4" x2="918" y2="284.4" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="288.4" text-anchor="end">40 cm</text>
+<line x1="82" y1="221.6" x2="918" y2="221.6" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="225.6" text-anchor="end">60 cm</text>
+<line x1="82" y1="158.8" x2="918" y2="158.8" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="162.8" text-anchor="end">80 cm</text>
+<line x1="82" y1="96.0" x2="918" y2="96.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="100.0" text-anchor="end">100 cm</text>
+<line x1="82.0" y1="96" x2="82.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="82.0" y="430" text-anchor="middle">0,0 min</text>
+<line x1="259.1" y1="96" x2="259.1" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="259.1" y="430" text-anchor="middle">1,0 min</text>
+<line x1="436.2" y1="96" x2="436.2" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="436.2" y="430" text-anchor="middle">2,0 min</text>
+<line x1="613.4" y1="96" x2="613.4" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="613.4" y="430" text-anchor="middle">3,0 min</text>
+<line x1="790.5" y1="96" x2="790.5" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="790.5" y="430" text-anchor="middle">4,0 min</text>
+<line x1="82" y1="410" x2="918" y2="410" stroke="#334155" stroke-width="1.2"/>
+<line x1="82" y1="96" x2="82" y2="410" stroke="#334155" stroke-width="1.2"/>
+<polyline points="82.0,215.3 170.6,223.2 259.1,231.0 347.7,238.9 436.2,246.7 524.8,254.6 613.4,262.4 701.9,268.7 790.5,271.8" fill="none" stroke="#38bdf8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="82.0" cy="215.3" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="170.6" cy="223.2" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="259.1" cy="231.0" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="347.7" cy="238.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="436.2" cy="246.7" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="524.8" cy="254.6" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="613.4" cy="262.4" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="701.9" cy="268.7" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="790.5" cy="271.8" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<text class="label" x="782.5" y="259.8" text-anchor="end">sem projeção: v ≤ 0</text>
+<text class="note" x="82" y="450">PLUVSTATS · modelo experimental, não é previsão oficial de enchente.</text>
+</svg><figcaption>Drenagem: 62 → 44 cm em 4 min. A taxa negativa não permite estimar tempo até um limite superior.</figcaption></figure>
+<figure class="chart"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Canal estável">
+<defs>
+  <style>
+    .title { font: 600 22px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .subtitle { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .axis { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .note { font: 400 10px 'Segoe UI', Arial, sans-serif; fill: #64748b; }
+  </style>
+</defs>
+<rect width="960" height="480" fill="#0b1220"/>
+<rect x="16" y="16" width="928" height="448" rx="14" fill="#0e1a2b" stroke="#1e293b"/>
+<text class="title" x="82" y="54">Canal estável</text>
+<text class="subtitle" x="82" y="76">v = 0,0 cm/min · última leitura 8,0 cm · limite 75,0 cm</text>
+<rect x="82" y="331.5" width="836" height="78.5" fill="#22c55e" opacity="0.07"/>
+<text class="note" x="88" y="344.5" opacity="0.9">normal</text>
+<rect x="82" y="253.0" width="836" height="78.5" fill="#facc15" opacity="0.07"/>
+<text class="note" x="88" y="266.0" opacity="0.9">atenção</text>
+<rect x="82" y="174.5" width="836" height="78.5" fill="#fb923c" opacity="0.07"/>
+<text class="note" x="88" y="187.5" opacity="0.9">alerta</text>
+<rect x="82" y="96.0" width="836" height="78.5" fill="#f87171" opacity="0.07"/>
+<text class="note" x="88" y="109.0" opacity="0.9">crítico</text>
+<line x1="82" y1="410.0" x2="918" y2="410.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="414.0" text-anchor="end">0 cm</text>
+<line x1="82" y1="347.2" x2="918" y2="347.2" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="351.2" text-anchor="end">20 cm</text>
+<line x1="82" y1="284.4" x2="918" y2="284.4" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="288.4" text-anchor="end">40 cm</text>
+<line x1="82" y1="221.6" x2="918" y2="221.6" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="225.6" text-anchor="end">60 cm</text>
+<line x1="82" y1="158.8" x2="918" y2="158.8" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="162.8" text-anchor="end">80 cm</text>
+<line x1="82" y1="96.0" x2="918" y2="96.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="100.0" text-anchor="end">100 cm</text>
+<line x1="82.0" y1="96" x2="82.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="82.0" y="430" text-anchor="middle">0,0 min</text>
+<line x1="365.4" y1="96" x2="365.4" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="365.4" y="430" text-anchor="middle">2,0 min</text>
+<line x1="648.8" y1="96" x2="648.8" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="648.8" y="430" text-anchor="middle">4,0 min</text>
+<line x1="82" y1="410" x2="918" y2="410" stroke="#334155" stroke-width="1.2"/>
+<line x1="82" y1="96" x2="82" y2="410" stroke="#334155" stroke-width="1.2"/>
+<polyline points="82.0,384.9 152.8,384.3 223.7,385.2 294.5,383.9 365.4,384.6 436.2,384.9 507.1,383.6 648.8,384.6 790.5,384.9" fill="none" stroke="#38bdf8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="82.0" cy="384.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="152.8" cy="384.3" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="223.7" cy="385.2" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="294.5" cy="383.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="365.4" cy="384.6" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="436.2" cy="384.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="507.1" cy="383.6" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="648.8" cy="384.6" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<circle cx="790.5" cy="384.9" r="2.6" fill="#0b1220" stroke="#38bdf8" stroke-width="1.4"/>
+<text class="label" x="782.5" y="372.9" text-anchor="end">sem projeção: v ≤ 0</text>
+<text class="note" x="82" y="450">PLUVSTATS · modelo experimental, não é previsão oficial de enchente.</text>
+</svg><figcaption>Canal estável: oscilação de poucos centímetros em torno de 8 cm.</figcaption></figure>
+<figure class="chart"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Volume líquido acumulado no trecho">
+<defs>
+  <style>
+    .title { font: 600 22px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .subtitle { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .axis { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .note { font: 400 10px 'Segoe UI', Arial, sans-serif; fill: #64748b; }
+  </style>
+</defs>
+<rect width="960" height="480" fill="#0b1220"/>
+<rect x="16" y="16" width="928" height="448" rx="14" fill="#0e1a2b" stroke="#1e293b"/>
+<text class="title" x="82" y="54">Volume líquido acumulado no trecho</text>
+<text class="subtitle" x="82" y="76">V(t) = w · L · (h(t) − h(0)) / 100 · w = 2,0 m · L = 100,0 m · integral da vazão líquida</text>
+<rect x="82" y="96" width="836" height="314" fill="#0f172a" opacity="0.55"/>
+<line x1="82" y1="253.0" x2="918" y2="253.0" stroke="#475569" stroke-width="1.4"/>
+<text class="note" x="914" y="247.0" text-anchor="end">V = 0</text>
+<line x1="82" y1="410.0" x2="918" y2="410.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="414.0" text-anchor="end">-50,0 m³</text>
+<line x1="82" y1="347.2" x2="918" y2="347.2" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="351.2" text-anchor="end">-30,0 m³</text>
+<line x1="82" y1="284.4" x2="918" y2="284.4" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="288.4" text-anchor="end">-10,0 m³</text>
+<line x1="82" y1="221.6" x2="918" y2="221.6" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="225.6" text-anchor="end">10,0 m³</text>
+<line x1="82" y1="158.8" x2="918" y2="158.8" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="162.8" text-anchor="end">30,0 m³</text>
+<line x1="82" y1="96.0" x2="918" y2="96.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="100.0" text-anchor="end">50,0 m³</text>
+<line x1="82.0" y1="96" x2="82.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="82.0" y="430" text-anchor="middle">0,0 min</text>
+<line x1="249.2" y1="96" x2="249.2" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="249.2" y="430" text-anchor="middle">1,0 min</text>
+<line x1="416.4" y1="96" x2="416.4" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="416.4" y="430" text-anchor="middle">2,0 min</text>
+<line x1="583.6" y1="96" x2="583.6" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="583.6" y="430" text-anchor="middle">3,0 min</text>
+<line x1="750.8" y1="96" x2="750.8" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="750.8" y="430" text-anchor="middle">4,0 min</text>
+<line x1="918.0" y1="96" x2="918.0" y2="410" stroke="#1e293b" stroke-width="1" opacity="0.6"/>
+<text class="axis" x="918.0" y="430" text-anchor="middle">5,0 min</text>
+<polyline points="82.0,253.0 165.6,268.7 249.2,284.4 332.8,300.1 416.4,315.8 500.0,331.5 583.6,347.2 667.2,359.8 750.8,366.0" fill="none" stroke="#38bdf8" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="750.8" cy="366.0" r="3.6" fill="#38bdf8"/>
+<text class="label" x="760.8" y="358.0" fill="#38bdf8">Drenagem: -36,0 m³</text>
+<polyline points="82.0,253.0 165.6,251.7 249.2,253.6 332.8,251.1 416.4,252.4 500.0,253.0 583.6,250.5 750.8,252.4 918.0,253.0" fill="none" stroke="#f59e0b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="918.0" cy="253.0" r="3.6" fill="#f59e0b"/>
+<text class="label" x="784.0" y="245.0" fill="#f59e0b">Canal estável: 0,0 m³</text>
+<polyline points="82.0,253.0 165.6,240.4 249.2,227.9 332.8,215.3 416.4,202.8 500.0,190.2 583.6,177.6 667.2,165.1 750.8,152.5" fill="none" stroke="#f87171" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="750.8" cy="152.5" r="3.6" fill="#f87171"/>
+<text class="label" x="760.8" y="144.5" fill="#f87171">Elevação sustentada: 32,0 m³</text>
+<text class="note" x="82" y="110">trecho hipotético de 2 m × 100 m, não calibrado</text>
+<text class="note" x="82" y="450">PLUVSTATS · modelo experimental, não é previsão oficial de enchente.</text>
+</svg><figcaption>Volume líquido acumulado: +32 m³ na elevação, −36 m³ na drenagem e 0 m³ no canal estável.</figcaption></figure>
+<figure class="chart"><?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Tempo até o limite crítico">
+<defs>
+  <style>
+    .title { font: 600 22px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .subtitle { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .axis { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+    .label { font: 600 11px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+    .note { font: 400 10px 'Segoe UI', Arial, sans-serif; fill: #64748b; }
+  </style>
+</defs>
+<rect width="960" height="480" fill="#0b1220"/>
+<rect x="16" y="16" width="928" height="448" rx="14" fill="#0e1a2b" stroke="#1e293b"/>
+<text class="title" x="82" y="54">Tempo até o limite crítico</text>
+<text class="subtitle" x="82" y="76">t = (h_limite − h_atual) / v · limite = 75,0 cm · apenas enquanto v for constante</text>
+<rect x="82" y="96" width="836" height="314" fill="#0f172a" opacity="0.55"/>
+<line x1="82.0" y1="96" x2="82.0" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="82.0" y="430" text-anchor="middle">0 cm</text>
+<line x1="249.2" y1="96" x2="249.2" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="249.2" y="430" text-anchor="middle">15 cm</text>
+<line x1="416.4" y1="96" x2="416.4" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="416.4" y="430" text-anchor="middle">30 cm</text>
+<line x1="583.6" y1="96" x2="583.6" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="583.6" y="430" text-anchor="middle">45 cm</text>
+<line x1="750.8" y1="96" x2="750.8" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="750.8" y="430" text-anchor="middle">60 cm</text>
+<line x1="918.0" y1="96" x2="918.0" y2="410" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="918.0" y="430" text-anchor="middle">75 cm</text>
+<line x1="82" y1="410.0" x2="918" y2="410.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="414.0" text-anchor="end">0 min</text>
+<line x1="82" y1="365.1" x2="918" y2="365.1" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="369.1" text-anchor="end">10 min</text>
+<line x1="82" y1="320.3" x2="918" y2="320.3" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="324.3" text-anchor="end">20 min</text>
+<line x1="82" y1="275.4" x2="918" y2="275.4" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="279.4" text-anchor="end">30 min</text>
+<line x1="82" y1="230.6" x2="918" y2="230.6" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="234.6" text-anchor="end">40 min</text>
+<line x1="82" y1="185.7" x2="918" y2="185.7" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="189.7" text-anchor="end">50 min</text>
+<line x1="82" y1="140.9" x2="918" y2="140.9" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="144.9" text-anchor="end">60 min</text>
+<line x1="82" y1="96.0" x2="918" y2="96.0" stroke="#1e293b" stroke-width="1"/>
+<text class="axis" x="72" y="100.0" text-anchor="end">70 min</text>
+<polyline points="82.0,129.6 93.1,133.4 104.3,137.1 115.4,140.9 126.6,144.6 137.7,148.3 148.9,152.1 160.0,155.8 171.2,159.5 182.3,163.3 193.5,167.0 204.6,170.8 215.8,174.5 226.9,178.2 238.1,182.0 249.2,185.7 260.3,189.5 271.5,193.2 282.6,196.9 293.8,200.7 304.9,204.4 316.1,208.1 327.2,211.9 338.4,215.6 349.5,219.4 360.7,223.1 371.8,226.8 383.0,230.6 394.1,234.3 405.3,238.0 416.4,241.8 427.5,245.5 438.7,249.3 449.8,253.0 461.0,256.7 472.1,260.5 483.3,264.2 494.4,268.0 505.6,271.7 516.7,275.4 527.9,279.2 539.0,282.9 550.2,286.6 561.3,290.4 572.5,294.1 583.6,297.9 594.7,301.6 605.9,305.3 617.0,309.1 628.2,312.8 639.3,316.5 650.5,320.3 661.6,324.0 672.8,327.8 683.9,331.5 695.1,335.2 706.2,339.0 717.4,342.7 728.5,346.5 739.7,350.2 750.8,353.9 761.9,357.7 773.1,361.4 784.2,365.1 795.4,368.9 806.5,372.6 817.7,376.4 828.8,380.1 840.0,383.8 851.1,387.6 862.3,391.3 873.4,395.0 884.6,398.8 895.7,402.5 906.9,406.3 918.0,410.0" fill="none" stroke="#facc15" stroke-width="2.4"/>
+<text class="label" x="912.0" y="121.6" text-anchor="end" fill="#facc15">v = 1,2 cm/min</text>
+<polyline points="82.0,289.8 93.1,291.4 104.3,293.1 115.4,294.7 126.6,296.3 137.7,297.9 148.9,299.5 160.0,301.1 171.2,302.7 182.3,304.3 193.5,305.9 204.6,307.5 215.8,309.1 226.9,310.7 238.1,312.3 249.2,313.9 260.3,315.5 271.5,317.1 282.6,318.7 293.8,320.3 304.9,321.9 316.1,323.5 327.2,325.1 338.4,326.7 349.5,328.3 360.7,329.9 371.8,331.5 383.0,333.1 394.1,334.7 405.3,336.3 416.4,337.9 427.5,339.5 438.7,341.1 449.8,342.7 461.0,344.3 472.1,345.9 483.3,347.5 494.4,349.1 505.6,350.7 516.7,352.3 527.9,353.9 539.0,355.5 550.2,357.1 561.3,358.7 572.5,360.3 583.6,361.9 594.7,363.5 605.9,365.1 617.0,366.7 628.2,368.3 639.3,369.9 650.5,371.6 661.6,373.2 672.8,374.8 683.9,376.4 695.1,378.0 706.2,379.6 717.4,381.2 728.5,382.8 739.7,384.4 750.8,386.0 761.9,387.6 773.1,389.2 784.2,390.8 795.4,392.4 806.5,394.0 817.7,395.6 828.8,397.2 840.0,398.8 851.1,400.4 862.3,402.0 873.4,403.6 884.6,405.2 895.7,406.8 906.9,408.4 918.0,410.0" fill="none" stroke="#fb923c" stroke-width="2.4"/>
+<text class="label" x="912.0" y="281.8" text-anchor="end" fill="#fb923c">v = 2,8 cm/min</text>
+<polyline points="82.0,335.2 93.1,336.2 104.3,337.2 115.4,338.2 126.6,339.2 137.7,340.2 148.9,341.2 160.0,342.2 171.2,343.2 182.3,344.2 193.5,345.2 204.6,346.2 215.8,347.2 226.9,348.2 238.1,349.2 249.2,350.2 260.3,351.2 271.5,352.2 282.6,353.2 293.8,354.2 304.9,355.2 316.1,356.2 327.2,357.2 338.4,358.2 349.5,359.2 360.7,360.2 371.8,361.2 383.0,362.2 394.1,363.1 405.3,364.1 416.4,365.1 427.5,366.1 438.7,367.1 449.8,368.1 461.0,369.1 472.1,370.1 483.3,371.1 494.4,372.1 505.6,373.1 516.7,374.1 527.9,375.1 539.0,376.1 550.2,377.1 561.3,378.1 572.5,379.1 583.6,380.1 594.7,381.1 605.9,382.1 617.0,383.1 628.2,384.1 639.3,385.1 650.5,386.1 661.6,387.1 672.8,388.1 683.9,389.1 695.1,390.1 706.2,391.1 717.4,392.1 728.5,393.1 739.7,394.1 750.8,395.0 761.9,396.0 773.1,397.0 784.2,398.0 795.4,399.0 806.5,400.0 817.7,401.0 828.8,402.0 840.0,403.0 851.1,404.0 862.3,405.0 873.4,406.0 884.6,407.0 895.7,408.0 906.9,409.0 918.0,410.0" fill="none" stroke="#f87171" stroke-width="2.4"/>
+<text class="label" x="912.0" y="327.2" text-anchor="end" fill="#f87171">v = 4,5 cm/min</text>
+<text class="label" x="82" y="84">tempo (min) a partir do nível atual</text>
+<text class="note" x="82" y="450">PLUVSTATS · modelo experimental, não é previsão oficial de enchente.</text>
+</svg><figcaption>Tempo até 75 cm em função do nível atual, para três taxas de referência.</figcaption></figure>
+
+<h2>7. Validação e testes</h2>
+<p>
+  A suíte usa apenas <code>unittest</code> da biblioteca padrão. Execução:
+</p>
+<pre>python -m unittest discover -s mathematics/tests -p "test_*.py" -v</pre>
+<p><strong>35 testes aprovados.</strong> A cobertura inclui:</p>
+<ul>
+  <li>nível, sinal e saturação física;</li>
+  <li>rejeição de distância negativa, não finita e fora da faixa;</li>
+  <li>taxa em cm/min, sinal negativo e intervalo inválido;</li>
+  <li>tempo até o limite com <code>v ≤ 0</code> e limite já atingido;</li>
+  <li>projeção linear e saturação no canal;</li>
+  <li>tendência por mínimos quadrados e validações;</li>
+  <li>integrais de volume, validação de geometria e timestamps repetidos;</li>
+  <li>exposição integrada pela regra dos trapézios;</li>
+  <li>limite de longo prazo com taxa positiva, nula e negativa;</li>
+  <li>consistência com os limiares compartilhados.</li>
+</ul>
+<p>
+  Os testes verificam as fórmulas e as bordas do código. Eles <strong>não</strong>
+  validam o modelo contra o fenômeno físico, não medem erro do HC-SR04 e não
+  substituem um experimento de bancada.
+</p>
+
+<h2>8. Limitações e riscos</h2>
+<ol>
+  <li><strong>Modelo linear.</strong> A extrapolação supõe taxa constante; em
+  campo, chuva, drenagem e obstruções alteram a taxa.</li>
+  <li><strong>Sem hidráulica.</strong> Não há seção transversal, Manning, curva
+  cota-vazão, escoamento superficial ou backwater.</li>
+  <li><strong>Sem incerteza explícita.</strong> O modelo não propaga erro do
+  sensor nem fornece intervalo de confiança.</li>
+  <li><strong>Geometria hipotética.</strong> O volume usa um trecho retangular de
+  2 m × 100 m; não serve para dimensionar drenagem.</li>
+  <li><strong>Sensor de baixo custo.</strong> O HC-SR04 sofre com superfície
+  agitada, espuma, detritos, vento e temperatura.</li>
+  <li><strong>Sem previsão oficial.</strong> Nenhum resultado deve ser
+  apresentado como alerta da Defesa Civil ou da Prefeitura.</li>
+</ol>
+
+<h2>9. Conclusão</h2>
+<p>
+  O módulo entrega um núcleo matemático pequeno, explícito e reproduzível:
+  nível, taxa, tempo até o limite, projeção, tendência, volume, exposição e
+  limite de longo prazo. O valor acadêmico está em mostrar o raciocínio e as
+  hipóteses, não em prometer precisão. O próximo passo honesto é a bancada:
+  medir distâncias conhecidas, registrar o erro do sensor e só então discutir
+  calibração.
+</p>
+
+<h2>Referências</h2>
+<ul>
+  <li>PLUVSTATS. <code>shared/pluvstats.config.json</code> — parâmetros compartilhados.</li>
+  <li>PLUVSTATS. <code>mathematics/model/pluvstats_model.py</code> — implementação de referência.</li>
+  <li>PLUVSTATS. <code>mathematics/scenarios/</code> — séries didáticas usadas nos testes e gráficos.</li>
+  <li>STEWART, James. <em>Cálculo</em>, volume 1. São Paulo: Cengage Learning — definição de derivada, integral definida e regra dos trapézios.</li>
+  <li>FIAP. Global Solution 2026.2 — enunciado da disciplina Differentiated Problem Solving.</li>
+</ul>
+
+<footer>
+  PLUVSTATS · Relatório técnico de matemática · Global Solution 2026.2 ·
+  documento gerado a partir de <code>mathematics/report/build_report.py</code>.
+</footer>
+
+</body>
+</html>

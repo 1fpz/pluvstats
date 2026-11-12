@@ -19,9 +19,12 @@ if str(REPO_ROOT) not in sys.path:
 
 from mathematics.model import (  # noqa: E402
     ModelError,
+    accumulated_volume_change_m3,
+    level_exposure_cm_minutes,
     level_series,
     linear_trend_cm_per_min,
     load_shared_config,
+    long_run_level_cm,
     project_level_cm,
     rise_rate_cm_per_min,
     scenario_metrics,
@@ -173,6 +176,80 @@ class ScenarioTests(unittest.TestCase):
         self.assertEqual(level_limits, {"attention": 25, "alert": 50, "critical": 75})
         metrics = scenario_metrics(load_scenario("rising-alert.json"))
         self.assertEqual(metrics["limitCm"], 75.0)
+
+
+class IntegralTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.config = load_shared_config()
+
+    @staticmethod
+    def series(levels: list[float], times: list[float]) -> list[dict]:
+        return [
+            {"tSeconds": time, "levelCm": level}
+            for time, level in zip(times, levels, strict=True)
+        ]
+
+    def test_accumulated_volume_of_a_rising_reach(self) -> None:
+        # V = w * L * delta_h / 100 = 2 * 100 * 16 / 100 = 32 m3.
+        series = self.series([42.0, 58.0], [0.0, 240.0])
+        self.assertAlmostEqual(
+            accumulated_volume_change_m3(series, config=self.config), 32.0
+        )
+
+    def test_accumulated_volume_can_be_negative_on_drainage(self) -> None:
+        series = self.series([62.0, 44.0], [0.0, 240.0])
+        self.assertAlmostEqual(
+            accumulated_volume_change_m3(series, config=self.config), -36.0
+        )
+
+    def test_accumulated_volume_requires_a_valid_reach(self) -> None:
+        series = self.series([42.0, 58.0], [0.0, 240.0])
+        with self.assertRaises(ModelError):
+            accumulated_volume_change_m3(series, channel_width_m=0, config=self.config)
+        with self.assertRaises(ModelError):
+            accumulated_volume_change_m3(series, reach_length_m=-1, config=self.config)
+        with self.assertRaises(ModelError):
+            accumulated_volume_change_m3(self.series([42.0], [0.0]), config=self.config)
+
+    def test_level_exposure_is_the_trapezoidal_integral(self) -> None:
+        # Constant 8 cm for 60 s = 1 min -> 8 cm*min.
+        series = self.series([8.0, 8.0], [0.0, 60.0])
+        self.assertAlmostEqual(level_exposure_cm_minutes(series), 8.0)
+        # 42 -> 58 over 4 min: average 50 cm -> 200 cm*min.
+        rising = self.series([42.0, 58.0], [0.0, 240.0])
+        self.assertAlmostEqual(level_exposure_cm_minutes(rising), 200.0)
+
+    def test_integral_rejects_repeated_timestamps(self) -> None:
+        series = self.series([8.0, 10.0], [60.0, 60.0])
+        with self.assertRaises(ModelError):
+            level_exposure_cm_minutes(series)
+
+    def test_scenario_metrics_include_the_integral(self) -> None:
+        metrics = scenario_metrics(load_scenario("rising-alert.json"))
+        self.assertEqual(metrics["accumulatedVolumeM3"], 32.0)
+        self.assertEqual(metrics["levelExposureCmMinutes"], 200.0)
+        self.assertEqual(metrics["channelWidthM"], 2.0)
+        self.assertEqual(metrics["reachLengthM"], 100.0)
+
+
+class LongRunTests(unittest.TestCase):
+    def test_positive_rate_reaches_the_channel_depth(self) -> None:
+        self.assertEqual(long_run_level_cm(58, 4.0), 100.0)
+        self.assertEqual(long_run_level_cm(8, 1.2), 100.0)
+
+    def test_non_positive_rate_stays_at_the_current_level(self) -> None:
+        self.assertEqual(long_run_level_cm(8, 0), 8.0)
+        self.assertEqual(long_run_level_cm(62, -4.5), 62.0)
+
+    def test_limit_is_clamped_to_the_channel(self) -> None:
+        self.assertEqual(long_run_level_cm(150, 0), 100.0)
+        self.assertEqual(long_run_level_cm(-5, 0), 0.0)
+
+    def test_limit_requires_finite_values(self) -> None:
+        with self.assertRaises(ModelError):
+            long_run_level_cm(math.nan, 1)
+        with self.assertRaises(ModelError):
+            long_run_level_cm(10, math.inf)
 
 
 if __name__ == "__main__":

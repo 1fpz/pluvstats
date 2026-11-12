@@ -103,7 +103,7 @@ t = (h_limite − h_atual) / v
 - saturação física do canal;
 - `v ≤ 0` → tempo indefinido;
 - projeção linear e tendência por mínimos quadrados;
-- 25 testes e cenários reproduzíveis;
+- 35 testes e cenários reproduzíveis;
 - **não é** previsão hidrológica.
 
 > Nota: mostrar um gráfico de `mathematics/graphs`.
@@ -143,7 +143,7 @@ t = (h_limite − h_atual) / v
 
 - 23 testes de frontend;
 - 31 testes de backend;
-- 25 testes de matemática;
+- 35 testes de matemática;
 - 4 testes de sincronização de limiares;
 - lint e build aprovados;
 - integração frontend + API verificada em navegador;

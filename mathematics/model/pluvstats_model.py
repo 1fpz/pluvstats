@@ -161,9 +161,90 @@ def level_series(
     return series
 
 
+def _validate_series(series: list[dict]) -> None:
+    """Validate a level series before integrating it."""
+    if len(series) < 2:
+        raise ModelError("at least two points are required for an integral")
+    previous_t = None
+    for point in series:
+        t_seconds = float(point["tSeconds"])
+        level = float(point["levelCm"])
+        if not math.isfinite(t_seconds) or not math.isfinite(level):
+            raise ModelError("series values must be finite")
+        if previous_t is not None and t_seconds <= previous_t:
+            raise ModelError("timestamps must be strictly increasing")
+        previous_t = t_seconds
+
+
+def accumulated_volume_change_m3(
+    series: list[dict],
+    *,
+    channel_width_m: float | None = None,
+    reach_length_m: float | None = None,
+    config: dict | None = None,
+) -> float:
+    """Net volume accumulated in a reach: V = w * L * delta_h / 100.
+
+    This is the definite integral of the net inflow rate
+    ``Q(t) = w * L * h'(t)`` over the sampled interval, in cubic metres. It uses
+    an experimental reach (default 2 m x 100 m), not a hydraulic calibration.
+    """
+    _validate_series(series)
+    geometry = _geometry(config)
+    width = float(channel_width_m if channel_width_m is not None else geometry.get("channelWidthM", 2.0))
+    length = float(reach_length_m if reach_length_m is not None else geometry.get("reachLengthM", 100.0))
+    if not math.isfinite(width) or width <= 0:
+        raise ModelError("channel_width_m must be a positive finite number")
+    if not math.isfinite(length) or length <= 0:
+        raise ModelError("reach_length_m must be a positive finite number")
+    delta_level_cm = float(series[-1]["levelCm"]) - float(series[0]["levelCm"])
+    return width * length * delta_level_cm / 100.0
+
+
+def level_exposure_cm_minutes(series: list[dict]) -> float:
+    """Integral of the level over time, in cm*min, by the trapezoidal rule.
+
+    It answers "how much water level persisted over the interval" and is a
+    didactic accumulated quantity, not a volume or a flood forecast.
+    """
+    _validate_series(series)
+    total = 0.0
+    for previous, current in zip(series, series[1:]):
+        delta_minutes = (float(current["tSeconds"]) - float(previous["tSeconds"])) / 60.0
+        if delta_minutes <= 0:
+            raise ModelError("timestamps must be strictly increasing")
+        total += (float(previous["levelCm"]) + float(current["levelCm"])) / 2.0 * delta_minutes
+    return total
+
+
+def long_run_level_cm(
+    current_level_cm: float,
+    rate_cm_per_min: float,
+    *,
+    config: dict | None = None,
+) -> float:
+    """Limit of the linear model as t -> infinity, clamped to the channel.
+
+    With a positive constant rate the level grows until the physical channel
+    depth; with a non-positive rate it stays at the current level. This is a
+    mathematical limit of the model, not a field prediction.
+    """
+    current = float(current_level_cm)
+    rate = float(rate_cm_per_min)
+    if not math.isfinite(current):
+        raise ModelError("current_level_cm must be finite")
+    if not math.isfinite(rate):
+        raise ModelError("rate_cm_per_min must be finite")
+    depth = float(_geometry(config)["channelDepthCm"])
+    if rate > 0:
+        return depth
+    return min(depth, max(0.0, current))
+
+
 def scenario_metrics(scenario: dict, *, config: dict | None = None) -> dict:
     """Describe a scenario with the same formulas used in the documentation."""
     config = config or load_shared_config()
+    geometry = _geometry(config)
     series = level_series(scenario["readings"], config=config)
     if len(series) < 2:
         raise ModelError("a scenario needs at least two readings")
@@ -182,15 +263,22 @@ def scenario_metrics(scenario: dict, *, config: dict | None = None) -> dict:
         "rateCmPerMin": round(rate, 2),
         "limitCm": limit,
         "timeToLimitMinutes": None if time_to_limit is None else round(time_to_limit, 2),
+        "channelWidthM": float(geometry.get("channelWidthM", 2.0)),
+        "reachLengthM": float(geometry.get("reachLengthM", 100.0)),
+        "accumulatedVolumeM3": round(accumulated_volume_change_m3(series, config=config), 2),
+        "levelExposureCmMinutes": round(level_exposure_cm_minutes(series), 2),
         "series": series,
     }
 
 
 __all__ = [
     "ModelError",
+    "accumulated_volume_change_m3",
+    "level_exposure_cm_minutes",
     "level_series",
     "linear_trend_cm_per_min",
     "load_shared_config",
+    "long_run_level_cm",
     "project_level_cm",
     "rise_rate_cm_per_min",
     "scenario_metrics",

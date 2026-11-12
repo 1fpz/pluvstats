@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="640" viewBox="0 0 1120 640" role="img" aria-label="Diagrama de caso de uso resumido do PLUVSTATS">
+  <defs>
+    <style>
+      .panel { fill: #0e1a2b; stroke: #24344d; stroke-width: 1.5; }
+      .actor { fill: none; stroke: #93c5fd; stroke-width: 2.6; stroke-linecap: round; }
+      .actor-label { font: 600 16px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+      .actor-role { font: 400 12px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+      .usecase { fill: #12233a; stroke: #38bdf8; stroke-width: 1.7; }
+      .usecase-text { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+      .assoc { stroke: #7c8ea3; stroke-width: 1.6; fill: none; }
+      .rel { stroke: #f59e0b; stroke-width: 1.7; fill: none; stroke-dasharray: 7 5; }
+      .rel-text { font: 700 11px 'Segoe UI', Arial, sans-serif; fill: #fbbf24; }
+      .boundary-title { font: 700 17px 'Segoe UI', Arial, sans-serif; fill: #7dd3fc; letter-spacing: 0.08em; }
+      .device { fill: #172554; stroke: #60a5fa; stroke-width: 2; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="640" fill="#0b1220"/>
+  <rect x="12" y="12" width="1096" height="616" rx="16" fill="#0a111d" stroke="#1e293b"/>
+  <text x="40" y="46" style="font:700 22px 'Segoe UI',Arial,sans-serif;fill:#e2e8f0">Casos de uso do PLUVSTATS</text>
+  <text x="40" y="66" style="font:400 12px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">Escopo do protótipo acadêmico · atores e objetivos principais</text>
+
+  <!-- System boundary -->
+  <rect class="panel" x="240" y="92" width="620" height="488" rx="14"/>
+  <text class="boundary-title" x="262" y="120">SISTEMA PLUVSTATS</text>
+
+  <!-- Actors -->
+  <g>
+    <circle class="actor" cx="92" cy="170" r="15"/>
+    <line class="actor" x1="92" y1="185" x2="92" y2="225"/>
+    <line class="actor" x1="68" y1="198" x2="116" y2="198"/>
+    <line class="actor" x1="92" y1="225" x2="72" y2="258"/>
+    <line class="actor" x1="92" y1="225" x2="112" y2="258"/>
+    <text class="actor-label" x="92" y="280" text-anchor="middle">Cidadão</text>
+    <text class="actor-role" x="92" y="297" text-anchor="middle">morador ou pedestre</text>
+  </g>
+  <g>
+    <circle class="actor" cx="92" cy="390" r="15"/>
+    <line class="actor" x1="92" y1="405" x2="92" y2="445"/>
+    <line class="actor" x1="68" y1="418" x2="116" y2="418"/>
+    <line class="actor" x1="92" y1="445" x2="72" y2="478"/>
+    <line class="actor" x1="92" y1="445" x2="112" y2="478"/>
+    <text class="actor-label" x="92" y="500" text-anchor="middle">Gestor municipal</text>
+    <text class="actor-role" x="92" y="517" text-anchor="middle">operação e priorização</text>
+  </g>
+
+  <g>
+    <circle class="actor" cx="1010" cy="500" r="15"/>
+    <line class="actor" x1="1010" y1="515" x2="1010" y2="555"/>
+    <line class="actor" x1="986" y1="528" x2="1034" y2="528"/>
+    <line class="actor" x1="1010" y1="555" x2="990" y2="588"/>
+    <line class="actor" x1="1010" y1="555" x2="1030" y2="588"/>
+    <text class="actor-label" x="1010" y="610" text-anchor="middle">Técnico de campo</text>
+  </g>
+
+  <g>
+    <rect class="device" x="972" y="120" width="76" height="52" rx="8"/>
+    <rect x="984" y="132" width="52" height="24" rx="3" fill="#0b1220" stroke="#93c5fd" stroke-width="1.2"/>
+    <circle cx="1010" cy="167" r="3" fill="#7dd3fc"/>
+    <text class="actor-label" x="1010" y="200" text-anchor="middle">ESP32 + HC-SR04</text>
+    <text class="actor-role" x="1010" y="217" text-anchor="middle">não validado em campo</text>
+  </g>
+
+  <!-- Use cases -->
+  <g>
+    <ellipse class="usecase" cx="400" cy="150" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="155" text-anchor="middle">Consultar mapa</text>
+
+    <ellipse class="usecase" cx="400" cy="225" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="230" text-anchor="middle">Registrar ocorrência</text>
+
+    <ellipse class="usecase" cx="400" cy="300" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="305" text-anchor="middle">Consultar orientações</text>
+
+    <ellipse class="usecase" cx="400" cy="390" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="395" text-anchor="middle">Monitorar painel</text>
+
+    <ellipse class="usecase" cx="400" cy="465" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="470" text-anchor="middle">Gerenciar ocorrências</text>
+
+    <ellipse class="usecase" cx="400" cy="540" rx="96" ry="27"/>
+    <text class="usecase-text" x="400" y="545" text-anchor="middle">Acompanhar sensores</text>
+
+    <ellipse class="usecase" cx="700" cy="150" rx="96" ry="27"/>
+    <text class="usecase-text" x="700" y="155" text-anchor="middle">Enviar leitura</text>
+
+    <ellipse class="usecase" cx="700" cy="300" rx="96" ry="27"/>
+    <text class="usecase-text" x="700" y="305" text-anchor="middle">Verificar diagnóstico</text>
+
+    <ellipse class="usecase" cx="700" cy="390" rx="96" ry="27"/>
+    <text class="usecase-text" x="700" y="395" text-anchor="middle">Exportar relatório</text>
+
+    <ellipse class="usecase" cx="700" cy="465" rx="96" ry="27"/>
+    <text class="usecase-text" x="700" y="470" text-anchor="middle">Reconhecer alerta</text>
+
+    <ellipse class="usecase" cx="700" cy="540" rx="96" ry="27"/>
+    <text class="usecase-text" x="700" y="545" text-anchor="middle">Registrar intervenção</text>
+  </g>
+
+  <!-- Associations -->
+  <g class="assoc">
+    <line x1="116" y1="186" x2="304" y2="158"/>
+    <line x1="116" y1="198" x2="304" y2="220"/>
+    <line x1="116" y1="210" x2="304" y2="288"/>
+
+    <line x1="116" y1="406" x2="304" y2="390"/>
+    <line x1="116" y1="418" x2="304" y2="458"/>
+    <line x1="116" y1="430" x2="304" y2="532"/>
+
+    <line x1="986" y1="150" x2="796" y2="150"/>
+    <line x1="986" y1="510" x2="796" y2="538"/>
+  </g>
+
+  <!-- Relations -->
+  <g>
+    <line class="rel" x1="604" y1="390" x2="496" y2="390" marker-end="url(#arrow)"/>
+    <text class="rel-text" x="550" y="380" text-anchor="middle">«extend»</text>
+
+    <path class="rel" d="M604,300 C560,310 530,350 496,378" marker-end="url(#arrow)"/>
+    <text class="rel-text" x="536" y="330" text-anchor="middle">«extend»</text>
+
+    <path class="rel" d="M496,530 C540,520 570,490 604,472" marker-end="url(#arrow)"/>
+    <text class="rel-text" x="536" y="526" text-anchor="middle">«include»</text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <rect x="900" y="300" width="184" height="150" rx="10" fill="#0f1c2e" stroke="#24344d"/>
+    <text x="918" y="326" style="font:700 12px 'Segoe UI',Arial,sans-serif;fill:#e2e8f0">Legenda</text>
+    <line x1="918" y1="346" x2="958" y2="346" stroke="#7c8ea3" stroke-width="1.6"/>
+    <text x="966" y="350" style="font:400 11px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">associação</text>
+    <line x1="918" y1="370" x2="958" y2="370" stroke="#f59e0b" stroke-width="1.7" stroke-dasharray="7 5"/>
+    <text x="966" y="374" style="font:400 11px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">include / extend</text>
+    <text x="918" y="400" style="font:400 11px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">Elipse = caso de uso</text>
+    <text x="918" y="420" style="font:400 11px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">Retângulo = fronteira</text>
+  </g>
+</svg>

@@ -36,7 +36,7 @@ export function CitizenLayout() {
             <DemoIndicator compact />
             <Link
               to="/"
-              className="inline-flex h-8 items-center gap-1.5 rounded-md border border-line px-2.5 text-[11px] font-medium text-muted transition hover:border-white/[0.14] hover:text-ink"
+              className="inline-flex h-9 items-center gap-1.5 rounded-md border border-line px-3 text-[11px] font-medium text-muted transition hover:border-white/[0.14] hover:text-ink"
             >
               <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
               <span className="hidden sm:inline">Área do gestor</span>
@@ -46,7 +46,7 @@ export function CitizenLayout() {
         </div>
       </header>
 
-      <main id="citizen-content" className="mx-auto w-full max-w-3xl px-4 py-5 sm:py-8">
+      <main id="citizen-content" className="citizen-readable mx-auto w-full max-w-3xl px-4 py-5 sm:py-8">
         <Suspense fallback={<LoadingBlock label="Carregando página" className="min-h-[40vh]" />}>
           <Outlet />
         </Suspense>
@@ -64,7 +64,7 @@ export function CitizenLayout() {
                 end={item.end}
                 className={({ isActive }) =>
                   cn(
-                    'relative flex flex-col items-center gap-1 px-2 py-2.5 text-[9.5px] font-medium transition',
+                    'relative flex flex-col items-center gap-1 px-2 py-3 text-[11px] font-medium transition',
                     isActive ? 'text-ink' : 'text-muted',
                   )
                 }

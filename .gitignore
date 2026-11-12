@@ -23,6 +23,7 @@ backend/.venv/
 *.sqlite
 *.sqlite3
 backend/data/
+python-app/data/estado.json
 
 # Environment and secrets
 .env
@@ -39,6 +40,9 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Delivery artefacts generated locally
+deliverables/zips/
 
 # Edge build artefacts and local secrets
 edge/esp32/pluvstats_sensor/build/

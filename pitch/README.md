@@ -3,6 +3,17 @@
 Roteiro de apresentação do protótipo acadêmico. Não contém métricas de mercado,
 tração, entrevistas ou resultados de campo inventados.
 
+## Materiais
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| [`branding.md`](branding.md) | missão, visão, valores e arquétipo de marca |
+| [`email-investidor.md`](email-investidor.md) | e-mail simulado ao investidor, com espaço para o link do vídeo |
+| [`roteiro-video.md`](roteiro-video.md) | roteiro de até 3 minutos nas nove etapas exigidas |
+| [`apresentacao-pitch.html`](apresentacao-pitch.html) | deck editável de 10 slides |
+| [`apresentacao-pitch.pdf`](apresentacao-pitch.pdf) | deck para entrega e gravação |
+| [`slides.md`](slides.md) | texto antigo, útil para transpor a PowerPoint/Canva |
+
 ## Narrativa em uma frase
 
 PLUVSTATS organiza sinais de água urbana em uma experiência única para gestão e
@@ -22,6 +33,24 @@ cidadania — com origem, incerteza e limites visíveis em cada tela.
 10. **Evidências** — testes, build e verificação de integração.
 11. **Limites e ética** — o que o produto não é.
 12. **Próximos passos** — pesquisa, bancada e parceria.
+
+## Versão de 3 minutos (videopitch)
+
+A versão oficial da disciplina de Storytelling tem até 3 minutos e nove etapas
+obrigatórias. O texto completo, com tempos e falas, está em
+[`roteiro-video.md`](roteiro-video.md). Resumo:
+
+| Tempo | Etapa |
+| --- | --- |
+| 0:00–0:15 | abertura de impacto |
+| 0:15–0:35 | cidadão beneficiado |
+| 0:35–0:55 | problema |
+| 0:55–1:25 | como a solução funciona |
+| 1:25–1:45 | tecnologias |
+| 1:45–2:05 | ecossistema |
+| 2:05–2:25 | impacto e expansão |
+| 2:25–2:45 | time |
+| 2:45–3:00 | encerramento memorável |
 
 ## Versão de 5 minutos
 
@@ -68,8 +97,8 @@ Frases que devem acompanhar a demo:
 
 ## Evidências para citar
 
-- 23 testes de frontend, 31 de backend, 25 de matemática e 4 de sincronização de
-  limiares.
+- 23 testes de frontend, 31 de backend, 35 de matemática, 12 da aplicação Python
+  e 4 de sincronização de limiares.
 - Lint e build sem erros; entrada de ~300 kB e rotas carregadas sob demanda.
 - Integração verificada em navegador: ocorrência criada no SQLite e reset
   restaurando 9 ocorrências e 0 alertas.

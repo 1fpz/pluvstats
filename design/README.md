@@ -11,6 +11,8 @@ registra a lacuna e o roteiro de coleta.
   validação de hardware.
 - [Plano de pesquisa](research/research-plan.md) — perguntas, métodos, ética e o
   que ainda não foi feito.
+- [Apresentação de Experience](presentation/README.md) — deck com os sete
+  entregáveis da disciplina, PDF e diagrama de caso de uso.
 
 ## Identidade
 

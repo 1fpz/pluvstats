@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="880" viewBox="0 0 1240 880" role="img" aria-label="Diagrama de caso de uso do PLUVSTATS">
+  <defs>
+    <style>
+      .bg { fill: #0b1220; }
+      .panel { fill: #0e1a2b; stroke: #24344d; stroke-width: 1.5; }
+      .actor { fill: none; stroke: #93c5fd; stroke-width: 2.4; stroke-linecap: round; }
+      .actor-label { font: 600 15px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+      .actor-role { font: 400 11.5px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+      .usecase { fill: #12233a; stroke: #38bdf8; stroke-width: 1.6; }
+      .usecase-text { font: 600 12.5px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+      .assoc { stroke: #64748b; stroke-width: 1.4; fill: none; }
+      .include { stroke: #f59e0b; stroke-width: 1.6; fill: none; stroke-dasharray: 7 5; }
+      .include-text { font: 600 10.5px 'Segoe UI', Arial, sans-serif; fill: #fbbf24; }
+      .boundary-title { font: 700 16px 'Segoe UI', Arial, sans-serif; fill: #7dd3fc; letter-spacing: 0.06em; }
+      .note-title { font: 700 12px 'Segoe UI', Arial, sans-serif; fill: #e2e8f0; }
+      .note-text { font: 400 11px 'Segoe UI', Arial, sans-serif; fill: #94a3b8; }
+      .device { fill: #172554; stroke: #60a5fa; stroke-width: 2; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1240" height="880"/>
+  <rect x="14" y="14" width="1212" height="852" rx="16" fill="#0a111d" stroke="#1e293b"/>
+
+  <text x="44" y="52" style="font:700 24px 'Segoe UI',Arial,sans-serif;fill:#e2e8f0">PLUVSTATS · casos de uso</text>
+  <text x="44" y="76" style="font:400 12.5px 'Segoe UI',Arial,sans-serif;fill:#94a3b8">Atores, objetivos e interações previstos no escopo do protótipo acadêmico.</text>
+
+  <!-- System boundary -->
+  <rect class="panel" x="300" y="110" width="630" height="710" rx="14"/>
+  <text class="boundary-title" x="324" y="140">SISTEMA PLUVSTATS</text>
+
+  <!-- Actors -->
+  <g>
+    <circle class="actor" cx="120" cy="190" r="15"/>
+    <line class="actor" x1="120" y1="205" x2="120" y2="245"/>
+    <line class="actor" x1="96" y1="218" x2="144" y2="218"/>
+    <line class="actor" x1="120" y1="245" x2="100" y2="278"/>
+    <line class="actor" x1="120" y1="245" x2="140" y2="278"/>
+    <text class="actor-label" x="120" y="300" text-anchor="middle">Cidadão</text>
+    <text class="actor-role" x="120" y="317" text-anchor="middle">morador ou pedestre</text>
+  </g>
+  <g>
+    <circle class="actor" cx="120" cy="430" r="15"/>
+    <line class="actor" x1="120" y1="445" x2="120" y2="485"/>
+    <line class="actor" x1="96" y1="458" x2="144" y2="458"/>
+    <line class="actor" x1="120" y1="485" x2="100" y2="518"/>
+    <line class="actor" x1="120" y1="485" x2="140" y2="518"/>
+    <text class="actor-label" x="120" y="540" text-anchor="middle">Gestor municipal</text>
+    <text class="actor-role" x="120" y="557" text-anchor="middle">operação e priorização</text>
+  </g>
+  <g>
+    <circle class="actor" cx="120" cy="650" r="15"/>
+    <line class="actor" x1="120" y1="665" x2="120" y2="705"/>
+    <line class="actor" x1="96" y1="678" x2="144" y2="678"/>
+    <line class="actor" x1="120" y1="705" x2="100" y2="738"/>
+    <line class="actor" x1="120" y1="705" x2="140" y2="738"/>
+    <text class="actor-label" x="120" y="760" text-anchor="middle">Técnico de campo</text>
+    <text class="actor-role" x="120" y="777" text-anchor="middle">vistoria e intervenção</text>
+  </g>
+
+  <!-- Device actor -->
+  <g>
+    <rect class="device" x="1040" y="400" width="76" height="52" rx="8"/>
+    <rect x="1052" y="412" width="52" height="24" rx="3" fill="#0b1220" stroke="#93c5fd" stroke-width="1.2"/>
+    <circle cx="1078" cy="447" r="3" fill="#7dd3fc"/>
+    <text class="actor-label" x="1078" y="482" text-anchor="middle">ESP32 + HC-SR04</text>
+    <text class="actor-role" x="1078" y="499" text-anchor="middle">ator secundário · não validado</text>
+  </g>
+
+  <!-- Use cases -->
+  <g>
+    <ellipse class="usecase" cx="430" cy="188" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="193" text-anchor="middle">Consultar mapa de atenção</text>
+
+    <ellipse class="usecase" cx="430" cy="270" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="275" text-anchor="middle">Registrar ocorrência</text>
+
+    <ellipse class="usecase" cx="430" cy="352" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="357" text-anchor="middle">Consultar orientações</text>
+
+    <ellipse class="usecase" cx="430" cy="450" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="455" text-anchor="middle">Monitorar painel territorial</text>
+
+    <ellipse class="usecase" cx="430" cy="532" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="537" text-anchor="middle">Gerenciar ocorrências</text>
+
+    <ellipse class="usecase" cx="430" cy="614" rx="105" ry="30"/>
+    <text class="usecase-text" x="430" y="619" text-anchor="middle">Acompanhar sensores</text>
+
+    <ellipse class="usecase" cx="700" cy="614" rx="105" ry="30"/>
+    <text class="usecase-text" x="700" y="619" text-anchor="middle">Reconhecer alerta</text>
+
+    <ellipse class="usecase" cx="700" cy="700" rx="105" ry="30"/>
+    <text class="usecase-text" x="700" y="705" text-anchor="middle">Registrar intervenção</text>
+
+    <ellipse class="usecase" cx="700" cy="450" rx="105" ry="30"/>
+    <text class="usecase-text" x="700" y="455" text-anchor="middle">Exportar relatório</text>
+
+    <ellipse class="usecase" cx="700" cy="532" rx="105" ry="30"/>
+    <text class="usecase-text" x="700" y="537" text-anchor="middle">Verificar diagnóstico</text>
+
+    <ellipse class="usecase" cx="700" cy="188" rx="105" ry="30"/>
+    <text class="usecase-text" x="700" y="193" text-anchor="middle">Enviar leitura</text>
+  </g>
+
+  <!-- Associations -->
+  <g class="assoc">
+    <line x1="144" y1="214" x2="326" y2="188"/>
+    <line x1="144" y1="238" x2="326" y2="270"/>
+    <line x1="144" y1="262" x2="326" y2="352"/>
+
+    <line x1="144" y1="454" x2="326" y2="450"/>
+    <line x1="144" y1="470" x2="326" y2="532"/>
+    <line x1="144" y1="486" x2="326" y2="614"/>
+
+    <line x1="144" y1="690" x2="596" y2="700"/>
+  </g>
+
+  <line class="assoc" x1="1038" y1="426" x2="806" y2="188"/>
+
+  <!-- Include / extend relationships instead of long crossing associations -->
+  <g>
+    <line class="include" x1="594" y1="450" x2="536" y2="450" marker-end="url(#arrow)"/>
+    <text class="include-text" x="565" y="440" text-anchor="middle">«extend»</text>
+
+    <line class="include" x1="536" y1="614" x2="594" y2="614" marker-end="url(#arrow)"/>
+    <text class="include-text" x="565" y="604" text-anchor="middle">«include»</text>
+
+    <path class="include" d="M596,532 C560,510 560,480 522,448" marker-end="url(#arrow)"/>
+    <text class="include-text" x="548" y="510" text-anchor="middle">«extend»</text>
+  </g>
+
+  <!-- Include: registrar intervenção inclui informar nível final -->
+  <path class="include" d="M792,706 C840,706 860,760 860,766" marker-end="url(#arrow)"/>
+  <text class="include-text" x="846" y="748" text-anchor="middle">«include»</text>
+  <ellipse class="usecase" cx="860" cy="790" rx="92" ry="24" style="stroke:#f59e0b"/>
+  <text class="usecase-text" x="860" y="795" text-anchor="middle" style="font-size:11.5px">Informar nível final</text>
+
+  <!-- Legend note -->
+  <g>
+    <rect x="948" y="120" width="248" height="196" rx="10" fill="#0f1c2e" stroke="#24344d"/>
+    <text class="note-title" x="968" y="148">Como ler o diagrama</text>
+    <text class="note-text" x="968" y="174">• elipse = caso de uso</text>
+    <text class="note-text" x="968" y="196">• linha = associação</text>
+    <text class="note-text" x="968" y="218">• tracejado = «include»</text>
+    <text class="note-text" x="968" y="240">• fronteira = escopo do sistema</text>
+    <text class="note-text" x="968" y="274">Todos os dados exibidos são</text>
+    <text class="note-text" x="968" y="292">demonstrativos. Nenhum ator</text>
+    <text class="note-text" x="968" y="310">público é acionado.</text>
+  </g>
+
+  <!-- Scope note -->
+  <g>
+    <rect x="948" y="612" width="248" height="150" rx="10" fill="#0f1c2e" stroke="#24344d"/>
+    <text class="note-title" x="968" y="640">Fora do escopo</text>
+    <text class="note-text" x="968" y="666">• login e perfis reais</text>
+    <text class="note-text" x="968" y="688">• envio a órgãos públicos</text>
+    <text class="note-text" x="968" y="710">• previsão de enchentes</text>
+    <text class="note-text" x="968" y="732">• aplicativo nativo</text>
+  </g>
+</svg>

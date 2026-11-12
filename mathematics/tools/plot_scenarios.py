@@ -323,6 +323,124 @@ def render_time_to_limit(config: dict) -> str:
     return "\n".join(lines)
 
 
+def render_accumulated_volume(config: dict) -> str:
+    """Plot V(t) = w * L * (h(t) - h(0)) / 100 for each scenario.
+
+    The curve is the antiderivative of the net inflow rate: a rising reach gains
+    volume, a draining reach loses it and a stable reach stays at zero.
+    """
+    geometry = config["sensorGeometry"]
+    width = float(geometry.get("channelWidthM", 2.0))
+    length = float(geometry.get("reachLengthM", 100.0))
+
+    series_by_scenario = []
+    max_t = 0.0
+    for path in sorted(SCENARIOS_DIR.glob("*.json")):
+        scenario = json.loads(path.read_text(encoding="utf-8"))
+        metrics = scenario_metrics(scenario, config=config)
+        series = metrics["series"]
+        base_level = series[0]["levelCm"]
+        volumes = [
+            (point["tSeconds"], width * length * (point["levelCm"] - base_level) / 100.0)
+            for point in series
+        ]
+        series_by_scenario.append((metrics["name"], volumes))
+        max_t = max(max_t, series[-1]["tSeconds"])
+
+    max_volume = max(
+        (abs(volume) for _, volumes in series_by_scenario for _, volume in volumes),
+        default=1.0,
+    )
+    bound = nice_step(max_volume * 1.1)
+    if bound <= 0:
+        bound = 1.0
+
+    plot_left = MARGIN_LEFT
+    plot_right = WIDTH - MARGIN_RIGHT
+    plot_top = MARGIN_TOP
+    plot_bottom = HEIGHT - MARGIN_BOTTOM
+    plot_width = plot_right - plot_left
+    plot_height = plot_bottom - plot_top
+
+    def sx(t_seconds: float) -> float:
+        return plot_left + (t_seconds / max_t) * plot_width if max_t else plot_left
+
+    def sy(volume: float) -> float:
+        return plot_bottom - ((volume + bound) / (2 * bound)) * plot_height
+
+    lines = header(
+        "Volume líquido acumulado no trecho",
+        f"V(t) = w · L · (h(t) − h(0)) / 100 · w = {pt(width)} m · L = {pt(length)} m · "
+        "integral da vazão líquida",
+    )
+
+    lines.append(
+        f'<rect x="{plot_left}" y="{plot_top}" width="{plot_width}" height="{plot_height}" '
+        f'fill="#0f172a" opacity="0.55"/>'
+    )
+    zero_y = sy(0.0)
+    lines.append(
+        f'<line x1="{plot_left}" y1="{zero_y:.1f}" x2="{plot_right}" y2="{zero_y:.1f}" '
+        f'stroke="#475569" stroke-width="1.4"/>'
+    )
+    lines.append(
+        f'<text class="note" x="{plot_left + 6}" y="{zero_y - 6:.1f}">'
+        "V = 0</text>"
+    )
+
+    step = nice_step((2 * bound) / 5)
+    tick = -bound
+    while tick <= bound + step / 2:
+        y = sy(tick)
+        lines.append(
+            f'<line x1="{plot_left}" y1="{y:.1f}" x2="{plot_right}" y2="{y:.1f}" '
+            f'stroke="{GRID}" stroke-width="1"/>'
+        )
+        lines.append(
+            f'<text class="axis" x="{plot_left - 10}" y="{y + 4:.1f}" text-anchor="end">'
+            f"{pt(tick)} m³</text>"
+        )
+        tick += step
+
+    x_step = nice_step(max_t / 300.0) * 60.0
+    tick = 0.0
+    while tick <= max_t + 0.1:
+        x = sx(tick)
+        lines.append(
+            f'<line x1="{x:.1f}" y1="{plot_top}" x2="{x:.1f}" y2="{plot_bottom}" '
+            f'stroke="{GRID}" stroke-width="1" opacity="0.6"/>'
+        )
+        lines.append(
+            f'<text class="axis" x="{x:.1f}" y="{plot_bottom + 20}" text-anchor="middle">'
+            f"{pt(tick / 60.0)} min</text>"
+        )
+        tick += x_step
+
+    colors = [LINE, PROJECTION, CRITICAL]
+    for (name, volumes), color in zip(series_by_scenario, colors, strict=False):
+        points = " ".join(f"{sx(t):.1f},{sy(volume):.1f}" for t, volume in volumes)
+        lines.append(
+            f'<polyline points="{points}" fill="none" stroke="{color}" stroke-width="2.4" '
+            'stroke-linejoin="round" stroke-linecap="round"/>'
+        )
+        last_t, last_volume = volumes[-1]
+        lines.append(
+            f'<circle cx="{sx(last_t):.1f}" cy="{sy(last_volume):.1f}" r="3.6" fill="{color}"/>'
+        )
+        label_x = min(sx(last_t) + 10, WIDTH - 176)
+        lines.append(
+            f'<text class="label" x="{label_x:.1f}" y="{sy(last_volume) - 8:.1f}" fill="{color}">'
+            f"{svg_escape(name)}: {pt(last_volume)} m³</text>"
+        )
+
+    lines.append(
+        f'<text class="note" x="{plot_left}" y="{plot_top + 14}">'
+        "trecho hipotético de 2 m × 100 m, não calibrado</text>"
+    )
+    lines = footer(lines)
+    return "\n".join(lines)
+
+
 def main() -> None:
     config = load_shared_config()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -336,6 +454,10 @@ def main() -> None:
 
     target = OUTPUT_DIR / "tempo-ate-limite.svg"
     target.write_text(render_time_to_limit(config), encoding="utf-8", newline="\n")
+    print(f"wrote {target.relative_to(REPO_ROOT)}")
+
+    target = OUTPUT_DIR / "volume-acumulado.svg"
+    target.write_text(render_accumulated_volume(config), encoding="utf-8", newline="\n")
     print(f"wrote {target.relative_to(REPO_ROOT)}")
 
 

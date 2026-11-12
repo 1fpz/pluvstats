@@ -7,7 +7,10 @@
   },
   "territory": {
     "name": "Santo André/SP",
-    "center": [-23.6639, -46.5318],
+    "center": [
+      -23.6639,
+      -46.5318
+    ],
     "zoom": 13,
     "disclaimer": "Coordenadas demonstrativas. Não representam ocorrências oficiais da Prefeitura de Santo André."
   },
@@ -30,12 +33,17 @@
     "hysteresisCm": 4,
     "hysteresisRateCmPerMin": 0.4,
     "staleReadingSeconds": 180,
-    "invalidDistanceRangeCm": [2, 380]
+    "invalidDistanceRangeCm": [
+      2,
+      380
+    ]
   },
   "sensorGeometry": {
     "sensorHeightCm": 120,
     "dryDistanceCm": 112,
-    "channelDepthCm": 100
+    "channelDepthCm": 100,
+    "channelWidthM": 2.0,
+    "reachLengthM": 100.0
   },
   "simulation": {
     "tickSeconds": 5,

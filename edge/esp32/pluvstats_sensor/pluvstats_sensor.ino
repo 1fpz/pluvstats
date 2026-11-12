@@ -8,6 +8,11 @@
  * The firmware is a prototype. No physical device has been validated in this
  * project. It must not be used as an early-warning or life-safety system.
  *
+ * Team (Global Solution 2026.2 - CitizenTech):
+ *   Felipe Ilek .............. RM 571322
+ *   Michel Tatsuya Hanada .... RM 571987
+ *   Marcos Vinicius Tudisco .. RM 569366
+ *
  * Build (Arduino CLI, ESP32 core installed):
  *   arduino-cli compile --fqbn esp32:esp32:esp32 \
  *       --build-path build edge/esp32/pluvstats_sensor
