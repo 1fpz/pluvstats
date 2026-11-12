@@ -13,6 +13,7 @@ mercado ou validação física inventada.
 | [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (18 páginas) |
 | [`caso-de-uso.svg`](caso-de-uso.svg) | diagrama completo de casos de uso |
 | [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 8 |
+| [`rubrica-review.md`](rubrica-review.md) | revisão slide a slide contra os 100 pontos da disciplina |
 | [`assets/`](assets/) | capturas reais do protótipo em demonstração |
 
 As capturas foram feitas do frontend em execução local, com dados demonstrativos.

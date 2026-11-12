@@ -11,8 +11,12 @@ registra a lacuna e o roteiro de coleta.
   validação de hardware.
 - [Plano de pesquisa](research/research-plan.md) — perguntas, métodos, ética e o
   que ainda não foi feito.
+- [Kit de conversas](research/interview-kit.md) — roteiro, termo de consentimento
+  e como transformar três conversas em evidência para o deck.
 - [Apresentação de Experience](presentation/README.md) — deck com os sete
   entregáveis da disciplina, PDF e diagrama de caso de uso.
+- [Revisão do deck contra a rubrica](presentation/rubrica-review.md) — mapa slide
+  a slide dos 100 pontos e ajustes prioritários.
 
 ## Identidade
 

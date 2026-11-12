@@ -125,4 +125,13 @@ antes de cada submissão.
 - [ ] Submeter cada disciplina separadamente no Teams.
 - [ ] Abrir os links em janela anônima antes de entregar.
 
+## Materiais de apoio
+
+- [`demo-90s.md`](demo-90s.md) — roteiro cronometrado da demonstração, plano B e
+  ensaio para a banca e para o vídeo.
+- [`../design/research/interview-kit.md`](../design/research/interview-kit.md) —
+  roteiro de três conversas, termo de consentimento e uso honesto das falas.
+- [`../design/presentation/rubrica-review.md`](../design/presentation/rubrica-review.md)
+  — revisão do deck de Experience contra os 100 pontos da disciplina.
+
 O detalhamento item a item está em [`checklist.md`](checklist.md).

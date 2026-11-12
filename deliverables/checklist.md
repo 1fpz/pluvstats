@@ -98,7 +98,8 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 - [x] Protótipo, heurísticas e tom de voz.
 - [x] Roadmap.
 - [x] PDF com 18 páginas.
-- [ ] Revisar o PDF final.
+- [ ] Fazer as três conversas do [`interview-kit.md`](../design/research/interview-kit.md) e criar o slide “O que ouvimos”.
+- [ ] Revisar o PDF final com a [`rubrica-review.md`](../design/presentation/rubrica-review.md).
 - [ ] Submeter no Teams.
 
 **Evidência:** [`design/presentation/`](../design/presentation/)
