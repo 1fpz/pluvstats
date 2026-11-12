@@ -82,7 +82,8 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 - [ ] Fazer o deploy na Vercel.
 - [ ] Copiar a URL para o README.
 - [ ] Gerar o ZIP do projeto.
-- [ ] Conceder acesso de escrita aos professores.
+- [ ] Confirmar o acesso dos professores ao repositório (hoje público).
+- [ ] Se a disciplina exigir repositório privado, torná-lo privado e conceder acesso de escrita.
 - [ ] Submeter no Teams.
 
 **Evidência:** [`frontend/`](../frontend/) · [`documentation/deploy.md`](../documentation/deploy.md)

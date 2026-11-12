@@ -68,7 +68,9 @@ neste ambiente.
 - Passo a passo: [`documentation/deploy.md`](../documentation/deploy.md)
 
 **Pendente:** publicar na Vercel (ou outro serviço), copiar a URL para o README e
-conceder acesso de escrita aos professores no repositório privado.
+confirmar que os professores conseguem abrir o repositório — hoje ele está
+**público**. O enunciado pede repositório privado com acesso de escrita; se a
+disciplina exigir, torne-o privado e adicione os professores como colaboradores.
 
 O repositório já tem mais de 15 commits e inclui a mesma aplicação usada nas duas
 disciplinas. O ZIP do projeto é gerado como `deliverables/zips/pluvstats-projeto.zip`.
@@ -119,7 +121,7 @@ antes de cada submissão.
 - [ ] Publicar o Wokwi e gravar o vídeo de Edge.
 - [ ] Gravar o vídeo de 3 minutos e publicar no YouTube.
 - [ ] Fazer o deploy e copiar a URL para o README.
-- [ ] Conceder acesso aos professores no GitHub.
+- [ ] Confirmar que os professores abrem o repositório no GitHub.
 - [ ] Submeter cada disciplina separadamente no Teams.
 - [ ] Abrir os links em janela anônima antes de entregar.
 
