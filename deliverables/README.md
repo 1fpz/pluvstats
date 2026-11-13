@@ -4,6 +4,10 @@ Mapa de entrega da Global Solution 2026.2 (CitizenTech). Cada disciplina tem um
 artefato próprio, mas todos partem do mesmo repositório. O que depende de ação
 humana está marcado como **pendente** — não há link, vídeo ou deploy inventado.
 
+> O plano completo, com o que falta, playbooks de execução, cronograma de
+> 13–19/11, riscos, Q&A e critérios de vitória, está em
+> [`../PLANO-DE-ENTREGA.md`](../PLANO-DE-ENTREGA.md).
+
 ## Resumo por disciplina
 
 | # | Disciplina | Artefato principal | Estado |
@@ -127,6 +131,8 @@ antes de cada submissão.
 
 ## Materiais de apoio
 
+- [`../PLANO-DE-ENTREGA.md`](../PLANO-DE-ENTREGA.md) — documento mestre de
+  entrega e de vitória, com cronograma, playbooks e riscos.
 - [`demo-90s.md`](demo-90s.md) — roteiro cronometrado da demonstração, plano B e
   ensaio para a banca e para o vídeo.
 - [`../design/research/interview-kit.md`](../design/research/interview-kit.md) —

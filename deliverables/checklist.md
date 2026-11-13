@@ -4,6 +4,9 @@ Prazo oficial: **19/11/2026, às 23h55**. Entrega na plataforma Microsoft Teams,
 uma submissão por equipe em cada disciplina. Este checklist separa o que já está
 no repositório do que depende de ação humana (links, vídeos e deploy).
 
+> O plano completo, com playbooks, cronograma de 13–19/11, riscos, Q&A e
+> critérios de vitória, está em [`../PLANO-DE-ENTREGA.md`](../PLANO-DE-ENTREGA.md).
+
 ## Dados da equipe
 
 | Integrante | RM | E-mail |

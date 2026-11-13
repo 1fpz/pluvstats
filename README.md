@@ -24,7 +24,9 @@ uma regra que atravessa todas as telas: **origem, idade e limite visíveis em ca
 dado**. Nada aqui é apresentado como oficial, validado em campo ou pronto para
 produção.
 
-> **Prazo da GS:** 19/11/2026, às 23h55. Checklist por disciplina em
+> **Prazo da GS:** 19/11/2026, às 23h55. O plano completo — o que falta, como
+> entregar, cronograma e critérios de vitória — está em
+> [`PLANO-DE-ENTREGA.md`](PLANO-DE-ENTREGA.md). Checklist item a item em
 > [`deliverables/checklist.md`](deliverables/checklist.md).
 
 ## Ficha da CitizenTech
@@ -431,6 +433,7 @@ pluvstats/
 
 ## Documentação principal
 
+- [Plano de entrega e de vitória](PLANO-DE-ENTREGA.md)
 - [Arquitetura](documentation/architecture/overview.md)
 - [Contrato da API](documentation/api/README.md)
 - [Testes e evidências](documentation/testing/README.md)

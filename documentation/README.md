@@ -11,14 +11,15 @@ como medição física, e nenhuma entrevista ou teste de campo é inventado.
 
 ## Leitura sugerida
 
-1. [Arquitetura](architecture/overview.md)
-2. [API](api/README.md)
-3. [Testes e evidências](testing/README.md)
-4. [Deploy](deploy.md)
-5. [ADR-001 — monorepo modular](decisions/ADR-001-monorepo-modular.md)
-6. [README do backend](../backend/README.md)
-7. [README do edge](../edge/README.md)
-8. [README da matemática](../mathematics/README.md)
+1. [Plano de entrega e de vitória](../PLANO-DE-ENTREGA.md)
+2. [Arquitetura](architecture/overview.md)
+3. [API](api/README.md)
+4. [Testes e evidências](testing/README.md)
+5. [Deploy](deploy.md)
+6. [ADR-001 — monorepo modular](decisions/ADR-001-monorepo-modular.md)
+7. [README do backend](../backend/README.md)
+8. [README do edge](../edge/README.md)
+9. [README da matemática](../mathematics/README.md)
 
 ## Documentos correlatos
 
