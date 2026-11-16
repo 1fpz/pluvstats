@@ -133,6 +133,12 @@ antes de cada submissão.
 
 - [`../PLANO-DE-ENTREGA.md`](../PLANO-DE-ENTREGA.md) — documento mestre de
   entrega e de vitória, com cronograma, playbooks e riscos.
+- [`../SETUP.md`](../SETUP.md) — como clonar e rodar o projeto em outro PC, o que
+  não vem do GitHub e como regerar PDFs e ZIPs.
+- [`SUBMISSOES.md`](SUBMISSOES.md) — textos prontos para colar no Teams/Portal,
+  status de cada disciplina e o que conferir antes de enviar.
+- [`../design/presentation/slide-o-que-ouvimos.md`](../design/presentation/slide-o-que-ouvimos.md)
+  — guia para transformar 3 conversas reais no slide “O que ouvimos”.
 - [`demo-90s.md`](demo-90s.md) — roteiro cronometrado da demonstração, plano B e
   ensaio para a banca e para o vídeo.
 - [`../design/research/interview-kit.md`](../design/research/interview-kit.md) —

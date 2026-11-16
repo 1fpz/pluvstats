@@ -23,6 +23,7 @@ como medição física, e nenhuma entrevista ou teste de campo é inventado.
 
 ## Documentos correlatos
 
+- [Setup em outro PC](../SETUP.md)
 - [Requisitos](../design/requirements/requirements.md)
 - [Personas hipotéticas](../design/personas/personas.md)
 - [Jornadas](../design/journeys/journeys.md)

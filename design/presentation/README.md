@@ -14,6 +14,7 @@ mercado ou validação física inventada.
 | [`caso-de-uso.svg`](caso-de-uso.svg) | diagrama completo de casos de uso |
 | [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 8 |
 | [`rubrica-review.md`](rubrica-review.md) | revisão slide a slide contra os 100 pontos da disciplina |
+| [`slide-o-que-ouvimos.md`](slide-o-que-ouvimos.md) | guia e bloco HTML para inserir o slide de entrevistas, se elas acontecerem |
 | [`assets/`](assets/) | capturas reais do protótipo em demonstração |
 
 As capturas foram feitas do frontend em execução local, com dados demonstrativos.

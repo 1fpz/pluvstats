@@ -278,6 +278,11 @@ inteira no navegador com o repositório local de dados simulados.
 
 ## Como rodar
 
+> **Em outro PC?** O passo a passo completo — o que vem e o que não vem do
+> GitHub, instalação, testes, PDFs, ZIPs e pendências — está em
+> [`SETUP.md`](SETUP.md). Clone o repositório em vez de baixar o ZIP, para
+> preservar o histórico de commits.
+
 ### Pré-requisitos
 
 - **Node.js 20+** para o frontend;
@@ -434,6 +439,7 @@ pluvstats/
 ## Documentação principal
 
 - [Plano de entrega e de vitória](PLANO-DE-ENTREGA.md)
+- [Rodar o projeto em outro PC](SETUP.md)
 - [Arquitetura](documentation/architecture/overview.md)
 - [Contrato da API](documentation/api/README.md)
 - [Testes e evidências](documentation/testing/README.md)
@@ -447,6 +453,7 @@ pluvstats/
 - [Aplicação Python (menu e JSON)](python-app/readme.md)
 - [Relatório técnico de matemática](mathematics/report/relatorio-tecnico.pdf)
 - [Checklist de entrega por disciplina](deliverables/README.md)
+- [Pacote de submissão: textos prontos](deliverables/SUBMISSOES.md)
 - [Checklist de Edge e links do Wokwi/YouTube](edge/ENTREGA.md)
 - [Equipe e organização](TEAM.md)
 - [Uso de IA](AI.md)
