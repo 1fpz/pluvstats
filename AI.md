@@ -6,6 +6,15 @@ foi inventado para preencher lacunas. A documentação segue o que a disciplina 
 Web Development pede: ferramentas, interações representativas, aplicação no
 projeto, validação e análise crítica.
 
+## Autoria
+
+O projeto foi conduzido por **Felipe Ilek (RM 571322)**, responsável pelo
+desenvolvimento completo. **Marcos Vinícius Tudisco (RM 569366)** colaborou com a
+integração e **Michel Tatsuya Hanada (RM 571987)** com os testes.
+
+O uso de IA descrito abaixo foi uma ferramenta de apoio ao trabalho de autoria,
+revisão e validação. A responsabilidade pelo conteúdo entregue é dos integrantes.
+
 ## Ferramentas utilizadas
 
 | Ferramenta | Finalidade | Onde foi usada |

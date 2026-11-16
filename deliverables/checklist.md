@@ -9,11 +9,11 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 
 ## Dados da equipe
 
-| Integrante | RM | E-mail |
-| --- | --- | --- |
-| Felipe Ilek | 571322 | `[preencher]` |
-| Michel Tatsuya Hanada | 571987 | `[preencher]` |
-| Marcos Vinícius Tudisco | 569366 | `[preencher]` |
+| Integrante | RM | Participação | E-mail |
+| --- | --- | --- | --- |
+| Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto | `[preencher]` |
+| Marcos Vinícius Tudisco | 569366 | Integração | `[preencher]` |
+| Michel Tatsuya Hanada | 571987 | Testes | `[preencher]` |
 
 > Os e-mails não são inventados neste repositório. Preencha antes de submeter.
 

@@ -56,15 +56,15 @@ produção.
 
 ## Equipe
 
-| Integrante | RM | Frente de apresentação |
+| Integrante | RM | Participação |
 | --- | --- | --- |
-| Felipe Ilek | 571322 | Front-end, experiência do cidadão e identidade visual |
-| Michel Tatsuya Hanada | 571987 | Backend, API, persistência e integração |
-| Marcos Vinícius Tudisco | 569366 | Edge, matemática e validação de dados |
+| Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto |
+| Marcos Vinícius Tudisco | 569366 | Integração |
+| Michel Tatsuya Hanada | 571987 | Testes |
 
-A entrega é coletiva: a coluna indica quem conduz cada bloco na banca, e todas as
-partes foram revisadas em conjunto. Detalhes da organização e das evidências por
-frente em [`TEAM.md`](TEAM.md).
+O projeto foi conduzido por Felipe Ilek. Marcos Vinícius Tudisco colaborou com a
+integração e Michel Tatsuya Hanada com os testes. Detalhes da organização e das
+evidências por frente em [`TEAM.md`](TEAM.md).
 
 ## O problema que queremos resolver
 

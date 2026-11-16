@@ -7,7 +7,8 @@
 | **Prazo oficial** | 19/11/2026, às 23h55 |
 | **Hoje** | 13/11/2026 (sexta-feira) |
 | **Tempo restante** | 6 dias |
-| **Equipe** | Felipe Ilek (RM 571322) · Michel Tatsuya Hanada (RM 571987) · Marcos Vinícius Tudisco (RM 569366) |
+| **Equipe** | Felipe Ilek (RM 571322) · Marcos Vinícius Tudisco (RM 569366) · Michel Tatsuya Hanada (RM 571987) |
+| **Autoria** | Felipe Ilek (projeto completo) · Marcos Vinícius Tudisco (integração) · Michel Tatsuya Hanada (testes) |
 | **Repositório** | <https://github.com/1fpz/pluvstats> — público, branch `main` |
 | **Entrega** | Teams (6 disciplinas) + Portal do aluno (Matemática) |
 
@@ -189,13 +190,13 @@ o arquivo no campo de upload e envie. Guarde o recibo do Forms.
 
 | Disciplina | Titular sugerido | Reserva | Por quê |
 | --- | --- | --- | --- |
-| Python | Michel | Felipe | backend e Python |
-| Matemática | Marcos | Michel | modelo e relatório |
-| Edge | Marcos | Felipe | firmware e Wokwi |
-| Front-end | Felipe | Michel | interface e deploy |
-| Experience | Felipe | Marcos | deck e narrativa |
-| Pitch | Felipe | Michel | branding e vídeo |
-| Web | Michel | Felipe | código, hooks e API |
+| Python | Felipe | Michel | Felipe conduziu o projeto; Michel revisa os testes |
+| Matemática | Felipe | Marcos | Felipe conduziu o projeto; Marcos revisa a integração |
+| Edge | Felipe | Marcos | Felipe conduziu o projeto; Marcos revisa a integração |
+| Front-end | Felipe | Michel | Felipe conduziu o projeto; Michel revisa os testes |
+| Experience | Felipe | Marcos | Felipe conduziu o projeto; Marcos revisa a integração |
+| Pitch | Felipe | Michel | Felipe conduziu o projeto; Michel revisa os testes |
+| Web | Felipe | Marcos | Felipe conduziu o projeto; Marcos revisa a integração |
 
 O titular é quem clica em **Entregar**; a reserva confere o texto, os links e o
 arquivo antes. Ninguém submete sem o outro ter revisado.
@@ -261,8 +262,10 @@ práticas, 10 interface), 20 `prompt.md` + `readme.md`. Formato errado: −10.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Computational Thinking with Python
 Projeto: PLUVSTATS — inteligência territorial para águas urbanas
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Anexo: pluvstats-python.zip
 Conteúdo: app.py, prompt.md, readme.md, tests/ e data/.
@@ -326,8 +329,10 @@ O projeto é um protótipo acadêmico com dados simulados identificados.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Differentiated Problem Solving
 Projeto: PLUVSTATS
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Anexos: pluvstats_model.py, plot_scenarios.py, relatorio-tecnico.pdf.
 O modelo é linear e didático; não é um modelo hidrológico calibrado.
@@ -391,8 +396,10 @@ O passo a passo está na seção 4.1 e 4.2.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Edge Computing & Computer Systems
 Projeto: PLUVSTATS — nó de borda com ESP32
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Projeto Wokwi (público): <COLAR LINK>
 Vídeo no YouTube (não listado): <COLAR LINK>
@@ -487,8 +494,10 @@ indicarem os usuários”. Não deixe para decidir no dia 19.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Front-end Design
 Projeto: PLUVSTATS
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Repositório: https://github.com/1fpz/pluvstats
 Deploy: <COLAR URL>
@@ -573,8 +582,10 @@ estatística”.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Software & Total Experience Design
 Projeto: PLUVSTATS — da proposta ao roadmap
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Anexo: pluvstats-experience.pdf (18 slides, ou 19 se o slide “O que ouvimos”
 for adicionado sem substituir o slide 16).
@@ -644,8 +655,10 @@ O passo a passo está na seção 4.5.
 Global Solution 2026.2 — CitizenTech
 Disciplina: Storytelling & Inspiração Empreendedora
 Projeto: PLUVSTATS
-Equipe: Felipe Ilek (RM 571322), Michel Tatsuya Hanada (RM 571987),
-Marcos Vinícius Tudisco (RM 569366)
+Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
+Michel Tatsuya Hanada (RM 571987)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
+Michel Tatsuya Hanada (testes)
 
 Anexo: pluvstats-pitch-email.pdf (e-mail ao investidor + link do vídeo).
 Vídeo: <COLAR LINK>
@@ -1037,10 +1050,10 @@ Números concretos vencem adjetivos.
 | Bloco | Tempo | Quem |
 | --- | --- | --- |
 | Capa, problema e escopo | 3 min | Felipe |
-| Requisitos e caso de uso | 3 min | Michel |
+| Requisitos e caso de uso | 3 min | Felipe |
 | Protótipo, heurísticas e tom | 4 min | Felipe |
-| Edge e matemática | 3 min | Marcos |
-| Roadmap, limites e encerramento | 2 min | todos |
+| Edge e matemática | 3 min | Felipe |
+| Roadmap, limites e encerramento | 2 min | Felipe, com Marcos e Michel |
 
 Ensaie a troca de fala. Não leia tabela. Escolha dois requisitos e explique o
 critério.

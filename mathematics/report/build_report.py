@@ -17,6 +17,7 @@ import json
 import shutil
 import subprocess
 import sys
+import tempfile
 from datetime import date
 from pathlib import Path
 
@@ -38,9 +39,9 @@ EDGE_CANDIDATES = [
 ]
 
 TEAM = [
-    ("Felipe Ilek", "571322", "Front-end, experiência do cidadão e identidade visual"),
-    ("Michel Tatsuya Hanada", "571987", "Backend, API, persistência e integração"),
-    ("Marcos Vinícius Tudisco", "569366", "Edge, matemática e validação de dados"),
+    ("Felipe Ilek", "571322", "Autoria e desenvolvimento do projeto"),
+    ("Marcos Vinícius Tudisco", "569366", "Integração"),
+    ("Michel Tatsuya Hanada", "571987", "Testes"),
 ]
 
 
@@ -204,7 +205,7 @@ def build_html() -> str:
       </table>
       <h3>Equipe</h3>
       <table>
-        <thead><tr><th>Integrante</th><th>RM</th><th>Frente de apresentação</th></tr></thead>
+        <thead><tr><th>Integrante</th><th>RM</th><th>Participação</th></tr></thead>
         <tbody>
         {team_rows}
         </tbody>
@@ -501,20 +502,22 @@ def main() -> int:
         print("Edge não encontrado; o HTML foi gerado e o PDF não foi atualizado.")
         return 0
 
-    subprocess.run(
-        [
-            str(edge),
-            "--headless",
-            "--disable-gpu",
-            "--no-first-run",
-            f"--print-to-pdf={PDF_PATH}",
-            "--print-to-pdf-no-header",
-            HTML_PATH.as_uri(),
-        ],
-        check=False,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+    with tempfile.TemporaryDirectory(prefix="pluvstats-edge-") as profile:
+        subprocess.run(
+            [
+                str(edge),
+                "--headless=new",
+                "--disable-gpu",
+                "--no-first-run",
+                f"--user-data-dir={profile}",
+                f"--print-to-pdf={PDF_PATH}",
+                "--print-to-pdf-no-header",
+                HTML_PATH.as_uri(),
+            ],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
     if PDF_PATH.exists():
         print(f"wrote {PDF_PATH.relative_to(REPO_ROOT)}")
         return 0

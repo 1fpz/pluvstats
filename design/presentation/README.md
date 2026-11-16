@@ -48,11 +48,11 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 
 ## Equipe
 
-| Integrante | RM | Frente de apresentação |
+| Integrante | RM | Participação |
 | --- | --- | --- |
-| Felipe Ilek | 571322 | Front-end, experiência do cidadão e identidade visual |
-| Michel Tatsuya Hanada | 571987 | Backend, API, persistência e integração |
-| Marcos Vinícius Tudisco | 569366 | Edge, matemática e validação de dados |
+| Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto |
+| Marcos Vinícius Tudisco | 569366 | Integração |
+| Michel Tatsuya Hanada | 571987 | Testes |
 
 ## Como regenerar o PDF
 
