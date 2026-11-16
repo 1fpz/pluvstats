@@ -58,8 +58,9 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 - [x] Limiares justificados e sincronizados com o JSON.
 - [x] Diagrama do Wokwi escrito.
 - [x] Contrato de telemetria documentado.
-- [ ] Compilar o firmware com o core ESP32.
-- [ ] Executar o Wokwi e confirmar que abre sem ajustes.
+- [ ] Compilar o firmware com o core ESP32 em hardware físico.
+- [x] Executar o Wokwi e confirmar que abre sem ajustes.
+- [x] Confirmar os cinco estados com troca manual de distância.
 - [ ] Publicar o projeto no Wokwi como público.
 - [ ] Gravar vídeo de até 7 minutos com imagem e voz.
 - [ ] Publicar o vídeo no YouTube (público ou não listado).
@@ -159,7 +160,7 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 - que o sistema prevê enchentes;
 - que há dados oficiais da Prefeitura ou Defesa Civil;
 - que o hardware foi validado em campo;
-- que o Wokwi foi executado, enquanto não for;
+- que a simulação no Wokwi é validação física ou medição de campo;
 - que há usuários, entrevistas, tração ou parceria;
 - que o deploy está no ar, enquanto não estiver;
 - que o modelo foi calibrado ou validado por especialistas.

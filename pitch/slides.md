@@ -117,8 +117,8 @@ t = (h_limite − h_atual) / v
 - Classificação local com histerese.
 - Header de limiares gerado do JSON compartilhado.
 - Upload HTTP opcional, com chave local.
-- **Status:** preparado, não compilado, não testado fisicamente, Wokwi não
-  executado.
+- **Status:** simulação executada no Wokwi; não compilado nem testado em
+  hardware físico; link público pendente.
 
 > Nota: não simular uma conexão ao vivo. Se não houver hardware, dizer isso.
 
@@ -149,8 +149,8 @@ t = (h_limite − h_atual) / v
 - integração frontend + API verificada em navegador;
 - fallback verificado com API indisponível.
 
-**Não executado:** hardware físico, Wokwi, carga, acessibilidade com usuários,
-teste de segurança ofensiva.
+**Não executado:** hardware físico, carga, acessibilidade com usuários, teste de
+segurança ofensiva.
 
 ---
 
@@ -171,8 +171,8 @@ teste de segurança ofensiva.
 ## 12. Próximos passos
 
 1. Entrevistas e teste de usabilidade.
-2. Compilar o firmware e executar o Wokwi.
-3. Experimento de bancada com distâncias conhecidas.
+2. Publicar o projeto no Wokwi e gravar a demonstração em vídeo.
+3. Compilar o firmware e testar em bancada com distâncias conhecidas.
 4. Avaliar acessibilidade e autenticação.
 5. Definir requisitos de produção com parceiros.
 

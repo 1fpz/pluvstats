@@ -38,7 +38,7 @@ execução humana em 6 dias.
 
 | # | Bloqueio | Disciplina | O que está em jogo | Tempo estimado | Consequência se não fizer |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Wokwi não executado e não publicado | Edge | 2 links obrigatórios; 25 pts de vídeo + circuito/lógica | 1–2 h para rodar + 2–3 h para gravar | A disciplina fica sem a entrega principal |
+| 1 | Wokwi executado, mas ainda não publicado | Edge | 2 links obrigatórios; 25 pts de vídeo + circuito/lógica | 10 min para publicar + 2–3 h para gravar | A disciplina fica sem a entrega principal |
 | 2 | Deploy não publicado | Front-end e Web | Item obrigatório nas duas disciplinas | 1–2 h (frontend) + 2 h (API, opcional) | Entrega incompleta e perda de requisito explícito |
 | 3 | Vídeo de 3 minutos não gravado | Pitch | 2,0 de 10 + todo o critério de storytelling | 2–3 h incluindo retakes | Nota capada em 8,0 e narrativa sem prova |
 | 4 | Nenhuma conversa com pessoa real | Experience | 10 pts de problema + parte dos 25 de protótipo | 3 conversas de 25 min + 2 h de síntese | O briefing é descumprido no ponto que ele mais repete |
@@ -50,8 +50,8 @@ execução humana em 6 dias.
    usuário do GitHub de cada professor **hoje**, pelo Teams.
 2. **Publicar o frontend na Vercel.** É o item de maior retorno por hora: resolve
    um requisito de duas disciplinas e cria a URL que o vídeo e o Pitch vão usar.
-3. **Abrir o Wokwi e rodar o projeto.** Não grave o vídeo antes de ver os cinco
-   estados funcionando. O roteiro está pronto em `edge/ENTREGA.md`.
+3. **Publicar o Wokwi e testar o link.** A simulação já roda os cinco estados com
+   troca manual de distância. O roteiro está em `edge/roteiro-video-marcos.md`.
 4. **Marcar as três conversas** para sábado e domingo. Use
    `design/research/interview-kit.md`. Sem isso, o teto de Experience continua
    baixo.
@@ -84,7 +84,7 @@ execução humana em 6 dias.
 
 | Pendência | Estado real | Onde está registrado |
 | --- | --- | --- |
-| Wokwi executado e público | **não executado** | `edge/ENTREGA.md` (2 placeholders) |
+| Wokwi executado e público | **executado; link público pendente** | `edge/ENTREGA.md` (2 placeholders) |
 | Vídeo de Edge (até 7 min) | **não gravado** | `edge/ENTREGA.md` |
 | Deploy do frontend | **não publicado** | `README.md` e `documentation/deploy.md` |
 | Backend publicado | **não publicado** | `documentation/deploy.md` |
@@ -376,12 +376,10 @@ qualidade do código 15, vídeo 25.
 
 #### O que falta
 
-1. **Rodar o Wokwi** e confirmar que compila e abre sem ajustes.
-2. **Percorrer os cinco estados** alterando a distância do HC-SR04.
-3. **Publicar o projeto** e copiar o link público.
-4. **Gravar o vídeo** de até 7 minutos.
-5. **Publicar no YouTube** como público ou não listado.
-6. **Preencher os dois links** em `edge/ENTREGA.md` e no Teams.
+1. **Publicar o projeto** no Wokwi e copiar o link público.
+2. **Gravar o vídeo** de até 7 minutos, com troca manual de distância.
+3. **Publicar no YouTube** como público ou não listado.
+4. **Preencher os dois links** em `edge/ENTREGA.md` e no Teams.
 
 O passo a passo está na seção 4.1 e 4.2.
 
@@ -1176,7 +1174,7 @@ A interface foi desenhada para não parecer oficial quando não é.
 - que o sistema **prevê enchentes** ou alerta em tempo real;
 - que há **dados oficiais** da Prefeitura, Defesa Civil ou qualquer órgão;
 - que o **hardware foi validado** em campo ou em bancada;
-- que o **Wokwi foi executado** enquanto não for;
+- que a **simulação no Wokwi é validação física** ou medição de campo;
 - que há **usuários, entrevistas, tração ou parceria** enquanto não houver;
 - que o **deploy está no ar** enquanto não estiver;
 - que o modelo foi **calibrado ou validado** por especialistas;
@@ -1307,7 +1305,7 @@ menos não será por falta de entrega.
 Nenhum documento, script ou revisão substitui estas quatro ações:
 
 1. **Conversar com três pessoas reais** e registrar com consentimento.
-2. **Rodar o Wokwi** e gravar o vídeo de Edge.
+2. **Publicar o Wokwi** e gravar o vídeo de Edge.
 3. **Publicar o deploy** e testar a URL.
 4. **Gravar o vídeo de 3 minutos** com rosto, voz e slides.
 

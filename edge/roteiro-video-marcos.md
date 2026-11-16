@@ -9,7 +9,7 @@ Projeto: **PLUVSTATS — nó de borda com ESP32**.
 
 ## Antes de gravar
 
-- [ ] Abrir o projeto no Wokwi e confirmar que ele roda sem ajustes manuais.
+- [ ] Abrir o projeto no Wokwi e confirmar que ele compila e roda sem ajustes.
 - [ ] Abrir o **Serial Monitor** em **115200 bauds**.
 - [ ] Testar os cinco estados uma vez, sem gravar.
 - [ ] Fechar notificações, abas e programas que possam aparecer na tela.
@@ -20,22 +20,30 @@ Projeto: **PLUVSTATS — nó de borda com ESP32**.
 
 ### Como trocar os estados no Wokwi
 
-Clique no sensor **HC-SR04** e altere o campo de distância. O firmware faz cinco
-leituras por segundo e publica no Serial a cada 5 segundos ou quando o estado
-muda.
+A demonstração é **manual**: clique no sensor **HC-SR04**, altere o campo de
+distância e espere a próxima leitura. O firmware faz cinco leituras por segundo e
+publica no Serial a cada 5 segundos ou quando o estado muda.
 
-> **Importante:** a taxa de subida usa uma janela de 10 a 60 segundos. Se você
-> mudar de 112 cm para 25 cm de uma vez, o estado pode demorar a acompanhar. Para
-> gravar, o jeito mais estável é **reiniciar a simulação com a distância já no
-> valor do estado**. Se preferir mudar ao vivo, espere a janela estabilizar e
-> corte a espera na edição.
+Com o ajuste novo, **não é preciso reiniciar a simulação** para trocar de estado.
+O firmware tem uma proteção de plausibilidade: se a distância mudar de uma vez e
+a taxa calculada passar de **30 cm/min**, ele entende que foi um salto de leitura
+(como o slider manual), descarta a janela de taxa e classifica pelo nível. No
+Serial aparece:
+
+```text
+[guard] implausible slope ... cm/min ignored; rate restarted
+```
+
+Depois desse aviso, o estado acompanha o nível em uma ou duas leituras. Isso é
+esperado e pode aparecer no vídeo: é a prova de que o firmware não confunde um
+salto manual com uma subida real da água.
 
 ## Estrutura e tempos
 
 | Tempo | Bloco | O que aparece |
 | --- | --- | --- |
 | 0:00–0:20 | Abertura | rosto ou tela com o título PLUVSTATS |
-| 0:20–0:50 | Problema e cidadão | uma frase e o mapa mental do ponto de alagamento |
+| 0:20–0:50 | Problema e cidadão | uma frase e o ponto de alagamento |
 | 0:50–1:40 | O nó de borda | diagrama do Wokwi: ESP32, HC-SR04, LEDs e buzzer |
 | 1:40–2:50 | Como o firmware decide | trecho do código e explicação dos limiares |
 | 2:50–5:40 | Demonstração dos cinco estados | Wokwi + Serial Monitor |
@@ -69,9 +77,10 @@ Mostre o diagrama completo no Wokwi e vá apontando para cada componente.
 > **120 cm de altura do sensor menos a distância**. Com **100 cm de profundidade**
 > de canal, a lâmina d'água fica limitada entre 0 e 100 cm.”
 >
-> “O HC-SR04 usa **TRIG no GPIO 5** e **ECHO no GPIO 18**. O ECHO devolve 5 V,
-> então o diagrama prevê um **divisor de tensão** antes do ESP32. Os LEDs estão
-> em **D25, D26, D27 e D14**, cada um com resistor de 220 ohms. O buzzer está em
+> “O HC-SR04 usa **TRIG no GPIO 5** e **ECHO no GPIO 18**. No Wokwi, o ECHO vai
+> direto ao ESP32. No hardware real, é obrigatório um **divisor de tensão**,
+> porque o sensor devolve 5 V e o ESP32 não é tolerante a 5 V. Os LEDs estão em
+> **D25, D26, D27 e D14**, cada um com resistor de 220 ohms. O buzzer está em
 > **D12**. A alimentação é 5 V e o GND é comum.”
 
 ### 1:40–2:50 — Como o firmware decide
@@ -88,18 +97,23 @@ Mostre o código, sem precisar ler linha por linha. Aponte para as funções
 > e 4,5 cm por minuto**. O estado local é o mais severo entre nível e taxa.”
 >
 > “Há **histerese** de 4 cm para o nível e 0,4 cm/min para a taxa, para o estado
-> não ficar piscando. Se três leituras seguidas falharem, o firmware entra em
-> **falha de sensor**: LED amarelo piscando e um padrão de erro no buzzer.”
+> não ficar piscando. Também há uma proteção contra saltos: se a taxa calculada
+> passar de **30 cm/min**, o firmware descarta a janela e classifica apenas pelo
+> nível. É isso que permite trocar a distância manualmente no Wokwi sem travar o
+> estado.”
+>
+> “Se três leituras seguidas falharem, o firmware entra em **falha de sensor**:
+> LED amarelo piscando e um padrão de erro no buzzer.”
 
 ### 2:50–5:40 — Demonstração dos cinco estados
 
-Mostre o Wokwi e o Serial Monitor lado a lado. Para cada estado, deixe o LED e o
-buzzer aparecerem antes de falar.
+Mostre o Wokwi e o Serial Monitor lado a lado. A cada mudança, espere a próxima
+leitura e deixe o LED e o buzzer aparecerem antes de falar.
 
 **Normal — 112 cm de distância, 8 cm de nível**
 
 > “Primeiro, o estado **normal**: distância de 112 cm, nível de 8 cm. LED verde,
-> sem som. O JSON mostra `severity: normal`.”
+> sem som. O JSON mostra `severity: normal` e `simulated: true`.”
 
 **Atenção — 90 cm de distância, 30 cm de nível**
 
@@ -116,16 +130,16 @@ buzzer aparecerem antes de falar.
 > “**Crítico**: 25 cm de distância, 95 cm de nível. LED vermelho e três bipes a
 > cada 2 segundos.”
 
-**Falha — leitura fora da faixa**
+**Falha — 400 cm de distância, fora da faixa válida**
 
-> “Por último, a **falha de sensor**. Vou colocar uma distância fora da faixa
-> válida. O firmware precisa de três leituras inválidas consecutivas; em alguns
+> “Por último, a **falha de sensor**. Vou colocar 400 cm, acima do limite de 380
+> cm. O firmware precisa de três leituras inválidas consecutivas; em alguns
 > segundos o LED amarelo começa a piscar e o buzzer faz o padrão de erro. O
 > último estado conhecido não é promovido a leitura válida.”
 
-> “Se a mudança demorar alguns segundos, é por causa da janela de taxa de 10 a 60
-> segundos. Por isso, em alguns cortes eu reinicio a simulação com a distância já
-> no valor do estado.”
+> “A troca é manual, mas a decisão é do firmware. Quando o salto é grande, aparece
+> o aviso `[guard] implausible slope` e o estado passa a seguir o nível. Não é
+> preciso reiniciar a simulação.”
 
 ### 5:40–6:30 — Código e telemetria
 
@@ -133,16 +147,17 @@ Mostre o Serial Monitor com uma linha JSON e depois o trecho principal do códig
 
 > “No Serial, a cada 5 segundos ou quando o estado muda, sai um JSON com
 > `deviceId`, `distanceCm`, `waterLevelCm`, `rateCmPerMin`, `severity`, `valid`,
-> `fault` e `firmwareVersion`. É esse contrato que o backend usaria para receber
-> a leitura.”
+> `fault`, `firmwareVersion` e `simulated`. É esse contrato que o backend usaria
+> para receber a leitura.”
 >
 > “No código, `readDistanceCm` faz a aquisição e a mediana; `evaluateLevel` e
 > `evaluateRate` aplicam os limiares; `stabilize` implementa a histerese; e
-> `updateOutputs` escolhe o LED e o padrão do buzzer.”
+> `updateOutputs` escolhe o LED e o padrão do buzzer. O buzzer usa `tone()` e
+> `noTone()` porque o componente do Wokwi só toca com uma frequência.”
 
-> **Cuidado ao mostrar o JSON:** a execução é no Wokwi. O campo
-> `simulated: false` pertence ao contrato do firmware e **não** é uma afirmação
-> de que existe sensor físico ou medição de campo. Diga isso com clareza.
+> **Ponto importante:** no Wokwi, o JSON mostra **`simulated: true`** — o firmware
+> foi compilado para a simulação. Isso é o correto. Só um dispositivo físico,
+> compilado com `-DPLUVSTATS_SIMULATED=0`, emitiria `simulated: false`.
 
 ### 6:30–7:00 — Limites e fechamento
 
@@ -162,8 +177,9 @@ Mostre o Serial Monitor com uma linha JSON e depois o trecho principal do códig
 - [ ] A imagem e a voz estão audíveis e legíveis.
 - [ ] Os nomes e RMs dos três integrantes aparecem ou são falados.
 - [ ] Os cinco estados aparecem: normal, atenção, alerta, crítico e falha.
-- [ ] O Serial Monitor mostra o JSON.
+- [ ] O Serial Monitor mostra o JSON com `simulated: true`.
 - [ ] O vídeo explica os componentes e os limiares.
+- [ ] O vídeo mostra a troca manual da distância e a decisão automática.
 - [ ] O vídeo cita o cidadão, o problema, o local e os ODS.
 - [ ] O vídeo declara que é simulação e que não há validação física.
 - [ ] O projeto no Wokwi está público e abre sem ajustes.

@@ -7,10 +7,11 @@ plataforma e imprime telemetria JSON na porta serial.
 A frente de **Edge Computing & Computer Systems** foi conduzida por
 **Marcos Vinícius Tudisco (RM 569366)**, com revisão geral de Felipe Ilek.
 
-> **Estado de validação:** firmware e diagrama preparados, mas **não executados em
-> hardware físico nem no Wokwi** neste ambiente. Nenhum dispositivo real foi calibrado,
-> instalado ou testado. O caminho de rede é opcional e também não foi validado contra
-> um ESP32 real. Nada aqui comprova conectividade física.
+> **Estado de validação:** a simulação foi executada no **Wokwi** pela equipe e o
+> firmware foi ajustado até os cinco estados funcionarem com troca manual de
+> distância. **Não houve hardware físico**: nenhum dispositivo real foi calibrado,
+> instalado ou testado. O caminho de rede é opcional e não foi validado contra um
+> ESP32 real. Nada aqui comprova conectividade física.
 
 ## Estrutura
 
@@ -44,6 +45,9 @@ edge/
 | `D14` (GPIO14) | LED vermelho + resistor 220 Ω | crítico |
 | `D12` (GPIO12) | buzzer ativo | assume buzzer ativo em nível alto; ajuste `kBuzzerActiveHigh` se o módulo for ativo em nível baixo |
 
+No **Wokwi**, o `ECHO` vai direto ao `D18`, porque o simulador não aplica 5 V ao
+pino. No **hardware real**, o divisor de tensão é obrigatório.
+
 O sensor é instalado no topo do canal, voltado para a água. A distância medida é a
 distância até a superfície; a lâmina é derivada da geometria compartilhada.
 
@@ -60,9 +64,13 @@ distância até a superfície; a lâmina é derivada da geometria compartilhada.
 - **Classificação:** faixas de `shared/pluvstats.config.json` para nível e taxa,
   com **histerese** idêntica à do backend (`app/intelligence/thresholds.py`). O estado
   local é o mais severo entre nível e taxa.
+- **Plausibilidade:** se a taxa calculada passar de **30 cm/min**, o firmware trata
+  como salto de leitura (slider do Wokwi, respingo ou glitch), descarta a janela de
+  taxa e volta a classificar pelo nível até formar uma inclinação limpa. Isso permite
+  demonstrar os estados com troca manual de distância sem reiniciar a simulação.
 - **Falha:** três leituras inválidas consecutivas (ou timeout) marcam falha de sensor.
   O LED amarelo pisca e o buzzer emite um padrão de erro; o último estado conhecido
-  não é promovido a leitura válida.
+  não é promovido a leitura válida e a janela de taxa é descartada.
 
 Saídas locais:
 
@@ -116,12 +124,14 @@ O monitor serial deve ser aberto em **115200 bauds**. A linha JSON é emitida a 
   "waterLevelCm": 50.0,
   "rateCmPerMin": 1.8,
   "severity": "alert",
-  "simulated": false
+  "simulated": true
 }
 ```
 
-`simulated: false` identifica a origem física do firmware. O backend só considera a
-leitura válida se ela também for recente e estiver dentro da faixa aceita.
+`simulated: true` identifica a execução no **Wokwi**. O firmware compilado para um
+dispositivo físico, com `-DPLUVSTATS_SIMULATED=0`, emite `simulated: false`. O
+backend só considera a leitura válida se ela também for recente e estiver dentro da
+faixa aceita.
 
 ## Upload HTTP (opcional, não validado)
 
@@ -157,10 +167,10 @@ O projeto usa a extensão Wokwi para VS Code:
 3. inicie a simulação;
 4. ajuste a distância no HC-SR04 e observe LEDs, buzzer e monitor serial.
 
-`diagram.json` e `wokwi.toml` foram escritos para essa montagem, mas **a simulação não
-foi executada** neste ambiente. Não trate uma execução futura no Wokwi como validação
-física: o Wokwi simula o sensor e não reproduz calibração, ruído, splashes, obstrução
-ou falhas de alimentação.
+A simulação foi executada pela equipe com troca **manual** da distância no HC-SR04.
+O firmware usa `tone()`/`noTone()` no buzzer porque o componente do Wokwi só toca com
+frequência. Não trate a execução no Wokwi como validação física: o simulador não
+reproduz calibração, ruído, splashes, obstrução ou falhas de alimentação.
 
 ## Limitações e segurança
 
@@ -176,8 +186,8 @@ ou falhas de alimentação.
 
 ## Próximos passos de validação
 
-1. Compilar com a versão real do core ESP32 e registrar o resultado.
-2. Executar o diagrama no Wokwi e anexar captura/telemetria ao relatório.
+1. Publicar o projeto no Wokwi e anexar o link público.
+2. Compilar com a versão real do core ESP32 e registrar o resultado em hardware.
 3. Montar um banco de testes com distâncias conhecidas e comparar a mediana com uma
    régua; documentar erro e repetibilidade.
 4. Testar o upload em rede local com o backend em banco descartável.

@@ -33,6 +33,12 @@
 #define PLUVSTATS_ENABLE_NETWORK 0
 #endif
 
+// 1 = data comes from the Wokwi simulator (this project); build with
+// -DPLUVSTATS_SIMULATED=0 only for a real, wired device.
+#ifndef PLUVSTATS_SIMULATED
+#define PLUVSTATS_SIMULATED 1
+#endif
+
 #ifndef PLUVSTATS_DEVICE_ID
 #define PLUVSTATS_DEVICE_ID "PLUV-ESP32-0001"
 #endif
@@ -71,6 +77,13 @@ constexpr uint32_t kRateWindowMs = 60000UL;
 constexpr uint32_t kRateMinimumSpanMs = 10000UL;
 constexpr uint8_t kInvalidSamplesForFault = 3;
 constexpr uint8_t kWindowSize = 90;
+
+// Plausibility guard (firmware only, not part of the shared API thresholds):
+// water in a 100 cm channel cannot rise or fall by tens of cm/min in a real
+// event, so a slope above this value is a jump in the reading (simulator
+// slider, splash, glitch), not a flood trend. The window is discarded and the
+// state falls back to the level thresholds until a clean slope exists again.
+constexpr float kMaxPlausibleRateCmPerMin = 30.0f;
 
 const char kFirmwareVersion[] = PLUVSTATS_FIRMWARE_VERSION;
 
@@ -268,7 +281,17 @@ void updateOutputs(uint32_t now) {
             gSeverity == kAlert, gSeverity == kCritical);
   }
   const bool on = buzzerActive(gSeverity, gFault, now);
-  digitalWrite(kPinBuzzer, (on == kBuzzerActiveHigh) ? HIGH : LOW);
+  // Wokwi's buzzer only sounds with a frequency, so use tone()/noTone().
+  // Calling it only on change avoids clicks from re-starting the tone.
+  static bool buzzing = false;
+  if (on != buzzing) {
+    buzzing = on;
+    if (on) {
+      tone(kPinBuzzer, 2000);
+    } else {
+      noTone(kPinBuzzer);
+    }
+  }
 }
 
 const char *severityLabel(Severity severity) {
@@ -297,19 +320,20 @@ void publishTelemetry(uint32_t now, bool valid) {
         "{\"deviceId\":\"%s\",\"firmwareVersion\":\"%s\",\"uptimeMs\":%lu,"
         "\"valid\":true,\"fault\":%s,\"distanceCm\":%.1f,"
         "\"waterLevelCm\":%.1f,\"rateCmPerMin\":%s,\"severity\":\"%s\","
-        "\"simulated\":false}\n",
+        "\"simulated\":%s}\n",
         PLUVSTATS_DEVICE_ID, kFirmwareVersion,
         static_cast<unsigned long>(now), gFault ? "true" : "false",
-        gLastDistanceCm, gLastLevelCm, rate, severityLabel(gSeverity));
+        gLastDistanceCm, gLastLevelCm, rate, severityLabel(gSeverity),
+        PLUVSTATS_SIMULATED ? "true" : "false");
   } else {
     Serial.printf(
         "{\"deviceId\":\"%s\",\"firmwareVersion\":\"%s\",\"uptimeMs\":%lu,"
         "\"valid\":false,\"fault\":%s,\"distanceCm\":null,"
         "\"waterLevelCm\":null,\"rateCmPerMin\":null,\"severity\":\"%s\","
-        "\"simulated\":false}\n",
+        "\"simulated\":%s}\n",
         PLUVSTATS_DEVICE_ID, kFirmwareVersion,
         static_cast<unsigned long>(now), gFault ? "true" : "false",
-        severityLabel(gSeverity));
+        severityLabel(gSeverity), PLUVSTATS_SIMULATED ? "true" : "false");
   }
 }
 
@@ -410,13 +434,27 @@ void loop() {
 
     pushSample(now, gLastLevelCm);
     gRateCmPerMin = computeRateCmPerMin(now);
+    if (!isnan(gRateCmPerMin) && fabsf(gRateCmPerMin) > kMaxPlausibleRateCmPerMin) {
+      Serial.printf("[guard] implausible slope %.1f cm/min ignored; rate restarted\n",
+                    gRateCmPerMin);
+      gWindowCount = 0;
+      pushSample(now, gLastLevelCm);
+      gRateCmPerMin = NAN;
+      gRateSeverity = kNormal;
+    }
 
     const Severity levelSeverity = evaluateLevel(gLastLevelCm);
     const Severity rateSeverity = evaluateRate(gRateCmPerMin);
     gSeverity = levelSeverity > rateSeverity ? levelSeverity : rateSeverity;
   } else {
     gInvalidStreak++;
-    if (gInvalidStreak >= kInvalidSamplesForFault) gFault = true;
+    if (gInvalidStreak >= kInvalidSamplesForFault) {
+      gFault = true;
+      // Old samples are no longer trustworthy once the sensor has failed.
+      gWindowCount = 0;
+      gRateCmPerMin = NAN;
+      gRateSeverity = kNormal;
+    }
   }
 
   const bool publish =

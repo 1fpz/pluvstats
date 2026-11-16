@@ -27,7 +27,7 @@ Preencha uma vez e use nos textos abaixo.
 | **Experience** | 5 minutos | atualizar o slide 17, regerar o PDF; entrevista é opcional |
 | **Front-end** | 5 minutos | colar a URL no README, gerar o ZIP do projeto |
 | **Web** | 5 minutos | mesmo deploy e ZIP do Front-end |
-| **Edge** | bloqueado | gravar o vídeo, publicar e colar os 2 links |
+| **Edge** | quase pronto | publicar o Wokwi, gravar o vídeo e colar os 2 links |
 | **Pitch** | bloqueado | gravar o vídeo, publicar e gerar o PDF do e-mail com o link |
 
 **A única 100% pronta neste instante é Matemática.** Python e Experience ficam
@@ -147,8 +147,9 @@ O protótipo é acadêmico, não foi validado fisicamente e não é um sistema
 oficial de alerta.
 ```
 
-> Se o Wokwi tiver qualquer ajuste manual para rodar, **não envie ainda**. O
-> enunciado pede projeto que abre e roda sozinho.
+> Se o projeto exigir ajuste de código ou de fiação para rodar, **não envie
+> ainda**. A troca manual da distância no HC-SR04 é a demonstração e não conta
+> como ajuste do projeto.
 
 ---
 
@@ -204,8 +205,8 @@ Diagnóstico informa o fallback. Com VITE_API_BASE_URL, o CRUD usa a API FastAPI
 
 **Antes de enviar:**
 
-- o deck ainda diz que Wokwi e Vercel “não foram executados”; atualize o slide
-  17 e regenere o PDF (comando abaixo);
+- confira no slide 17 se o Wokwi aparece como executado e o deploy como
+  pendente; regenere o PDF se o HTML tiver mudado (comando abaixo);
 - se **não** fizer entrevistas, use a versão A do texto e não mencione conversas;
 - se fizer as 3 conversas, siga
   [`slide-o-que-ouvimos.md`](../design/presentation/slide-o-que-ouvimos.md),

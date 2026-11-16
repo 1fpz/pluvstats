@@ -105,14 +105,14 @@ python edge/tools/sync_thresholds.py --check
 
 Resultados registrados nesta entrega: **23 testes de frontend, 31 de backend, 35
 de matemática, 12 da aplicação Python e 4 de sincronização de limiares**. O
-firmware não foi compilado e o Wokwi não foi executado.
+firmware foi executado no Wokwi; não houve compilação em hardware físico.
 
 ## O que a IA não fez
 
 - não realizou entrevistas, questionários ou observação de campo;
 - não coletou dados oficiais;
-- não testou hardware físico;
-- não executou o Wokwi;
+- não testou hardware físico nem calibrou sensor;
+- não validou a simulação do Wokwi como medição de campo;
 - não validou o modelo com especialistas;
 - não criou credenciais, convênios ou parcerias;
 - não mediu impacto social ou precisão hidrológica;

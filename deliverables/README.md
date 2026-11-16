@@ -14,7 +14,7 @@ humana está marcado como **pendente** — não há link, vídeo ou deploy inven
 | --- | --- | --- | --- |
 | 1 | Computational Thinking with Python | `python-app/` + ZIP | pronto para empacotar |
 | 2 | Differentiated Problem Solving | `.py` + relatório PDF | pronto |
-| 3 | Edge Computing & Computer Systems | firmware + Wokwi + vídeo | firmware pronto; links **pendentes** |
+| 3 | Edge Computing & Computer Systems | firmware + Wokwi + vídeo | simulação executada; links **pendentes** |
 | 4 | Front-end Design | app React + repositório + ZIP + README + deploy + `AI.md` | app pronto; deploy **pendente** |
 | 5 | Software & Total Experience Design | deck com 7 entregáveis | pronto |
 | 6 | Storytelling & Inspiração Empreendedora | e-mail + arquétipo/MVV + vídeo 3 min | documentos prontos; vídeo **pendente** |
@@ -59,8 +59,8 @@ do mesmo modelo usado nos testes. Nada foi calibrado com dados de campo.
 - Checklist e roteiro: [`edge/ENTREGA.md`](../edge/ENTREGA.md)
 
 **Pendente:** publicar o projeto no Wokwi, gravar o vídeo de até 7 minutos e
-preencher os dois links em `edge/ENTREGA.md`. A simulação não foi executada
-neste ambiente.
+preencher os dois links em `edge/ENTREGA.md`. A simulação foi executada e
+ajustada pela equipe; não houve validação em hardware físico.
 
 ## 4 e 7. Front-end / Web — repositório, ZIP, README, deploy e AI.md
 

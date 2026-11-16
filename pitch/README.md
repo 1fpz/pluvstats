@@ -106,7 +106,7 @@ Frases que devem acompanhar a demo:
 - Integração verificada em navegador: ocorrência criada no SQLite e reset
   restaurando 9 ocorrências e 0 alertas.
 - Fallback verificado com API configurada e indisponível.
-- Nenhum teste físico ou de Wokwi executado.
+- Simulação executada no Wokwi; nenhum teste físico ou de bancada executado.
 
 Detalhes em [documentation/testing](../documentation/testing/README.md).
 
@@ -123,8 +123,8 @@ Não. O ambiente padrão é demonstrativo e identifica os dados como simulados.
 Não. Nenhuma credencial, convênio ou canal oficial existe no projeto.
 
 **O hardware funciona?**
-O firmware e o diagrama estão preparados, mas não foram compilados nem testados
-em bancada neste ambiente. Nenhum dispositivo físico foi validado.
+O firmware foi executado no Wokwi, mas não foi testado em bancada nem em um
+dispositivo físico. Nenhum hardware real foi validado.
 
 **Por que não Supabase?**
 Não há conexão configurada. A persistência atual é SQLite local. Supabase pode

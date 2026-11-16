@@ -15,7 +15,7 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 | Aplicação Python | `python -m unittest discover -s python-app/tests -p "test_*.py"` | **12 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |
 | Firmware físico | — | **não executado** |
-| Wokwi | — | **não executado** |
+| Wokwi | simulação manual dos cinco estados | **executado; link público pendente** |
 
 ## Frontend
 
@@ -109,9 +109,10 @@ Os quatro testes verificam que `generated_config.h` corresponde exatamente ao
 JSON compartilhado, que os valores críticos são renderizados e que o formato
 numérico é válido em C.
 
-**Não há teste de compilação do firmware** neste ambiente: o Arduino CLI e o
-core ESP32 não estão instalados. O `diagram.json` do Wokwi é válido como JSON,
-mas não foi executado. Isso está registrado no [README do edge](../../edge/README.md).
+A simulação foi executada no **Wokwi**, com troca manual de distância e os cinco
+estados funcionando. **Não houve compilação em hardware físico** com Arduino CLI,
+porque o core ESP32 não está instalado neste ambiente. Isso está registrado no
+[README do edge](../../edge/README.md).
 
 ## Integração frontend + API
 
@@ -158,7 +159,7 @@ Esse teste comprova **degradação**, não conectividade real.
 
 - montagem física, calibração ou instalação do ESP32;
 - comunicação real do ESP32 com a API;
-- execução do diagrama no Wokwi;
+- publicação do link público do Wokwi;
 - acessibilidade com leitores de tela ou usuários;
 - navegadores diferentes do Chromium usado na verificação;
 - responsividade em dispositivos físicos;
@@ -201,8 +202,8 @@ python edge/tools/sync_thresholds.py --check
 
 ## Critérios para uma próxima fase
 
-1. Compilar o firmware com o core ESP32 e registrar a versão usada.
-2. Executar o Wokwi e anexar telemetria/captura ao relatório.
+1. Publicar o Wokwi e anexar o link, a telemetria e a captura ao relatório.
+2. Compilar o firmware em hardware físico com o core ESP32 e registrar a versão.
 3. Testar o upload em rede local com um banco descartável.
 4. Medir erro do sensor em bancada com distâncias conhecidas.
 5. Fazer teste de acessibilidade e usabilidade com pelo menos um usuário de

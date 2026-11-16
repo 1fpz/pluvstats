@@ -223,7 +223,7 @@ os indicadores, não uma promessa de impacto.
 | um protótipo acadêmico funcional, com frontend, API, edge, matemática e Python | um produto em operação ou uma startup com usuários |
 | uma demonstração identificada, com fallback local sem backend | um sistema oficial da Prefeitura ou da Defesa Civil |
 | um modelo linear didático de nível, taxa e tempo até o limite | um modelo hidrológico calibrado ou uma previsão de enchentes |
-| um firmware e um diagrama de Wokwi preparados | hardware montado, compilado ou validado fisicamente |
+| um firmware e um diagrama de Wokwi executáveis no simulador | hardware montado ou validado fisicamente |
 | uma proposta de interface para gestão e cidadania | um canal de emergência que aciona equipes ou promete resgate |
 | documentação honesta do que falta validar | uma pesquisa de campo, entrevista ou medição de impacto |
 
@@ -241,8 +241,8 @@ repositório, ela não entra.
 | Backend FastAPI + SQLite | Concluído |
 | Simulador e motor de alertas | Concluído |
 | Inteligência territorial experimental | Concluído |
-| ESP32 | Firmware e diagrama prontos — **não compilados, não testados fisicamente** |
-| Wokwi | Projeto pronto — **simulação não executada** |
+| ESP32 | Firmware e diagrama prontos — **simulados no Wokwi, não testados fisicamente** |
+| Wokwi | Simulação executada — **link público pendente** |
 | Módulo de matemática | Concluído (35 testes + relatório técnico) |
 | Aplicação Python (menu e JSON) | Concluída (12 testes automatizados) |
 | Apresentação de Experience | Concluída (7 entregáveis) |
@@ -367,9 +367,10 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-O firmware ESP32 não é compilado nesta verificação e o diagrama do Wokwi não é
-executado. Essas ausências estão registradas em [`edge/README.md`](edge/README.md)
-e em [documentation/testing](documentation/testing/README.md).
+O firmware ESP32 não é compilado com Arduino CLI nesta verificação; a simulação
+foi executada no Wokwi e não houve validação em hardware físico. Essas ausências
+estão registradas em [`edge/README.md`](edge/README.md) e em
+[documentation/testing](documentation/testing/README.md).
 
 ## Deploy
 
@@ -403,8 +404,8 @@ python edge/tools/sync_thresholds.py --check
 ```
 
 Resultado registrado nesta entrega: **105 testes automatizados aprovados**, lint
-sem erros e build do frontend concluído. O firmware não foi compilado e o Wokwi
-não foi executado.
+sem erros e build do frontend concluído. O firmware foi executado no Wokwi e não
+foi validado em hardware físico.
 
 ## Dados, privacidade e segurança
 
