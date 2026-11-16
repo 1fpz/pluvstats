@@ -45,8 +45,8 @@ Global Solution 2026.2 — CitizenTech
 Projeto: PLUVSTATS — inteligência territorial para águas urbanas
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 ```
 
 ---
@@ -75,8 +75,8 @@ Disciplina: Computational Thinking with Python
 Projeto: PLUVSTATS — inteligência territorial para águas urbanas
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Anexo: pluvstats-python.zip
 Conteúdo: app.py, prompt.md, readme.md, tests/ e data/.
@@ -107,8 +107,8 @@ Disciplina: Differentiated Problem Solving
 Projeto: PLUVSTATS
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Anexos: pluvstats_model.py, plot_scenarios.py, relatorio-tecnico.pdf.
 O modelo é linear e didático; não é um modelo hidrológico calibrado.
@@ -137,8 +137,8 @@ Disciplina: Edge Computing & Computer Systems
 Projeto: PLUVSTATS — nó de borda com ESP32
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Projeto Wokwi (público): <<COLAR LINK DO WOKWI>>
 Vídeo no YouTube (não listado): <<COLAR LINK DO VÍDEO DE EDGE>>
@@ -178,8 +178,8 @@ Disciplina: Front-end Design
 Projeto: PLUVSTATS
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Repositório: https://github.com/1fpz/pluvstats
 Deploy: <<COLAR URL DA VERCEL>>
@@ -228,8 +228,8 @@ Disciplina: Software & Total Experience Design
 Projeto: PLUVSTATS — da proposta ao roadmap
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Anexo: pluvstats-experience.pdf (18 slides).
 Os sete entregáveis da disciplina estão contemplados. As personas e hipóteses
@@ -244,8 +244,8 @@ Disciplina: Software & Total Experience Design
 Projeto: PLUVSTATS — da proposta ao roadmap
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Anexo: pluvstats-experience.pdf (19 slides).
 O slide “O que ouvimos” registra 3 conversas exploratórias, sem generalização
@@ -278,8 +278,8 @@ Disciplina: Storytelling & Inspiração Empreendedora
 Projeto: PLUVSTATS
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Anexo: pluvstats-pitch-email.pdf (e-mail ao investidor + link do vídeo).
 Vídeo: <<COLAR LINK DO VÍDEO DE PITCH>>
@@ -304,8 +304,8 @@ Disciplina: Web Development
 Projeto: PLUVSTATS
 Equipe: Felipe Ilek (RM 571322), Marcos Vinícius Tudisco (RM 569366),
 Michel Tatsuya Hanada (RM 571987)
-Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração);
-Michel Tatsuya Hanada (testes)
+Autoria: Felipe Ilek (projeto completo); Marcos Vinícius Tudisco (integração e Edge);
+Michel Tatsuya Hanada (testes e Storytelling)
 
 Repositório: https://github.com/1fpz/pluvstats
 Deploy: <<COLAR URL DA VERCEL>>

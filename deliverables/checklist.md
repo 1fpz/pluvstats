@@ -12,8 +12,8 @@ no repositório do que depende de ação humana (links, vídeos e deploy).
 | Integrante | RM | Participação | E-mail |
 | --- | --- | --- | --- |
 | Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto | `[preencher]` |
-| Marcos Vinícius Tudisco | 569366 | Integração | `[preencher]` |
-| Michel Tatsuya Hanada | 571987 | Testes | `[preencher]` |
+| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems | `[preencher]` |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora | `[preencher]` |
 
 > Os e-mails não são inventados neste repositório. Preencha antes de submeter.
 

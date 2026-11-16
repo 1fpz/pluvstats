@@ -4,12 +4,14 @@
 
 | Integrante | RM | Participação |
 | --- | --- | --- |
-| Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto completo: front-end, experiência do cidadão, identidade visual, backend, edge, matemática, aplicação Python, pitch e documentação |
-| Marcos Vinícius Tudisco | 569366 | Integração |
-| Michel Tatsuya Hanada | 571987 | Testes |
+| Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto completo: front-end, experiência do cidadão, identidade visual, backend, matemática, aplicação Python e documentação |
+| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems (ESP32, HC-SR04, Wokwi e limiares) |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora (pitch, marca, roteiro e e-mail ao investidor) |
 
 > O projeto foi conduzido por **Felipe Ilek**. **Marcos Vinícius Tudisco**
-> colaborou com a integração e **Michel Tatsuya Hanada** com os testes.
+> colaborou com a integração e conduziu a frente de **Edge Computing &
+> Computer Systems**. **Michel Tatsuya Hanada** colaborou com os testes e
+> conduziu a frente de **Storytelling & Inspiração Empreendedora**.
 
 ## Como o time se organizou
 
@@ -18,11 +20,12 @@
 | Produto e experiência | Felipe Ilek | `design/`, `frontend/src/pages/citizen/`, `design/presentation/` |
 | Front-end e interação | Felipe Ilek | `frontend/src/` |
 | Backend e dados | Felipe Ilek | `backend/` |
-| Edge e matemática | Felipe Ilek | `edge/`, `mathematics/` |
+| Matemática | Felipe Ilek | `mathematics/` |
 | Aplicação Python | Felipe Ilek | `python-app/` |
-| Narrativa e negócio | Felipe Ilek | `pitch/` |
 | Integração | Marcos Vinícius Tudisco | `frontend/src/services/`, `frontend/src/hooks/`, `backend/app/` |
+| Edge Computing & Computer Systems | Marcos Vinícius Tudisco | `edge/` — firmware ESP32, HC-SR04, Wokwi e limiares |
 | Testes | Michel Tatsuya Hanada | `frontend/src/**/*.test.*`, `backend/tests/`, `mathematics/tests/`, `python-app/tests/`, `edge/tools/` |
+| Storytelling & Inspiração Empreendedora | Michel Tatsuya Hanada | `pitch/` — marca, roteiro do vídeo, e-mail ao investidor e deck |
 
 ## Declaração de uso de IA
 

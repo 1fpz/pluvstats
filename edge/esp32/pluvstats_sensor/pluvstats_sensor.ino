@@ -9,9 +9,9 @@
  * project. It must not be used as an early-warning or life-safety system.
  *
  * Team (Global Solution 2026.2 - CitizenTech):
- *   Felipe Ilek .............. RM 571322
- *   Michel Tatsuya Hanada .... RM 571987
- *   Marcos Vinicius Tudisco .. RM 569366
+ *   Felipe Ilek .............. RM 571322  (autor e desenvolvedor)
+ *   Marcos Vinicius Tudisco .. RM 569366  (integracao e edge)
+ *   Michel Tatsuya Hanada .... RM 571987  (testes e storytelling)
  *
  * Build (Arduino CLI, ESP32 core installed):
  *   arduino-cli compile --fqbn esp32:esp32:esp32 \

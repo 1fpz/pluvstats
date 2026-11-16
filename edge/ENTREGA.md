@@ -8,11 +8,14 @@ integrantes devem constar no código-fonte — o cabeçalho de
 
 ## Equipe no código-fonte
 
-| Integrante | RM |
-| --- | --- |
-| Felipe Ilek | 571322 |
-| Michel Tatsuya Hanada | 571987 |
-| Marcos Vinícius Tudisco | 569366 |
+A frente de **Edge Computing & Computer Systems** foi conduzida por
+**Marcos Vinícius Tudisco (RM 569366)**, com revisão geral de Felipe Ilek.
+
+| Integrante | RM | Participação |
+| --- | --- | --- |
+| Felipe Ilek | 571322 | Autor e desenvolvedor do projeto |
+| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora |
 
 ## Links da entrega
 

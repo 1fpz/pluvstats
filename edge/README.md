@@ -4,6 +4,9 @@ Nó de campo ESP32 com sensor ultrassônico HC-SR04, quatro LEDs e buzzer. O fir
 classifica o estado localmente com os mesmos limiares experimentais do restante da
 plataforma e imprime telemetria JSON na porta serial.
 
+A frente de **Edge Computing & Computer Systems** foi conduzida por
+**Marcos Vinícius Tudisco (RM 569366)**, com revisão geral de Felipe Ilek.
+
 > **Estado de validação:** firmware e diagrama preparados, mas **não executados em
 > hardware físico nem no Wokwi** neste ambiente. Nenhum dispositivo real foi calibrado,
 > instalado ou testado. O caminho de rede é opcional e também não foi validado contra

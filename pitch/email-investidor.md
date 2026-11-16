@@ -14,7 +14,7 @@ os integrantes** e o **link do vídeo no corpo do e-mail**.
 
 **Para:** [nome do investidor ou parceiro] — [fundo / aceleradora / parceiro institucional]
 
-**De:** Felipe Ilek — RM 571322 (autor e desenvolvedor) · Marcos Vinícius Tudisco — RM 569366 (integração) · Michel Tatsuya Hanada — RM 571987 (testes)
+**De:** Felipe Ilek — RM 571322 (autor e desenvolvedor) · Marcos Vinícius Tudisco — RM 569366 (integração e Edge) · Michel Tatsuya Hanada — RM 571987 (testes e Storytelling)
 
 **Cópia:** equipe PLUVSTATS
 
@@ -104,9 +104,9 @@ Um abraço,
 **Felipe Ilek** — RM 571322
 Autor e desenvolvedor do projeto
 **Marcos Vinícius Tudisco** — RM 569366
-Integração
+Integração e Edge
 **Michel Tatsuya Hanada** — RM 571987
-Testes
+Testes e Storytelling
 
 PLUVSTATS · Inteligência territorial para águas urbanas
 Protótipo acadêmico · Global Solution 2026.2 · FIAP

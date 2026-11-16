@@ -59,12 +59,13 @@ produção.
 | Integrante | RM | Participação |
 | --- | --- | --- |
 | Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto |
-| Marcos Vinícius Tudisco | 569366 | Integração |
-| Michel Tatsuya Hanada | 571987 | Testes |
+| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora |
 
 O projeto foi conduzido por Felipe Ilek. Marcos Vinícius Tudisco colaborou com a
-integração e Michel Tatsuya Hanada com os testes. Detalhes da organização e das
-evidências por frente em [`TEAM.md`](TEAM.md).
+integração e conduziu a frente de Edge (ESP32, HC-SR04 e Wokwi). Michel Tatsuya
+Hanada colaborou com os testes e conduziu a frente de Storytelling (pitch, marca
+e e-mail ao investidor). Detalhes em [`TEAM.md`](TEAM.md).
 
 ## O problema que queremos resolver
 

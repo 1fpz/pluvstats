@@ -51,8 +51,8 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 | Integrante | RM | Participação |
 | --- | --- | --- |
 | Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto |
-| Marcos Vinícius Tudisco | 569366 | Integração |
-| Michel Tatsuya Hanada | 571987 | Testes |
+| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora |
 
 ## Como regenerar o PDF
 

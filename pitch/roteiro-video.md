@@ -94,8 +94,9 @@ palavras — em ritmo normal, cabe em 2min50 a 3min.
 **[Slide com foto ou nome dos três integrantes.]**
 
 > Sou Felipe Ilek, RM 571322, autor e desenvolvedor do PLUVSTATS. Marcos Vinícius
-> Tudisco, RM 569366, colaborou com a integração; Michel Tatsuya Hanada, RM
-> 571987, com os testes. O projeto é acadêmico.
+> Tudisco, RM 569366, colaborou com a integração e conduziu a frente de Edge;
+> Michel Tatsuya Hanada, RM 571987, colaborou com os testes e conduziu a frente
+> de Storytelling. O projeto é acadêmico.
 
 ### 2:45–3:00 · Encerramento memorável
 

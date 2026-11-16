@@ -3,6 +3,9 @@
 Roteiro de apresentação do protótipo acadêmico. Não contém métricas de mercado,
 tração, entrevistas ou resultados de campo inventados.
 
+A frente de **Storytelling & Inspiração Empreendedora** foi conduzida por
+**Michel Tatsuya Hanada (RM 571987)**, com revisão geral de Felipe Ilek.
+
 ## Materiais
 
 | Arquivo | Conteúdo |
