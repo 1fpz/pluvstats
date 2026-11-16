@@ -49,6 +49,9 @@ A frente de **Edge Computing & Computer Systems** foi conduzida por
 
 ## Roteiro do vídeo (até 7 minutos)
 
+Versão detalhada, com falas e marcações de tempo para o Marcos gravar:
+[`roteiro-video-marcos.md`](roteiro-video-marcos.md).
+
 | Tempo | Bloco | Conteúdo |
 | --- | --- | --- |
 | 0:00–0:50 | Ideia | cidadão, problema em uma frase, onde o dispositivo fica e ODS 6, 11 e 13 |
