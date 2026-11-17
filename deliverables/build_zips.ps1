@@ -2,8 +2,12 @@
 # Usage: powershell -ExecutionPolicy Bypass -File deliverables/build_zips.ps1
 #
 # Output:
-#   deliverables/zips/pluvstats-python.zip   (app.py, prompt.md, readme.md, tests, data)
-#   deliverables/zips/pluvstats-projeto.zip  (whole project, without caches/builds)
+#   deliverables/zips/pluvstats-python.zip      (app.py, prompt.md, readme.md, tests, data)
+#   deliverables/zips/pluvstats-projeto.zip     (whole project, without caches/builds)
+#   deliverables/zips/pluvstats-matematica.zip  (model, report, graphs, scenarios, tests)
+#   deliverables/zips/pluvstats-experience.zip  (deck, screenshots, requirements, personas)
+#   deliverables/zips/pluvstats-edge.zip        (firmware, diagram, tools)
+#   deliverables/zips/pluvstats-pitch.zip       (branding, e-mail, deck)
 
 $ErrorActionPreference = "Stop"
 
@@ -72,6 +76,77 @@ if (Test-Path $projectZips) {
 $projectZip = Join-Path $outDir "pluvstats-projeto.zip"
 Compress-Archive -Path (Join-Path $projectStage "*") -DestinationPath $projectZip -CompressionLevel Optimal
 Write-Host "OK  pluvstats-projeto.zip" -ForegroundColor Green
+
+# --- Matematica ------------------------------------------------------------
+# Keep the repository layout (mathematics/ + shared/) because the model resolves
+# shared/pluvstats.config.json from the repository root.
+$mathStage = Join-Path $stage "matematica"
+Invoke-Robocopy @(
+    (Join-Path $root "mathematics"), (Join-Path $mathStage "mathematics"),
+    "/E",
+    "/XD", "__pycache__", ".pytest_cache",
+    "/XF", "*.pyc", "*.log",
+    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
+)
+New-Item -ItemType Directory -Path (Join-Path $mathStage "shared") -Force | Out-Null
+Copy-Item (Join-Path $root "shared\pluvstats.config.json") (Join-Path $mathStage "shared")
+
+$mathZip = Join-Path $outDir "pluvstats-matematica.zip"
+Compress-Archive -Path (Join-Path $mathStage "*") -DestinationPath $mathZip -CompressionLevel Optimal
+Write-Host "OK  pluvstats-matematica.zip" -ForegroundColor Green
+
+# --- Experience ------------------------------------------------------------
+$expStage = Join-Path $stage "experience"
+Invoke-Robocopy @(
+    (Join-Path $root "design"), $expStage,
+    "/E",
+    "/XD", "__pycache__",
+    "/XF", "*.pyc", "*.log", "Thumbs.db", ".DS_Store",
+    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
+)
+
+$expZip = Join-Path $outDir "pluvstats-experience.zip"
+Compress-Archive -Path (Join-Path $expStage "*") -DestinationPath $expZip -CompressionLevel Optimal
+Write-Host "OK  pluvstats-experience.zip" -ForegroundColor Green
+
+# --- Edge ------------------------------------------------------------------
+# Same reason: tools/sync_thresholds.py reads shared/pluvstats.config.json from
+# the repository root.
+$edgeStage = Join-Path $stage "edge"
+Invoke-Robocopy @(
+    (Join-Path $root "edge"), (Join-Path $edgeStage "edge"),
+    "/E",
+    "/XD", "build", ".wokwi-cache", "__pycache__",
+    "/XF", "secrets.h", "*.pyc", "*.log",
+    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
+)
+New-Item -ItemType Directory -Path (Join-Path $edgeStage "shared") -Force | Out-Null
+Copy-Item (Join-Path $root "shared\pluvstats.config.json") (Join-Path $edgeStage "shared")
+
+$edgeZip = Join-Path $outDir "pluvstats-edge.zip"
+Compress-Archive -Path (Join-Path $edgeStage "*") -DestinationPath $edgeZip -CompressionLevel Optimal
+Write-Host "OK  pluvstats-edge.zip" -ForegroundColor Green
+
+# --- Pitch -----------------------------------------------------------------
+$pitchStage = Join-Path $stage "pitch"
+Invoke-Robocopy @(
+    (Join-Path $root "pitch"), $pitchStage,
+    "/E",
+    "/XD", "__pycache__",
+    "/XF", "*.pyc", "*.log",
+    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
+)
+# Keep the research record next to the deck: the pitch cites the interviews.
+$researchDir = Join-Path $pitchStage "pesquisa"
+New-Item -ItemType Directory -Path $researchDir -Force | Out-Null
+$researchFile = Join-Path $root "design\research\entrevistas.md"
+if (Test-Path $researchFile) {
+    Copy-Item $researchFile $researchDir
+}
+
+$pitchZip = Join-Path $outDir "pluvstats-pitch.zip"
+Compress-Archive -Path (Join-Path $pitchStage "*") -DestinationPath $pitchZip -CompressionLevel Optimal
+Write-Host "OK  pluvstats-pitch.zip" -ForegroundColor Green
 
 Remove-Item $stage -Recurse -Force
 

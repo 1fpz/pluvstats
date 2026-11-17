@@ -20,7 +20,16 @@ Os ZIPs são gerados localmente e não são versionados:
 - `zips/pluvstats-python.zip` — aplicação Python isolada, com `app.py`,
   `prompt.md`, `readme.md`, testes e dados de exemplo;
 - `zips/pluvstats-projeto.zip` — projeto completo, sem `node_modules`, `.venv`,
-  caches, builds, banco local, `.git` ou os próprios ZIPs.
+  caches, builds, banco local, `.git` ou os próprios ZIPs;
+- `zips/pluvstats-matematica.zip` — modelo `.py`, relatório em PDF, gráficos,
+  cenários e testes, preservando `mathematics/` e `shared/` para o modelo
+  resolver a configuração;
+- `zips/pluvstats-experience.zip` — deck em PDF e HTML, capturas de tela,
+  requisitos, personas, jornadas e o registro das entrevistas;
+- `zips/pluvstats-edge.zip` — firmware, configuração gerada, diagrama do Wokwi
+  e ferramentas de sincronização, preservando `edge/` e `shared/`;
+- `zips/pluvstats-pitch.zip` — deck do pitch, diretrizes de marca, e-mail ao
+  investidor e o registro das entrevistas.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File deliverables/build_zips.ps1
