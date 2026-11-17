@@ -27,10 +27,11 @@ produção.
 **Demonstração publicada:** <https://pluvstats.vercel.app/>  
 **Simulação do edge:** <https://wokwi.com/projects/480625234214048769>
 
-## Visão geral
+## Ficha da CitizenTech
 
 | Campo | Resposta |
 | --- | --- |
+| **Nome da CitizenTech** | PLUVSTATS — inteligência territorial para águas urbanas |
 | **Cidade e bairro** | Santo André/SP — pontos demonstrativos em Vila Metalúrgica, Jardim, Centro, Jardim Bela Vista e Jardim Bom Pastor |
 | **Cidadão beneficiado** | Moradores expostos a alagamentos — pedestres, motoristas, idosos e pessoas com mobilidade reduzida —, gestores municipais e equipes de campo |
 | **Problema, em uma frase** | A informação sobre alagamentos é fragmentada, sem origem clara e difícil de transformar em decisão para o gestor e para o cidadão. |
@@ -39,7 +40,7 @@ produção.
 | **Indicador de impacto** | Tempo entre registro e triagem; percentual de pontos com origem e idade visíveis; ocorrências com intervenção concluída. Linha de base a medir no piloto — nenhum impacto real foi medido. |
 | **ODS conectados** | ODS 6, ODS 11 e ODS 13 (detalhados abaixo) |
 
-### Entregas por disciplina
+### O que cada parte faz
 
 | Disciplina | Parte da solução | Onde está |
 | --- | --- | --- |
