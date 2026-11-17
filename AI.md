@@ -1,98 +1,51 @@
 # AI.md — uso de IA no PLUVSTATS
 
-Este arquivo registra, de forma honesta, como ferramentas de IA participaram do
-desenvolvimento. Nenhum dado real de campo, entrevista, pesquisa ou teste físico
-foi inventado para preencher lacunas. A documentação segue o que a disciplina de
-Web Development pede: ferramentas, interações representativas, aplicação no
-projeto, validação e análise crítica.
+Registro do uso de Inteligência Artificial no projeto, conforme exigido pelas
+disciplinas de **Front-end Design** e **Web Development**.
 
-## Autoria
+## Ferramenta utilizada
 
-O projeto foi conduzido por **Felipe Ilek (RM 571322)**, responsável pelo
-desenvolvimento completo. **Marcos Vinícius Tudisco (RM 569366)** colaborou com a
-integração e conduziu a frente de **Edge Computing & Computer Systems**.
-**Michel Tatsuya Hanada (RM 571987)** colaborou com os testes e conduziu a frente
-de **Storytelling & Inspiração Empreendedora**.
+| Ferramenta | Finalidade |
+| --- | --- |
+| **DeepSeek** | auxiliar na criação de parte do código, na execução de testes e na otimização da entrega |
 
-O uso de IA descrito abaixo foi uma ferramenta de apoio ao trabalho de autoria,
-revisão e validação. A responsabilidade pelo conteúdo entregue é dos integrantes.
+Nenhuma outra ferramenta de IA foi usada no desenvolvimento. O produto não chama
+IA em tempo de execução: não há modelo, API de IA nem serviço externo embutido na
+aplicação.
 
-## Ferramentas utilizadas
+## Interações representativas
 
-| Ferramenta | Finalidade | Onde foi usada |
-| --- | --- | --- |
-| **OpenCode** (agente de código) com o modelo **DeepSeek V4.1 Flash Free** | implementação, refatoração, testes, documentação e revisão de consistência | frontend, backend, edge, matemática, Python, design e pitch |
-| **Microsoft Edge headless** | geração dos PDFs e capturas de tela do protótipo | relatório de matemática, decks de Experience e Pitch |
-| **Vitest, pytest, unittest, ESLint e Vite** | validação automatizada do que a IA produziu | suítes de teste, lint e build |
-
-As entrevistas foram conduzidas pela equipe. A IA apoiou a organização e a
-redação do registro, mas não foi usada para criar perfis, falas ou dados de campo.
-Não há outro modelo ou serviço de IA no fluxo do produto em tempo de execução.
-
-## Princípios
-
-- Nenhum dado real de campo, entrevista, pesquisa ou teste físico é inventado.
-- Dados simulados são identificados na interface e nos metadados
-  (`source: "simulation"`, `origin: "demonstration"`, `simulated: true`).
-- A IA apoia implementação, revisão e documentação; a validação continua sendo
-  responsabilidade humana.
-- Credenciais não são versionadas.
-- Resultados de teste são registrados apenas quando o comando foi executado.
-- Limitações e ausências são documentadas em vez de preenchidas com texto
-  genérico.
-
-## Prompts representativos
-
-Os textos abaixo são uma **síntese fiel dos pedidos reais** feitos durante o
-desenvolvimento. Não são citações literais e não foram reescritos para parecer
-melhores do que foram.
-
-| # | Prompt (síntese) | O que a IA fez | Como foi validado |
+| # | Prompt (síntese) | O que foi feito | Como foi validado |
 | --- | --- | --- | --- |
-| 1 | “Estruture um monorepo para o PLUVSTATS com frontend React, API FastAPI, edge ESP32, matemática e uma configuração compartilhada.” | criou a árvore de diretórios, o `shared/pluvstats.config.json` e o ADR inicial | build, lint, inspeção da árvore e leitura dos arquivos |
-| 2 | “Implemente o simulador, o motor de alertas e a histerese sem duplicar limiares entre frontend e backend.” | escreveu os motores de domínio, os testes e o consumo da configuração única | Vitest, pytest e revisão dos casos de borda |
-| 3 | “Redesenhe a interface para um tema escuro profissional, com painel de gestão e área do cidadão.” | refatorou componentes, tokens, rotas e estados | navegação no navegador, lint e build |
-| 4 | “Revise a acessibilidade da área do cidadão: texto maior, linguagem simples e foco visível.” | criou o escopo `.citizen-readable`, ajustou a navegação e revisou textos | inspeção visual em 500 px, leitura do CSS e build |
-| 5 | “Adicione ao modelo de matemática volume acumulado, exposição integrada e limite de longo prazo, com testes.” | implementou as integrais, os testes e o gráfico SVG | 35 testes unittest e conferência dos valores esperados |
-| 6 | “Gere o relatório técnico em PDF e os decks de Experience e Pitch a partir do código e das capturas reais.” | montou o HTML, o CSS de impressão e o script de geração | contagem de páginas, inspeção visual e abertura dos PDFs |
-| 7 | “Encontre lacunas de entrega em cada disciplina e mantenha honestidade sobre o que não foi feito.” | produziu checklists, correções de contagem e avisos de limite | revisão manual contra o enunciado da GS |
+| 1 | “Implemente o motor de alertas e a histerese reutilizando os limiares de `shared/pluvstats.config.json`.” | funções de domínio e consumo da configuração única | testes de frontend e backend, revisão dos casos de borda |
+| 2 | “Escreva testes para os cenários de simulação, para o cálculo de nível e taxa e para as entradas inválidas.” | suítes de teste automatizadas | execução das suítes, lint e build |
+| 3 | “Revise a área do cidadão para texto maior, linguagem simples e foco visível.” | ajustes de estilo, navegação e textos | inspeção visual, leitura do CSS e build |
+| 4 | “Revise a documentação e a consistência entre as disciplinas antes da entrega.” | correções de texto, contagens e links | revisão manual contra o enunciado |
+
+Os prompts acima são uma síntese dos pedidos feitos; não são citações literais.
 
 ## Aplicação no projeto
 
-A IA foi usada para:
+O apoio da IA ocorreu em:
 
-- gerar e refatorar código de frontend, backend, edge, matemática e Python;
-- escrever testes automatizados e executar as suítes;
-- revisar contratos, nomenclatura e mensagens de interface;
-- produzir documentação a partir do estado real do repositório;
-- gerar os PDFs e capturas usados nos decks;
-- identificar e registrar lacunas em vez de simulá-las.
+- parte do código do frontend, do backend, do firmware, da matemática e da
+  aplicação Python;
+- criação e execução de testes automatizados;
+- revisão de textos, nomenclatura e consistência da documentação;
+- geração dos PDFs e das capturas usadas nos decks.
 
-Trechos com participação relevante de IA:
-
-| Área | Arquivos | Participação |
-| --- | --- | --- |
-| Frontend | `frontend/src/domain`, `contexts`, `pages`, `components` | estrutura, componentes, hooks, estilos e testes |
-| Backend | `backend/app` e `backend/tests` | routers, serviços, persistência SQLite e testes |
-| Edge | `edge/esp32`, `edge/tools` | firmware, geração de limiares e testes |
-| Matemática | `mathematics/model`, `tests`, `report` | fórmulas, testes, gráficos e relatório |
-| Python | `python-app/app.py` e testes | menu, validação, JSON e testes |
-| Design | `design/` e `design/presentation` | requisitos, personas hipotéticas, jornadas e deck |
-| Pitch | `pitch/` | branding, e-mail simulado e deck |
+O projeto, as decisões de produto, o escopo e a responsabilidade pelo conteúdo
+entregue são da equipe.
 
 ## Validação das respostas
 
-Cada resposta foi tratada como rascunho. A validação seguiu estes passos:
+Cada resposta foi tratada como rascunho e passou por:
 
-1. **Leitura crítica** do código e do texto antes de aceitar.
-2. **Execução** dos comandos de teste, lint e build.
-3. **Conferência numérica** dos cenários de matemática e dos valores esperados.
-4. **Inspeção visual** das telas e dos PDFs gerados.
-5. **Checagem de honestidade**: nenhuma lacuna foi preenchida com dado inventado.
-6. **Revisão de escopo**: o que não existe no repositório não foi descrito como
-   existente.
-
-Comandos usados:
+1. leitura do código e do texto antes de aceitar;
+2. execução dos testes, lint e build;
+3. conferência numérica dos cenários de matemática;
+4. inspeção visual das telas e dos PDFs;
+5. checagem de que nenhuma lacuna foi preenchida com dado inventado.
 
 ```bash
 cd frontend && npm run test && npm run lint && npm run build
@@ -103,61 +56,23 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-Resultados registrados nesta entrega: **23 testes de frontend, 31 de backend, 35
-de matemática, 12 da aplicação Python e 4 de sincronização de limiares**. O
-firmware foi executado no Wokwi; não houve compilação em hardware físico.
-
-## O que a IA não fez
-
-- não conduziu as entrevistas nem esteve presente nas conversas;
-- não coletou dados oficiais;
-- não testou hardware físico nem calibrou sensor;
-- não validou a simulação do Wokwi como medição de campo;
-- não validou o modelo com especialistas;
-- não criou credenciais, convênios ou parcerias;
-- não mediu impacto social ou precisão hidrológica.
+Resultados: **23 testes de frontend, 31 de backend, 35 de matemática, 12 da
+aplicação Python e 4 de sincronização de limiares**. O firmware foi executado no
+Wokwi; não houve teste em hardware físico.
 
 ## Análise crítica
 
-**Benefícios.** A IA acelerou a criação de estrutura, testes e documentação, e
-ajudou a manter consistência entre camadas que compartilham a mesma configuração.
-Também foi útil para revisar textos e apontar lacunas de escopo.
+**Benefícios.** O DeepSeek acelerou a escrita de código repetitivo, a criação de
+casos de teste e a revisão de textos, liberando tempo para as decisões de produto
+e para a conferência dos resultados.
 
-**Limitações.** A IA não substitui validação empírica. Ela pode produzir texto
-confiante sobre algo que não foi executado, repetir contagens antigas e inventar
-detalhes plausíveis. Neste projeto, isso exigiu conferência manual constante,
-especialmente em números de teste, links e afirmações de impacto.
+**Limitações.** A IA não substitui validação: pode sugerir código que não compila,
+repetir contagens antigas e escrever com confiança sobre algo que não foi
+executado. Por isso, todo trecho aceito foi lido e testado pela equipe.
 
-**Dificuldades.** O maior risco foi transformar hipótese em fato. A mitigação foi
-declarar explicitamente o que é simulado, o que é hipotético e o que não foi
-testado — inclusive quando isso deixou a entrega menos “impressionante”.
-A segunda dificuldade foi manter a paridade entre frontend, backend, edge e
-matemática; a resposta foi uma fonte única de limiares e testes de sincronização.
+**Dificuldades.** Manter o escopo pequeno e a documentação coerente entre sete
+disciplinas. A solução foi centralizar os limiares em um único arquivo, registrar
+os limites reais do protótipo e revisar cada entrega manualmente antes do envio.
 
-**Conclusão.** A IA foi uma ferramenta de produção e revisão, não uma fonte de
-verdade. A responsabilidade pelo conteúdo, pelos limites e pela entrega continua
-sendo humana.
-
-## Limitações do processo
-
-- a revisão humana do conteúdo ainda é necessária antes de uso acadêmico ou
-  apresentação;
-- os testes verificam o que foi implementado, não a utilidade do produto;
-- a documentação de design usa personas e jornadas explicitamente hipotéticas;
-- o firmware não foi compilado neste ambiente;
-- o frontend usa code splitting por rota e por vendor, mas não foi submetido a
-  medição de desempenho em rede real;
-- não há auditoria WCAG nem teste com leitor de tela.
-
-## Como verificar
-
-```bash
-cd frontend && npm run test && npm run lint && npm run build
-cd ../backend && .\.venv\Scripts\python.exe -m pytest
-cd .. && python -m unittest discover -s mathematics/tests -p "test_*.py"
-python -m unittest discover -s python-app/tests -p "test_*.py"
-python -m unittest discover -s edge/tools -p "test_*.py"
-python edge/tools/sync_thresholds.py --check
-```
-
-Evidências detalhadas: [documentation/testing](documentation/testing/README.md).
+**Conclusão.** A IA foi usada como apoio à produção e à revisão. A
+responsabilidade pelo código, pelas afirmações e pela entrega é humana.

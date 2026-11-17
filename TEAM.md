@@ -29,9 +29,11 @@
 
 ## Declaração de uso de IA
 
-O uso de ferramentas de IA está documentado em [`AI.md`](AI.md) e, para a
-aplicação Python, em [`python-app/prompt.md`](python-app/prompt.md). Nenhum dado
-real de campo, entrevista ou teste físico foi inventado.
+O apoio do **DeepSeek** — usado para auxiliar na criação de parte do código, na
+execução de testes e na otimização da entrega — está documentado em
+[`AI.md`](AI.md) e, para a aplicação Python, em
+[`python-app/prompt.md`](python-app/prompt.md). Nenhum dado real de campo,
+entrevista ou teste físico foi inventado.
 
 ## Contato acadêmico
 

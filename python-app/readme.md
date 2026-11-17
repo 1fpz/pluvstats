@@ -131,5 +131,5 @@ corrompido, cenários e relatório. Eles não substituem um teste de usabilidade
 
 ## Uso de IA
 
-O registro de prompts, respostas e validação está em
+O apoio do DeepSeek, com prompts, validação e análise crítica, está em
 [`prompt.md`](prompt.md).
