@@ -25,9 +25,9 @@ revisão e validação. A responsabilidade pelo conteúdo entregue é dos integr
 | **Microsoft Edge headless** | geração dos PDFs e capturas de tela do protótipo | relatório de matemática, decks de Experience e Pitch |
 | **Vitest, pytest, unittest, ESLint e Vite** | validação automatizada do que a IA produziu | suítes de teste, lint e build |
 
-Não foram usadas ferramentas de IA para gerar entrevistas, depoimentos, dados de
-campo, métricas de mercado ou resultados de hardware. Não há outro modelo ou
-serviço de IA no fluxo do produto em tempo de execução.
+As entrevistas foram conduzidas pela equipe. A IA apoiou a organização e a
+redação do registro, mas não foi usada para criar perfis, falas ou dados de campo.
+Não há outro modelo ou serviço de IA no fluxo do produto em tempo de execução.
 
 ## Princípios
 
@@ -109,7 +109,7 @@ firmware foi executado no Wokwi; não houve compilação em hardware físico.
 
 ## O que a IA não fez
 
-- não realizou entrevistas, questionários ou observação de campo;
+- não conduziu as entrevistas nem esteve presente nas conversas;
 - não coletou dados oficiais;
 - não testou hardware físico nem calibrou sensor;
 - não validou a simulação do Wokwi como medição de campo;

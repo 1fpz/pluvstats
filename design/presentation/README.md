@@ -2,15 +2,15 @@
 
 Deck da disciplina **Software & Total Experience Design** para a Global Solution
 2026.2 (CitizenTech). O material cobre os sete entregáveis pedidos no enunciado e
-mantém a mesma postura do restante do repositório: nada de entrevista, métrica de
-mercado ou validação física inventada.
+mantém a postura do restante do repositório: nenhuma métrica de mercado, medição
+física ou generalização a partir da amostra qualitativa.
 
 ## Arquivos
 
 | Arquivo | Uso |
 | --- | --- |
-| [`apresentacao.html`](apresentacao.html) | deck editável, 18 slides em 1280 × 720 px |
-| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (18 páginas) |
+| [`apresentacao.html`](apresentacao.html) | deck editável, 19 slides em 1280 × 720 px |
+| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (19 páginas) |
 | [`caso-de-uso.svg`](caso-de-uso.svg) | diagrama completo de casos de uso |
 | [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 8 |
 | [`assets/`](assets/) | capturas reais do protótipo em demonstração |
@@ -23,17 +23,18 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 | # | Entregável | Slides | O que está lá |
 | --- | --- | --- | --- |
 | 1 | Capa | 1 | nome do produto, disciplina, equipe com RM e aviso de protótipo |
-| 2 | Problema | 2–4 | problema, pessoas afetadas, hipóteses e evidências declaradas |
-| 3 | Escopo | 5 | dentro e fora do escopo, limites de responsabilidade, dados e técnica |
-| 4 | Requisitos, RNF e RN | 6–7 | RF-01 a RF-09, RNF-01 a RNF-08 e RN-01 a RN-08 |
-| 5 | Caso de uso | 8–9 | diagrama, atores, objetivos, relações e fronteira do sistema |
-| 6 | Protótipo, heurísticas e tom de voz | 10–14 | telas de gestão e cidadão, 10 heurísticas e guia de linguagem |
-| 7 | Roadmap | 15–18 | próximos passos, riscos, evidências, limites e encerramento |
+| 2 | Problema | 2–5 | problema, pessoas afetadas, entrevistas qualitativas e evidências declaradas |
+| 3 | Escopo | 6 | dentro e fora do escopo, limites de responsabilidade, dados e técnica |
+| 4 | Requisitos, RNF e RN | 7–8 | RF-01 a RF-09, RNF-01 a RNF-08 e RN-01 a RN-08 |
+| 5 | Caso de uso | 9–10 | diagrama, atores, objetivos, relações e fronteira do sistema |
+| 6 | Protótipo, heurísticas e tom de voz | 11–15 | telas de gestão e cidadão, 10 heurísticas e guia de linguagem |
+| 7 | Roadmap | 16–19 | próximos passos, riscos, evidências, limites e encerramento |
 
 ## Decisões editoriais
 
-- **Problema como hipótese.** O deck diz explicitamente que não houve entrevista,
-  pesquisa de campo ou observação sistemática.
+- **Problema com evidência declarada.** O slide “O que ouvimos” resume três
+  conversas qualitativas e anônimas com morador, analista municipal e motorista de
+  aplicativo. O deck deixa explícito que a amostra é pequena e não representativa.
 - **Proveniência acima do número.** Todo dado simulado aparece identificado; o
   hardware é sempre descrito como não validado.
 - **Duas densidades, um compromisso.** A gestão usa painel denso; o cidadão usa
@@ -57,4 +58,5 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 - Personas e jornadas: [`design/personas/personas.md`](../personas/personas.md) e
   [`design/journeys/journeys.md`](../journeys/journeys.md)
 - Interface implementada: [`frontend/README.md`](../../frontend/README.md)
+- Entrevistas qualitativas: [`design/research/entrevistas.md`](../research/entrevistas.md)
 - Evidências de teste: [`documentation/testing/README.md`](../../documentation/testing/README.md)

@@ -162,8 +162,11 @@ Esse teste comprova **degradação**, não conectividade real.
 ## Escopo das evidências
 
 Os testes cobrem o domínio, os contratos e os fluxos verificados em navegador.
-Não há montagem física, calibração de sensor, entrevistas ou medição de impacto;
-essas frentes estão fora do escopo deste protótipo.
+Não há montagem física, calibração de sensor, teste de usabilidade ou medição de
+impacto; essas frentes estão fora do escopo deste protótipo. A definição do
+problema conta com três entrevistas qualitativas, registradas em
+[design/research/entrevistas.md](../../design/research/entrevistas.md), que não
+constituem amostra representativa.
 
 ## Como reproduzir
 

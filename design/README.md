@@ -1,14 +1,16 @@
 # Design — PLUVSTATS
 
-Requisitos, personas e jornadas do protótipo acadêmico. Nenhuma entrevista ou
-pesquisa de campo é inventada; quando não há evidência, o documento registra o
-limite.
+Requisitos, personas e jornadas do protótipo acadêmico. O que é evidência
+qualitativa, premissa de projeto ou hipótese de design aparece identificado em
+cada documento.
 
 - [Requisitos](requirements/requirements.md) — funcionais, não funcionais, regras
   de domínio e rastreabilidade.
 - [Personas](personas/personas.md) — hipóteses declaradas, não pessoas reais.
 - [Jornadas](journeys/journeys.md) — fluxos de gestão, cidadão, campo e
   validação de hardware.
+- [Entrevistas qualitativas](research/entrevistas.md) — três conversas anônimas,
+  o que se repetiu e o que mudou no produto.
 - [Apresentação de Experience](presentation/README.md) — deck com os sete
   entregáveis da disciplina, PDF e diagrama de caso de uso.
 

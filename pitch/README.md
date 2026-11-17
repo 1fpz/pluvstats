@@ -38,6 +38,9 @@ mapa, com proveniência explícita e uma área do cidadão sem jargão.
 - Simulação executada e publicada no Wokwi
   (<https://wokwi.com/projects/480625234214048769>); nenhum teste físico ou de
   bancada executado.
+- Três entrevistas qualitativas com morador, analista municipal e motorista de
+  aplicativo, com amostra declaradamente não representativa
+  ([registro](../design/research/entrevistas.md)).
 
 Detalhes em [documentation/testing](../documentation/testing/README.md).
 
@@ -80,5 +83,5 @@ arquitetura modular e documentação dos limites — não uma promessa de previs
 - que prevê alagamentos com precisão;
 - que possui dados oficiais;
 - que o hardware foi testado;
-- que há usuários, entrevistas ou parceria institucional;
+- que há usuários, piloto ou parceria institucional;
 - que o modelo foi validado por especialistas.

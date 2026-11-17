@@ -1,9 +1,12 @@
 # Personas — PLUVSTATS
 
 > **Aviso metodológico:** as personas abaixo são **hipóteses de projeto**, não
-> resultados de entrevistas. Nenhuma fala, citação, idade, profissão ou rotina
-> foi coletada de pessoas reais. Elas servem para orientar decisões de interface
-> e devem ser revisadas após pesquisa com usuários.
+> retratos de pessoas entrevistadas. Nenhuma idade, profissão ou rotina foi
+> atribuída a partir de uma fala dos participantes: as três conversas
+> qualitativas (ver [entrevistas](../research/entrevistas.md)) orientaram o
+> problema e o produto, mas não forneceram os dados biográficos das personas.
+> Elas servem para orientar decisões de interface e devem ser revisadas com nova
+> pesquisa.
 
 ## Persona 1 — Cidadã ou cidadão do entorno
 
@@ -119,7 +122,8 @@ depois e precisa saber se o dispositivo está realmente enviando dados.
 
 ## Limites das personas
 
-- não há entrevistas semiestruturadas com esses perfis;
+- as três conversas qualitativas cobriram morador, analista de mobilidade e
+  motorista de aplicativo, mas não validaram as personas como retrato;
 - não há teste de usabilidade com tarefas;
 - as personas não foram validadas por profissionais do setor;
 - não há revisão de acessibilidade com usuários.

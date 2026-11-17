@@ -88,13 +88,18 @@ organizar o sinal, mostrar a origem e dizer o limite.
 | **Proveniência** | número sem origem e sem idade parece oficial sem ser | marca origem, idade da leitura, modo demonstração e hardware não validado |
 | **Comunicação** | quem está na rua não sabe se o ponto é seguro, o que é oficial e a quem recorrer | área do cidadão com linguagem simples, texto maior e nenhum dado pessoal |
 
-### O que é hipótese e o que é fato
+### O que é hipótese e o que é evidência
 
-Esta é uma hipótese de projeto, **não uma pesquisa de campo**. Não houve
-entrevista, questionário, observação sistemática ou medição em campo nesta
-entrega. O problema foi definido a partir do briefing da Global Solution e do
-repertório da equipe; a validação com pessoas reais não faz parte do escopo
-deste protótipo.
+O problema foi formulado a partir do briefing da Global Solution e do repertório
+da equipe e, em seguida, discutido em **três entrevistas qualitativas** com um
+morador, um analista de mobilidade urbana e um motorista de aplicativo, em Santo
+André, em novembro de 2026. As conversas são anônimas e estão registradas em
+[`design/research/entrevistas.md`](design/research/entrevistas.md).
+
+Três conversas **não são uma pesquisa de campo**: não há questionário
+representativo, observação sistemática, medição de impacto ou validação
+estatística. Elas orientam decisões de produto e sustentam a definição do
+problema, mas não permitem afirmar incidência nem preferência da população.
 
 O mesmo vale para os números: não há estatística de alagamento, vítima ou
 prejuízo inventada neste repositório.
@@ -222,7 +227,7 @@ os indicadores, não uma promessa de impacto.
 | um modelo linear didático de nível, taxa e tempo até o limite | um modelo hidrológico calibrado ou uma previsão de enchentes |
 | um firmware e um diagrama de Wokwi executáveis no simulador | hardware montado ou validado fisicamente |
 | uma proposta de interface para gestão e cidadania | um canal de emergência que aciona equipes ou promete resgate |
-| documentação de escopo e limites | uma pesquisa de campo, entrevista ou medição de impacto |
+| documentação de escopo e limites | um estudo representativo, medição de impacto ou validação de campo |
 
 Essa separação aparece na interface (selos de origem e modo), na documentação e
 no pitch. Se uma afirmação não pode ser sustentada pelo que existe no
@@ -389,6 +394,7 @@ pluvstats/
 - [Testes e evidências](documentation/testing/README.md)
 - [Deploy na Vercel](documentation/deploy.md)
 - [Requisitos, personas e jornadas](design/README.md)
+- [Entrevistas qualitativas](design/research/entrevistas.md)
 - [Apresentação de Experience](design/presentation/README.md)
 - [Pitch](pitch/README.md)
 - [Aplicação Python (menu e JSON)](python-app/readme.md)
