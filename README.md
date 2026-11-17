@@ -24,16 +24,10 @@ uma regra que atravessa todas as telas: **origem, idade e limite visíveis em ca
 dado**. Nada aqui é apresentado como oficial, validado em campo ou pronto para
 produção.
 
-> **Prazo da GS:** 19/11/2026, às 23h55. O plano completo — o que falta, como
-> entregar, cronograma e critérios de vitória — está em
-> [`PLANO-DE-ENTREGA.md`](PLANO-DE-ENTREGA.md). Checklist item a item em
-> [`deliverables/checklist.md`](deliverables/checklist.md).
-
-## Ficha da CitizenTech
+## Visão geral
 
 | Campo | Resposta |
 | --- | --- |
-| **Nome da CitizenTech** | PLUVSTATS |
 | **Cidade e bairro** | Santo André/SP — pontos demonstrativos em Vila Metalúrgica, Jardim, Centro, Jardim Bela Vista e Jardim Bom Pastor |
 | **Cidadão beneficiado** | Moradores expostos a alagamentos — pedestres, motoristas, idosos e pessoas com mobilidade reduzida —, gestores municipais e equipes de campo |
 | **Problema, em uma frase** | A informação sobre alagamentos é fragmentada, sem origem clara e difícil de transformar em decisão para o gestor e para o cidadão. |
@@ -42,7 +36,7 @@ produção.
 | **Indicador de impacto** | Tempo entre registro e triagem; percentual de pontos com origem e idade visíveis; ocorrências com intervenção concluída. Linha de base a medir no piloto — nenhum impacto real foi medido. |
 | **ODS conectados** | ODS 6, ODS 11 e ODS 13 (detalhados abaixo) |
 
-### O que cada parte faz
+### Entregas por disciplina
 
 | Disciplina | Parte da solução | Onde está |
 | --- | --- | --- |
@@ -51,7 +45,7 @@ produção.
 | Edge Computing & Computer Systems | ESP32 + HC-SR04 + LEDs + buzzer, com decisão local e Wokwi | `edge/` |
 | Front-end Design | interface React/Vite/Tailwind para gestão e cidadão | `frontend/` |
 | Software & Total Experience Design | problema, escopo, requisitos, caso de uso, heurísticas, tom de voz e roadmap | `design/` |
-| Storytelling & Inspiração Empreendedora | arquétipo de marca, pitch de 3 minutos e e-mail ao investidor | `pitch/` |
+| Storytelling & Inspiração Empreendedora | arquétipo de marca, narrativa de pitch e e-mail ao investidor | `pitch/` |
 | Web Development | interação, hooks, CRUD e integração com a API no mesmo front-end | `frontend/src/hooks`, `frontend/src/services`, `backend/` |
 
 ## Equipe
@@ -96,8 +90,8 @@ organizar o sinal, mostrar a origem e dizer o limite.
 Esta é uma hipótese de projeto, **não uma pesquisa de campo**. Não houve
 entrevista, questionário, observação sistemática ou medição em campo nesta
 entrega. O problema foi definido a partir do briefing da Global Solution e do
-repertório da equipe; a validação com pessoas reais é o próximo passo, descrito
-em [`design/research/research-plan.md`](design/research/research-plan.md).
+repertório da equipe; a validação com pessoas reais não faz parte do escopo
+deste protótipo.
 
 O mesmo vale para os números: não há estatística de alagamento, vítima ou
 prejuízo inventada neste repositório.
@@ -225,34 +219,11 @@ os indicadores, não uma promessa de impacto.
 | um modelo linear didático de nível, taxa e tempo até o limite | um modelo hidrológico calibrado ou uma previsão de enchentes |
 | um firmware e um diagrama de Wokwi executáveis no simulador | hardware montado ou validado fisicamente |
 | uma proposta de interface para gestão e cidadania | um canal de emergência que aciona equipes ou promete resgate |
-| documentação honesta do que falta validar | uma pesquisa de campo, entrevista ou medição de impacto |
+| documentação de escopo e limites | uma pesquisa de campo, entrevista ou medição de impacto |
 
 Essa separação aparece na interface (selos de origem e modo), na documentação e
 no pitch. Se uma afirmação não pode ser sustentada pelo que existe no
 repositório, ela não entra.
-
-## Estado do projeto
-
-| Módulo | Estado |
-| --- | --- |
-| Estrutura do monorepo | Concluído |
-| Design system | Concluído |
-| Frontend demonstrativo (gestor e cidadão) | Concluído |
-| Backend FastAPI + SQLite | Concluído |
-| Simulador e motor de alertas | Concluído |
-| Inteligência territorial experimental | Concluído |
-| ESP32 | Firmware e diagrama prontos — **simulados no Wokwi, não testados fisicamente** |
-| Wokwi | Simulação executada — **link público pendente** |
-| Módulo de matemática | Concluído (35 testes + relatório técnico) |
-| Aplicação Python (menu e JSON) | Concluída (12 testes automatizados) |
-| Apresentação de Experience | Concluída (7 entregáveis) |
-| Pitch e branding | Concluído (roteiro, arquétipo, e-mail e deck) |
-| Documentação | Concluída |
-
-Evidências automatizadas: **23 testes de frontend, 31 de backend, 35 de
-matemática, 12 da aplicação Python e 4 de sincronização de limiares**. Detalhes e
-o que não foi testado em
-[documentation/testing](documentation/testing/README.md).
 
 ## Tecnologias e arquitetura
 
@@ -279,11 +250,6 @@ inteira no navegador com o repositório local de dados simulados.
 
 ## Como rodar
 
-> **Em outro PC?** O passo a passo completo — o que vem e o que não vem do
-> GitHub, instalação, testes, PDFs, ZIPs e pendências — está em
-> [`SETUP.md`](SETUP.md). Clone o repositório em vez de baixar o ZIP, para
-> preservar o histórico de commits.
-
 ### Pré-requisitos
 
 - **Node.js 20+** para o frontend;
@@ -301,17 +267,6 @@ npm run dev
 
 Abra `http://127.0.0.1:5173`. Os dados são fictícios e aparecem identificados em
 todas as telas.
-
-Roteiro sugerido (5 minutos):
-
-1. **Visão geral** — contadores, mapa, série do sensor e meteorologia externa.
-2. **Mapa** — filtre camadas e selecione um ponto.
-3. **Sensores** — compare os quatro simulados com o hardware `PS-05` **não validado**.
-4. **Configurações** — escolha o cenário **Crítico** e aguarde um ciclo de 5 s.
-5. **Alertas** — abra um alerta, leia as métricas e use **Reconhecer**.
-6. **Área do cidadão** (`/cidadao`) — registre uma ocorrência e veja o protocolo
-   demonstrativo.
-7. **Configurações → Reiniciar dados** — volta ao estado inicial.
 
 ### Stack completa (frontend + API)
 
@@ -367,30 +322,16 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-O firmware ESP32 não é compilado com Arduino CLI nesta verificação; a simulação
-foi executada no Wokwi e não houve validação em hardware físico. Essas ausências
-estão registradas em [`edge/README.md`](edge/README.md) e em
+O firmware foi executado no Wokwi; a validação em hardware físico está fora do
+escopo deste protótipo. Detalhes em [`edge/README.md`](edge/README.md) e
 [documentation/testing](documentation/testing/README.md).
 
 ## Deploy
 
-O frontend foi preparado para a Vercel com `frontend/vercel.json` (build Vite e
-rewrites de SPA). O passo a passo completo está em
+O frontend está configurado para a Vercel em `frontend/vercel.json`, com build
+Vite, rewrites de SPA e inclusão de `shared/pluvstats.config.json`. As instruções
+de publicação e o runbook de verificação estão em
 [documentation/deploy.md](documentation/deploy.md).
-
-Resumo:
-
-1. Importe o repositório na Vercel e defina **Root Directory** = `frontend`.
-2. Build Command = `npm run build`; Output Directory = `dist`.
-3. Ative a inclusão de arquivos fora da raiz do projeto, porque o frontend lê
-   `shared/pluvstats.config.json`.
-4. Variável opcional `VITE_API_BASE_URL` apontando para o backend publicado.
-5. Sem backend, a demonstração local continua funcionando; o **Diagnóstico**
-   mostra que a API não está configurada.
-
-> O deploy ainda **não foi publicado** pela equipe. A URL pública será adicionada
-> aqui depois da publicação; enquanto isso, a entrega acadêmica usa o repositório
-> e as instruções locais.
 
 ## Testes
 
@@ -433,29 +374,22 @@ pluvstats/
 ├── shared/         configuração única compartilhada
 ├── design/         requisitos, personas, jornadas e apresentação
 ├── documentation/  arquitetura, API, decisões, testes e deploy
-├── pitch/          branding, e-mail, roteiro e deck
+├── pitch/          branding, e-mail e deck
 ├── scripts/        atalhos para subir a demonstração
-└── deliverables/   mapa de entrega e gerador de ZIPs
+└── deliverables/   artefatos finais por disciplina e gerador de ZIPs
 ```
 
 ## Documentação principal
 
-- [Plano de entrega e de vitória](PLANO-DE-ENTREGA.md)
-- [Rodar o projeto em outro PC](SETUP.md)
 - [Arquitetura](documentation/architecture/overview.md)
 - [Contrato da API](documentation/api/README.md)
 - [Testes e evidências](documentation/testing/README.md)
 - [Deploy na Vercel](documentation/deploy.md)
 - [Requisitos, personas e jornadas](design/README.md)
-- [Kit de conversas com pessoas reais](design/research/interview-kit.md)
-- [Apresentação da disciplina de Experience](design/presentation/README.md)
-- [Revisão do deck contra a rubrica](design/presentation/rubrica-review.md)
-- [Demonstração de 90 segundos](deliverables/demo-90s.md)
-- [Pitch e slides](pitch/README.md)
+- [Apresentação de Experience](design/presentation/README.md)
+- [Pitch](pitch/README.md)
 - [Aplicação Python (menu e JSON)](python-app/readme.md)
 - [Relatório técnico de matemática](mathematics/report/relatorio-tecnico.pdf)
-- [Checklist de entrega por disciplina](deliverables/README.md)
-- [Pacote de submissão: textos prontos](deliverables/SUBMISSOES.md)
-- [Checklist de Edge e links do Wokwi/YouTube](edge/ENTREGA.md)
+- [Artefatos por disciplina](deliverables/README.md)
 - [Equipe e organização](TEAM.md)
 - [Uso de IA](AI.md)

@@ -14,8 +14,8 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 | Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **35 aprovados** |
 | Aplicação Python | `python -m unittest discover -s python-app/tests -p "test_*.py"` | **12 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |
-| Firmware físico | — | **não executado** |
-| Wokwi | simulação manual dos cinco estados | **executado; link público pendente** |
+| Firmware físico | — | **fora do escopo** |
+| Wokwi | simulação manual dos cinco estados | **executado** |
 
 ## Frontend
 
@@ -155,26 +155,11 @@ Esse teste comprova **degradação**, não conectividade real.
 - atualização de sensores e diferenciação visual entre simulado e hardware;
 - ausência de erros de lint e de build.
 
-## O que não foi testado
+## Escopo das evidências
 
-- montagem física, calibração ou instalação do ESP32;
-- comunicação real do ESP32 com a API;
-- publicação do link público do Wokwi;
-- acessibilidade com leitores de tela ou usuários;
-- navegadores diferentes do Chromium usado na verificação;
-- responsividade em dispositivos físicos;
-- carga, concorrência, rate limiting e recuperação de falhas;
-- autenticação/autorização;
-- deploy, HTTPS, backup e observabilidade;
-- integração com Supabase (não configurada);
-- precisão hidrológica ou utilidade operacional do modelo.
-
-## Lacunas de evidência acadêmica
-
-Não há entrevistas, questionários, dados oficiais importados, fotos de campo ou
-validação por especialistas. Essas atividades devem ser conduzidas e registradas
-antes de qualquer afirmação de impacto real. Ver
-[design/research](../../design/research/research-plan.md).
+Os testes cobrem o domínio, os contratos e os fluxos verificados em navegador.
+Não há montagem física, calibração de sensor, entrevistas ou medição de impacto;
+essas frentes estão fora do escopo deste protótipo.
 
 ## Como reproduzir
 
@@ -200,12 +185,4 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-## Critérios para uma próxima fase
 
-1. Publicar o Wokwi e anexar o link, a telemetria e a captura ao relatório.
-2. Compilar o firmware em hardware físico com o core ESP32 e registrar a versão.
-3. Testar o upload em rede local com um banco descartável.
-4. Medir erro do sensor em bancada com distâncias conhecidas.
-5. Fazer teste de acessibilidade e usabilidade com pelo menos um usuário de
-   cada perfil, registrando consentimento e método.
-6. Só então discutir integração institucional.

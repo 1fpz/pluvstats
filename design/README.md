@@ -1,22 +1,16 @@
 # Design — PLUVSTATS
 
-Pesquisa, requisitos, personas e jornadas **do projeto acadêmico**. Nenhuma
-entrevista ou pesquisa de campo é inventada; quando não há evidência, o documento
-registra a lacuna e o roteiro de coleta.
+Requisitos, personas e jornadas do protótipo acadêmico. Nenhuma entrevista ou
+pesquisa de campo é inventada; quando não há evidência, o documento registra o
+limite.
 
 - [Requisitos](requirements/requirements.md) — funcionais, não funcionais, regras
   de domínio e rastreabilidade.
 - [Personas](personas/personas.md) — hipóteses declaradas, não pessoas reais.
 - [Jornadas](journeys/journeys.md) — fluxos de gestão, cidadão, campo e
   validação de hardware.
-- [Plano de pesquisa](research/research-plan.md) — perguntas, métodos, ética e o
-  que ainda não foi feito.
-- [Kit de conversas](research/interview-kit.md) — roteiro, termo de consentimento
-  e como transformar três conversas em evidência para o deck.
 - [Apresentação de Experience](presentation/README.md) — deck com os sete
   entregáveis da disciplina, PDF e diagrama de caso de uso.
-- [Revisão do deck contra a rubrica](presentation/rubrica-review.md) — mapa slide
-  a slide dos 100 pontos e ajustes prioritários.
 
 ## Identidade
 
@@ -35,13 +29,14 @@ registra a lacuna e o roteiro de coleta.
 5. Mobile-first na área do cidadão.
 6. Contraste e foco visíveis; sem depender apenas de cor.
 
-## Lacunas de design
+## Limites do design
 
 - sem auditoria WCAG;
 - sem teste com leitor de tela;
-- sem validação das personas;
+- sem validação das personas com pessoas reais;
 - sem teste em dispositivos físicos;
 - sem pesquisa de identidade visual com usuários.
 
-O design system implementado está descrito no [README do frontend](../frontend/README.md)
-e nos componentes em `frontend/src/components/ui`.
+O design system implementado está descrito no
+[README do frontend](../frontend/README.md) e nos componentes em
+`frontend/src/components/ui`.

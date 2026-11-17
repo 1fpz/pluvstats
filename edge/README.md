@@ -98,8 +98,8 @@ Os testes do gerador verificam que o arquivo commitado corresponde ao JSON.
 
 ## Compilação
 
-Requer o core ESP32 instalado no Arduino CLI (`esp32:esp32`). A compilação **não foi
-executada** neste ambiente; os comandos são a preparação documentada.
+Requer o core ESP32 instalado no Arduino CLI (`esp32:esp32`). Os comandos abaixo
+compilam e gravam o firmware em uma placa física.
 
 ```bash
 arduino-cli compile --fqbn esp32:esp32:esp32 \
@@ -184,11 +184,4 @@ reproduz calibração, ruído, splashes, obstrução ou falhas de alimentação.
 - Nenhuma leitura deste módulo deve ser apresentada como dado oficial da Prefeitura de
   Santo André.
 
-## Próximos passos de validação
 
-1. Publicar o projeto no Wokwi e anexar o link público.
-2. Compilar com a versão real do core ESP32 e registrar o resultado em hardware.
-3. Montar um banco de testes com distâncias conhecidas e comparar a mediana com uma
-   régua; documentar erro e repetibilidade.
-4. Testar o upload em rede local com o backend em banco descartável.
-5. Só então avaliar instalação em campo, com autorização e supervisão adequadas.

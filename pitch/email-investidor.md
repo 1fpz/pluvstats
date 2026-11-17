@@ -4,10 +4,6 @@ Documento da disciplina **Storytelling & Inspiração Empreendedora**. O texto
 abaixo é um e-mail **simulado**, escrito para a entrega acadêmica. Não houve
 contato real com investidor, parceiro ou membro de equipe externo.
 
-Antes de enviar ou anexar no Teams, substitua o link do vídeo e confira os dados
-da equipe. O documento oficial da disciplina pede **nome completo e RM de todos
-os integrantes** e o **link do vídeo no corpo do e-mail**.
-
 ---
 
 **Assunto:** PLUVSTATS — a marca que transforma dado de chuva em decisão com origem e limite
@@ -112,16 +108,6 @@ PLUVSTATS · Inteligência territorial para águas urbanas
 Protótipo acadêmico · Global Solution 2026.2 · FIAP
 
 ---
-
-## Checklist antes de enviar
-
-- [ ] Substituir `[nome do investidor ou parceiro]` e `[fundo / aceleradora / parceiro institucional]`.
-- [ ] Substituir o link do vídeo nos dois lugares em que ele aparece.
-- [ ] Confirmar que o vídeo está público ou não listado e abrir o link em janela anônima.
-- [ ] Conferir nome completo e RM dos três integrantes.
-- [ ] Anexar o PDF do deck, se a disciplina pedir.
-- [ ] Revisar o texto para não afirmar impacto, tração ou parceria inexistente.
-- [ ] Submeter na plataforma Microsoft Teams com o documento e o link.
 
 ## Observação sobre privacidade
 

@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto completo: front-end, experiência do cidadão, identidade visual, backend, matemática, aplicação Python e documentação |
 | Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems (ESP32, HC-SR04, Wokwi e limiares) |
-| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora (pitch, marca, roteiro e e-mail ao investidor) |
+| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora (pitch, marca e e-mail ao investidor) |
 
 > O projeto foi conduzido por **Felipe Ilek**. **Marcos Vinícius Tudisco**
 > colaborou com a integração e conduziu a frente de **Edge Computing &
@@ -25,7 +25,7 @@
 | Integração | Marcos Vinícius Tudisco | `frontend/src/services/`, `frontend/src/hooks/`, `backend/app/` |
 | Edge Computing & Computer Systems | Marcos Vinícius Tudisco | `edge/` — firmware ESP32, HC-SR04, Wokwi e limiares |
 | Testes | Michel Tatsuya Hanada | `frontend/src/**/*.test.*`, `backend/tests/`, `mathematics/tests/`, `python-app/tests/`, `edge/tools/` |
-| Storytelling & Inspiração Empreendedora | Michel Tatsuya Hanada | `pitch/` — marca, roteiro do vídeo, e-mail ao investidor e deck |
+| Storytelling & Inspiração Empreendedora | Michel Tatsuya Hanada | `pitch/` — marca, e-mail ao investidor e deck |
 
 ## Declaração de uso de IA
 

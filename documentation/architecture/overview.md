@@ -13,7 +13,7 @@ Santo André/SP. A entrega cobre:
 - runtime demonstrativo local, executável sem backend;
 - firmware ESP32 preparado para um sensor ultrassônico;
 - modelo matemático de nível, taxa e tempo até o limite;
-- documentação, design e roteiro de apresentação.
+- documentação, design e deck de apresentação.
 
 O projeto **não** tem integração oficial com a Prefeitura, Defesa Civil ou qualquer
 central de emergência. Nenhum dado físico foi validado em campo.
@@ -258,7 +258,7 @@ Lacunas conhecidas:
   medição de desempenho em rede real;
 - nenhum teste físico, de carga, de acessibilidade com usuários ou de segurança
   ofensiva;
-- Wokwi preparado, mas não executado.
+- Wokwi simulado; nenhum hardware físico foi montado ou validado.
 
 O detalhamento de testes e evidências está em
 [documentation/testing](../testing/README.md).

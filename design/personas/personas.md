@@ -117,11 +117,11 @@ depois e precisa saber se o dispositivo está realmente enviando dados.
 - O diagnóstico separa hardware validado de simulação.
 - O pitch e a documentação usam ressalvas visíveis.
 
-## O que ainda precisa de evidência
+## Limites das personas
 
-- entrevistas semiestruturadas com pelo menos dois perfis;
-- teste de usabilidade com tarefas;
-- validação das personas por profissionais do setor;
-- revisão de acessibilidade com usuários.
+- não há entrevistas semiestruturadas com esses perfis;
+- não há teste de usabilidade com tarefas;
+- as personas não foram validadas por profissionais do setor;
+- não há revisão de acessibilidade com usuários.
 
-Ver [plano de pesquisa](../research/research-plan.md).
+As personas são hipóteses de projeto, não descrições de pessoas reais.

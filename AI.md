@@ -78,7 +78,7 @@ Trechos com participação relevante de IA:
 | Matemática | `mathematics/model`, `tests`, `report` | fórmulas, testes, gráficos e relatório |
 | Python | `python-app/app.py` e testes | menu, validação, JSON e testes |
 | Design | `design/` e `design/presentation` | requisitos, personas hipotéticas, jornadas e deck |
-| Pitch | `pitch/` | branding, e-mail simulado, roteiro e deck |
+| Pitch | `pitch/` | branding, e-mail simulado e deck |
 
 ## Validação das respostas
 
@@ -115,14 +115,13 @@ firmware foi executado no Wokwi; não houve compilação em hardware físico.
 - não validou a simulação do Wokwi como medição de campo;
 - não validou o modelo com especialistas;
 - não criou credenciais, convênios ou parcerias;
-- não mediu impacto social ou precisão hidrológica;
-- não publicou o deploy, o vídeo ou o projeto no Wokwi.
+- não mediu impacto social ou precisão hidrológica.
 
 ## Análise crítica
 
 **Benefícios.** A IA acelerou a criação de estrutura, testes e documentação, e
 ajudou a manter consistência entre camadas que compartilham a mesma configuração.
-Também foi útil para revisar textos e apontar lacunas de entrega.
+Também foi útil para revisar textos e apontar lacunas de escopo.
 
 **Limitações.** A IA não substitui validação empírica. Ela pode produzir texto
 confiante sobre algo que não foi executado, repetir contagens antigas e inventar
