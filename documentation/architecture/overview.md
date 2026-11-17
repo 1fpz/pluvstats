@@ -251,7 +251,8 @@ Lacunas conhecidas:
 
 - sem autenticação/autorização;
 - sem migrações de banco; o schema é criado de forma idempotente;
-- sem deploy, observabilidade ou fila;
+- frontend publicado apenas em modo demonstração; sem backend publicado,
+  observabilidade ou fila;
 - sem integração oficial ou importação de dados municipais;
 - sem Supabase; o backend usa SQLite;
 - bundle de entrada de 299,79 kB com code splitting por rota e vendor, mas sem

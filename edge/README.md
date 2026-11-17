@@ -160,6 +160,8 @@ Uma amostra do payload está em `simulator/telemetry.example.json`.
 
 ## Wokwi
 
+Projeto público: <https://wokwi.com/projects/480625234214048769>
+
 O projeto usa a extensão Wokwi para VS Code:
 
 1. compile o firmware com o comando acima;

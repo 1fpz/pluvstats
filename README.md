@@ -24,6 +24,9 @@ uma regra que atravessa todas as telas: **origem, idade e limite visíveis em ca
 dado**. Nada aqui é apresentado como oficial, validado em campo ou pronto para
 produção.
 
+**Demonstração publicada:** <https://pluvstats.vercel.app/>  
+**Simulação do edge:** <https://wokwi.com/projects/480625234214048769>
+
 ## Visão geral
 
 | Campo | Resposta |
@@ -328,10 +331,10 @@ escopo deste protótipo. Detalhes em [`edge/README.md`](edge/README.md) e
 
 ## Deploy
 
-O frontend está configurado para a Vercel em `frontend/vercel.json`, com build
-Vite, rewrites de SPA e inclusão de `shared/pluvstats.config.json`. As instruções
-de publicação e o runbook de verificação estão em
-[documentation/deploy.md](documentation/deploy.md).
+O frontend está publicado na Vercel em <https://pluvstats.vercel.app/>. A
+configuração está em `frontend/vercel.json`, com build Vite, rewrites de SPA e
+inclusão de `shared/pluvstats.config.json`. As instruções de publicação e o
+runbook de verificação estão em [documentation/deploy.md](documentation/deploy.md).
 
 ## Testes
 

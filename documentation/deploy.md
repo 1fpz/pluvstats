@@ -1,12 +1,12 @@
 # Deploy — PLUVSTATS
 
-Guia de publicação do frontend na **Vercel** e observações sobre o backend. O
-deploy é opcional para a demonstração: sem API, o frontend usa o repositório
-demonstrativo local e informa o fallback no Diagnóstico.
+Guia de publicação do frontend na **Vercel** e observações sobre o backend.
 
-> **Estado:** configuração pronta, publicação **não executada** por esta equipe.
-> O link público deve ser adicionado ao README depois do primeiro deploy. Não
-> invente um link nem publique um ambiente que não foi testado.
+**Ambiente publicado:** <https://pluvstats.vercel.app/>
+
+O deploy roda apenas o frontend em modo demonstração. Sem `VITE_API_BASE_URL`, o
+app usa o repositório local de dados simulados e informa o fallback no
+Diagnóstico.
 
 ## O que será publicado
 
@@ -54,7 +54,7 @@ build, output, rewrites de SPA e cabeçalhos básicos de segurança.
 > perdidos a cada deploy. Para a entrega acadêmica, isso é aceitável desde que
 > documentado; para produção, seria necessário um banco persistente.
 
-## Roteiro de fumaça (5 minutos)
+## Verificação pós-deploy
 
 1. Abra `/` e confirme o selo **Demonstração** no topo.
 2. Abra `/mapa` e selecione um ponto.
@@ -66,24 +66,12 @@ build, output, rewrites de SPA e cabeçalhos básicos de segurança.
 8. Recarregue uma rota profunda, como `/cidadao/informacoes`, para testar o
    rewrite de SPA.
 
-## Checklist de aceite
-
-- [ ] Build da Vercel concluído sem erro.
-- [ ] URL pública abre em janela anônima.
-- [ ] Rotas profundas funcionam ao recarregar.
-- [ ] O selo de demonstração aparece em todas as telas.
-- [ ] Nenhuma credencial ou `.env` foi versionado.
-- [ ] O Diagnóstico explica a origem dos dados.
-- [ ] O link foi adicionado ao README.
-- [ ] O vídeo de apresentação, se existir, usa a URL publicada.
-
 ## Limitações
 
 - Não há SLA, alta disponibilidade ou observabilidade de produção.
 - Não há autenticação nem perfis de usuário.
 - O backend publicado com SQLite pode perder dados em reinícios.
 - A demonstração não substitui a API real; o selo de simulação continua visível.
-- Nenhum deploy foi executado pela equipe neste ambiente.
 
 ## Rollback
 

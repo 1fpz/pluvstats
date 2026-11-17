@@ -34,7 +34,10 @@ mapa, com proveniência explícita e uma área do cidadão sem jargão.
 - Integração verificada em navegador: ocorrência criada no SQLite e reset
   restaurando 9 ocorrências e 0 alertas.
 - Fallback verificado com API configurada e indisponível.
-- Simulação executada no Wokwi; nenhum teste físico ou de bancada executado.
+- Deploy público do frontend em <https://pluvstats.vercel.app/>.
+- Simulação executada e publicada no Wokwi
+  (<https://wokwi.com/projects/480625234214048769>); nenhum teste físico ou de
+  bancada executado.
 
 Detalhes em [documentation/testing](../documentation/testing/README.md).
 

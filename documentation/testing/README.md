@@ -153,7 +153,11 @@ Esse teste comprova **degradação**, não conectividade real.
 - criação de ocorrência pelo cidadão e aparecimento na gestão;
 - comandos de simulação, pausa, cenário e reset;
 - atualização de sensores e diferenciação visual entre simulado e hardware;
-- ausência de erros de lint e de build.
+- ausência de erros de lint e de build;
+- deploy público do frontend em <https://pluvstats.vercel.app/> respondendo com
+  HTTP 200;
+- projeto do Wokwi publicado em
+  <https://wokwi.com/projects/480625234214048769>.
 
 ## Escopo das evidências
 
