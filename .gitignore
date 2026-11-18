@@ -41,9 +41,6 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# Delivery artefacts generated locally
-deliverables/zips/
-
 # Edge build artefacts and local secrets
 edge/esp32/pluvstats_sensor/build/
 edge/esp32/pluvstats_sensor/secrets.h

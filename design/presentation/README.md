@@ -59,4 +59,4 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
   [`design/journeys/journeys.md`](../journeys/journeys.md)
 - Interface implementada: [`frontend/README.md`](../../frontend/README.md)
 - Entrevistas qualitativas: [`design/research/entrevistas.md`](../research/entrevistas.md)
-- Evidências de teste: [`documentation/testing/README.md`](../../documentation/testing/README.md)
+- Evidências de teste: [se??o Testes do README](../../README.md#testes)

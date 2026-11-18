@@ -1,7 +1,7 @@
 # Arquitetura — PLUVSTATS
 
 Documento de referência da estrutura modular, dos contratos de dados e dos limites
-conhecidos. Complementa o [ADR-001](../decisions/ADR-001-monorepo-modular.md).
+conhecidos.
 
 ## 1. Contexto
 
@@ -243,10 +243,6 @@ O motor é determinístico e explicável. Cada alerta carrega `metrics`, `readin
 
 ## 9. Decisões e lacunas
 
-Decisões registradas:
-
-- [ADR-001 — monorepo modular](../decisions/ADR-001-monorepo-modular.md).
-
 Lacunas conhecidas:
 
 - sem autenticação/autorização;
@@ -262,4 +258,4 @@ Lacunas conhecidas:
 - Wokwi simulado; nenhum hardware físico foi montado ou validado.
 
 O detalhamento de testes e evidências está em
-[documentation/testing](../testing/README.md).
+[se??o Testes do README](../../README.md#testes).
