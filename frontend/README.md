@@ -89,4 +89,4 @@ separados. Não há benchmark de rede real nesta entrega.
 - motores de simulação, alertas e inteligência;
 - contrato do repositório HTTP, incluindo mapeamento de erros.
 
-Consulte a [se??o Testes](../README.md#testes).
+Consulte a [seção Testes](../README.md#testes).

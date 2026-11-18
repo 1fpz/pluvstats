@@ -42,7 +42,7 @@ mapa, com proveniência explícita e uma área do cidadão sem jargão.
   aplicativo, com amostra declaradamente não representativa
   ([registro](../design/research/entrevistas.md)).
 
-Detalhes na [se??o Testes](../README.md#testes).
+Detalhes na [seção Testes](../README.md#testes).
 
 ## FAQ
 

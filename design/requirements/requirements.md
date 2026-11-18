@@ -60,7 +60,7 @@ inexistentes.
 | NFR-03 | Hardware nunca inferido a partir de simulação | Implementado | validação no serviço e testes de hardware |
 | NFR-04 | Dados simulados sempre identificados | Implementado | badges, indicador no topo, metadados |
 | NFR-05 | Testes automatizados nas regras críticas | Implementado | 23 frontend + 31 backend + 35 matemática + 12 Python + 4 edge |
-| NFR-06 | Lint e build sem erros | Implementado | ver a se??o Testes do README |
+| NFR-06 | Lint e build sem erros | Implementado | ver a seção Testes do README |
 | NFR-07 | Resiliência a API indisponível | Implementado | fallback verificado em navegador |
 | NFR-08 | Acessibilidade básica (skip link, foco, rótulos, contraste) | Parcial | sem auditoria WCAG ou teste com leitor de tela |
 | NFR-09 | Responsividade mobile-first no cidadão | Parcial | verificado em viewport de desenvolvimento; sem teste em dispositivo físico |

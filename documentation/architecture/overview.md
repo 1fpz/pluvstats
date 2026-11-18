@@ -258,4 +258,4 @@ Lacunas conhecidas:
 - Wokwi simulado; nenhum hardware físico foi montado ou validado.
 
 O detalhamento de testes e evidências está em
-[se??o Testes do README](../../README.md#testes).
+[seção Testes do README](../../README.md#testes).

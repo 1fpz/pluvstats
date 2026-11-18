@@ -9,11 +9,12 @@ física ou generalização a partir da amostra qualitativa.
 
 | Arquivo | Uso |
 | --- | --- |
-| [`apresentacao.html`](apresentacao.html) | deck editável, 19 slides em 1280 × 720 px |
-| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (19 páginas) |
+| [`apresentacao.html`](apresentacao.html) | deck editável, 20 slides em 1280 × 720 px |
+| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (20 páginas) |
 | [`caso-de-uso.svg`](caso-de-uso.svg) | diagrama completo de casos de uso |
-| [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 8 |
+| [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 9 |
 | [`assets/`](assets/) | capturas reais do protótipo em demonstração |
+| [`assets/problema/`](assets/problema/) | fotos de alagamento urbano usadas no slide 4, com ressalva de uso |
 
 As capturas foram feitas do frontend em execução local, com dados demonstrativos.
 Não há mockup desenhado à mão: o que aparece no deck existe no código.
@@ -23,18 +24,22 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 | # | Entregável | Slides | O que está lá |
 | --- | --- | --- | --- |
 | 1 | Capa | 1 | nome do produto, disciplina, equipe com RM e aviso de protótipo |
-| 2 | Problema | 2–5 | problema, pessoas afetadas, entrevistas qualitativas e evidências declaradas |
-| 3 | Escopo | 6 | dentro e fora do escopo, limites de responsabilidade, dados e técnica |
-| 4 | Requisitos, RNF e RN | 7–8 | RF-01 a RF-09, RNF-01 a RNF-08 e RN-01 a RN-08 |
-| 5 | Caso de uso | 9–10 | diagrama, atores, objetivos, relações e fronteira do sistema |
-| 6 | Protótipo, heurísticas e tom de voz | 11–15 | telas de gestão e cidadão, 10 heurísticas e guia de linguagem |
-| 7 | Roadmap | 16–19 | próximos passos, riscos, evidências, limites e encerramento |
+| 2 | Problema | 2–6 | problema, fotos de alagamento, pessoas afetadas, entrevistas qualitativas e evidências declaradas |
+| 3 | Escopo | 7 | dentro e fora do escopo, limites de responsabilidade, dados e técnica |
+| 4 | Requisitos, RNF e RN | 8–9 | RF-01 a RF-09, RNF-01 a RNF-08 e RN-01 a RN-08 |
+| 5 | Caso de uso | 10–11 | diagrama, atores, objetivos, relações e fronteira do sistema |
+| 6 | Protótipo, heurísticas e tom de voz | 12–16 | telas de gestão e cidadão, 10 heurísticas e guia de linguagem |
+| 7 | Roadmap | 17–20 | próximos passos, riscos, evidências, limites e encerramento |
 
 ## Decisões editoriais
 
 - **Problema com evidência declarada.** O slide “O que ouvimos” resume três
   conversas qualitativas e anônimas com morador, analista municipal e motorista de
   aplicativo. O deck deixa explícito que a amostra é pequena e não representativa.
+- **Fotos com origem declarada.** O slide “O que a água leva junto” usa três
+  registros de alagamento divulgados na imprensa, reproduzidos para uso acadêmico.
+  O rodapé do slide diz que são ilustrativas, que não vêm do protótipo e que não
+  substituem a Defesa Civil.
 - **Proveniência acima do número.** Todo dado simulado aparece identificado; o
   hardware é sempre descrito como não validado.
 - **Duas densidades, um compromisso.** A gestão usa painel denso; o cidadão usa
@@ -59,4 +64,4 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
   [`design/journeys/journeys.md`](../journeys/journeys.md)
 - Interface implementada: [`frontend/README.md`](../../frontend/README.md)
 - Entrevistas qualitativas: [`design/research/entrevistas.md`](../research/entrevistas.md)
-- Evidências de teste: [se??o Testes do README](../../README.md#testes)
+- Evidências de teste: [seção Testes do README](../../README.md#testes)
