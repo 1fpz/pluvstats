@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="Arquitetura do PLUVSTATS: sensor HC-SR04, ESP32, FastAPI, SQLite, React e as duas experiências de interface">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5B7FA8"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2DD4BF"/>
+    </marker>
+    <style>
+      .box { fill: #111C2E; stroke: #24384F; stroke-width: 1.2; }
+      .box-accent { fill: #0F2231; stroke: #0EA5E9; stroke-width: 1.4; }
+      .t { font-family: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 600; fill: #E8F1FA; }
+      .s { font-family: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif; font-size: 11.5px; font-weight: 400; fill: #93A7C0; }
+      .m { font-family: 'Cascadia Code', Consolas, monospace; font-size: 13px; font-weight: 600; fill: #E8F1FA; }
+      .lbl { font-family: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif; font-size: 10.5px; font-weight: 600; fill: #7DD3FC; letter-spacing: 0.3px; }
+      .cap { font-family: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #2DD4BF; letter-spacing: 2.2px; }
+      .flow { stroke: #5B7FA8; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .flow-dashed { stroke: #2DD4BF; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrowAccent); opacity: 0.85; }
+      .bus { stroke: #5B7FA8; stroke-width: 1.6; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="400" rx="16" fill="#0B1220"/>
+
+  <text class="cap" x="40" y="34">ARQUITETURA · FLUXO DE DADOS</text>
+
+  <!-- HC-SR04 -->
+  <rect class="box" x="40" y="108" width="150" height="76" rx="12"/>
+  <text class="t" x="115" y="138" text-anchor="middle">HC-SR04</text>
+  <text class="s" x="115" y="158" text-anchor="middle">sensor ultrassônico</text>
+
+  <!-- ESP32 -->
+  <rect class="box" x="240" y="108" width="170" height="76" rx="12"/>
+  <text class="t" x="325" y="138" text-anchor="middle">ESP32</text>
+  <text class="s" x="325" y="158" text-anchor="middle">firmware · Wokwi</text>
+
+  <!-- FastAPI -->
+  <rect class="box-accent" x="480" y="108" width="170" height="76" rx="12"/>
+  <text class="t" x="565" y="138" text-anchor="middle">FastAPI</text>
+  <text class="s" x="565" y="158" text-anchor="middle">regras, CRUD e ingestão</text>
+
+  <!-- React -->
+  <rect class="box" x="720" y="108" width="150" height="76" rx="12"/>
+  <text class="t" x="795" y="138" text-anchor="middle">React + Vite</text>
+  <text class="s" x="795" y="158" text-anchor="middle">duas experiências</text>
+
+  <!-- Painel de gestão -->
+  <rect class="box" x="920" y="52" width="248" height="64" rx="12"/>
+  <text class="t" x="1044" y="80" text-anchor="middle" style="font-size:15px">Painel de gestão</text>
+  <text class="s" x="1044" y="98" text-anchor="middle">mapa, alertas e fila de trabalho</text>
+
+  <!-- Área do cidadão -->
+  <rect class="box" x="920" y="136" width="248" height="64" rx="12"/>
+  <text class="t" x="1044" y="164" text-anchor="middle" style="font-size:15px">Área do cidadão</text>
+  <text class="s" x="1044" y="182" text-anchor="middle">situação do entorno em linguagem direta</text>
+
+  <!-- SQLite -->
+  <rect class="box" x="480" y="296" width="170" height="58" rx="12"/>
+  <text class="t" x="565" y="322" text-anchor="middle" style="font-size:15px">SQLite</text>
+  <text class="s" x="565" y="339" text-anchor="middle">persistência local</text>
+
+  <!-- Config compartilhada -->
+  <rect class="box" x="40" y="296" width="340" height="64" rx="12" style="stroke:#2DD4BF;stroke-dasharray:6 4;stroke-width:1.1"/>
+  <text class="m" x="210" y="322" text-anchor="middle">shared/pluvstats.config.json</text>
+  <text class="s" x="210" y="341" text-anchor="middle">limiares e geometria · lido por firmware, API, frontend e Python</text>
+
+  <!-- Demonstração local -->
+  <rect class="box" x="920" y="220" width="248" height="64" rx="12" style="stroke:#2DD4BF;stroke-dasharray:6 4;stroke-width:1.1"/>
+  <text class="t" x="1044" y="248" text-anchor="middle" style="font-size:15px">Demonstração local</text>
+  <text class="s" x="1044" y="266" text-anchor="middle">sem API · mesmo produto no navegador</text>
+
+  <!-- Fluxo -->
+  <path class="flow" d="M 190 146 L 232 146"/>
+  <path class="flow" d="M 410 146 L 472 146"/>
+  <text class="lbl" x="441" y="137" text-anchor="middle">JSON</text>
+  <path class="flow" d="M 650 146 L 712 146"/>
+  <path class="flow" d="M 565 184 L 565 288"/>
+
+  <!-- Barramento para as duas interfaces -->
+  <path class="bus" d="M 870 146 L 897 146"/>
+  <path class="bus" d="M 897 84 L 897 252"/>
+  <path class="flow" d="M 897 84 L 912 84"/>
+  <path class="flow" d="M 897 168 L 912 168"/>
+  <path class="flow-dashed" d="M 897 252 L 912 252"/>
+
+  <!-- Config: fonte única -->
+  <path class="flow-dashed" d="M 325 184 L 325 288"/>
+
+  <text class="lbl" x="345" y="238" style="fill:#2DD4BF">mesma fonte</text>
+  <text class="s" x="345" y="254" style="font-size:10.5px">de limiares</text>
+</svg>

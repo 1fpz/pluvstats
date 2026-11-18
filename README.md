@@ -159,18 +159,9 @@ origem de cada número.
 
 ## Arquitetura
 
-```mermaid
-flowchart LR
-  S["HC-SR04"] --> E["ESP32<br/>firmware"]
-  E -->|JSON serial| A["FastAPI"]
-  A --> D[("SQLite")]
-  A --> F["React + Vite"]
-  F --> G["Painel de gestão"]
-  F --> C["Área do cidadão"]
-  F -.->|sem API| L["Demonstração local"]
-  A --> T["Limiares<br/>shared/config"]
-  E --> T
-```
+<p align="center">
+  <img src="documentation/architecture/arquitetura.svg" alt="Fluxo: sensor HC-SR04 no ESP32 envia JSON para a API FastAPI, que grava em SQLite e serve o frontend React; o mesmo frontend entrega o painel de gestão e a área do cidadão, com demonstração local quando a API não responde; os limiares vêm de shared/pluvstats.config.json" width="980">
+</p>
 
 | Camada | Tecnologias | Papel |
 | --- | --- | --- |
