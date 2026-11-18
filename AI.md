@@ -56,7 +56,7 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-Resultados: **23 testes de frontend, 31 de backend, 35 de matemática, 12 da
+Resultados: **23 testes de frontend, 31 de backend, 37 de matemática, 12 da
 aplicação Python e 4 de sincronização de limiares**. O firmware foi executado no
 Wokwi; não houve teste em hardware físico.
 

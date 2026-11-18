@@ -11,7 +11,7 @@ teste físico, de carga, de segurança ofensiva ou com usuários reais foi reali
 | Frontend lint | `cd frontend && npm run lint` | **sem erros** |
 | Frontend build | `cd frontend && npm run build` | **sucesso**, entrada de 299,84 kB (91,70 kB gzip), vendors e rotas separados |
 | Backend | `cd backend && .\.venv\Scripts\python.exe -m pytest` | **31 aprovados** |
-| Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **35 aprovados** |
+| Matemática | `python -m unittest discover -s mathematics/tests -p "test_*.py"` | **37 aprovados** |
 | Aplicação Python | `python -m unittest discover -s python-app/tests -p "test_*.py"` | **12 aprovados** |
 | Sincronização de limiares | `python -m unittest discover -s edge/tools -p "test_*.py"` | **4 aprovados** |
 | Firmware físico | — | **fora do escopo** |
@@ -79,7 +79,7 @@ StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprec
 
 ## Matemática
 
-35 testes cobrem as fórmulas e os cenários:
+37 testes cobrem as fórmulas e os cenários:
 
 - `h = H - d`, saturação e rejeição de distância negativa/NaN;
 - taxa em cm/min, drenagem e `Δt` inválido;

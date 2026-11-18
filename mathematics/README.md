@@ -4,7 +4,7 @@ Modelo experimental de nível, taxa de elevação e tempo até um limite. É um
 conjunto pequeno de fórmulas explícitas, não uma simulação hidráulica e não uma
 previsão oficial de enchentes.
 
-> **Estado:** implementado e testado (35 testes). Os gráficos são gerados a
+> **Estado:** implementado e testado (37 testes). Os gráficos são gerados a
 > partir dos mesmos cenários dos testes. Nada aqui foi calibrado com dados de
 > campo.
 
@@ -18,7 +18,7 @@ mathematics/
 ├── tools/plot_scenarios.py  gerador de SVG (somente biblioteca padrão)
 ├── graphs/                  gráficos versionados
 ├── report/                  relatório técnico (HTML e PDF)
-├── tests/test_model.py      35 testes com unittest
+├── tests/test_model.py      37 testes com unittest
 └── README.md
 ```
 
@@ -268,7 +268,7 @@ elevação ganha 32 m³, drenagem perde 36 m³ e o canal estável permanece em z
 python -m unittest discover -s mathematics/tests -p "test_*.py" -v
 ```
 
-Resultado atual: **35 testes aprovados**. A suíte cobre:
+Resultado atual: **37 testes aprovados**. A suíte cobre:
 
 - nível, sinal e saturação física;
 - rejeição de distância inválida;

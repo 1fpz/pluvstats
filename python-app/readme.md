@@ -133,3 +133,13 @@ corrompido, cenários e relatório. Eles não substituem um teste de usabilidade
 
 O apoio do DeepSeek, com prompts, validação e análise crítica, está em
 [`prompt.md`](prompt.md).
+
+## Equipe
+
+| Integrante | RM |
+| --- | --- |
+| Felipe Ilek | 571322 |
+| Marcos Vinícius Tudisco | 569366 |
+| Michel Tatsuya Hanada | 571987 |
+
+Global Solution 2026.2 · CitizenTech · FIAP · Engenharia de Software, 1º ano.

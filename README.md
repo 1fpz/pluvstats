@@ -7,7 +7,7 @@
 ![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.162-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Testes](https://img.shields.io/badge/testes%20automatizados-105-2dd4bf?style=flat-square)
+![Testes](https://img.shields.io/badge/testes%20automatizados-107-2dd4bf?style=flat-square)
 
 <p align="center">
   <img src="design/presentation/assets/gestao-visao-geral.png" alt="Painel de gestão do PLUVSTATS em modo demonstração, com mapa, contadores e central de alertas" width="880">
@@ -353,7 +353,7 @@ python -m unittest discover -s edge/tools -p "test_*.py"
 python edge/tools/sync_thresholds.py --check
 ```
 
-Resultado registrado nesta entrega: **105 testes automatizados aprovados**, lint
+Resultado registrado nesta entrega: **107 testes automatizados aprovados**, lint
 sem erros e build do frontend concluído. O firmware foi executado no Wokwi e não
 foi validado em hardware físico.
 

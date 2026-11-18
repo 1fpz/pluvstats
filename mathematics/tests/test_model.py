@@ -98,7 +98,12 @@ class TimeToLimitTests(unittest.TestCase):
     def test_undefined_when_not_rising(self) -> None:
         self.assertIsNone(time_to_limit_minutes(60, 75, 0))
         self.assertIsNone(time_to_limit_minutes(60, 75, -4.5))
-        self.assertIsNone(time_to_limit_minutes(60, 75, math.nan))
+
+    def test_non_finite_rate_is_rejected(self) -> None:
+        with self.assertRaises(ModelError):
+            time_to_limit_minutes(60, 75, math.nan)
+        with self.assertRaises(ModelError):
+            time_to_limit_minutes(60, 75, math.inf)
 
     def test_rate_must_be_positive_to_reach_the_limit(self) -> None:
         self.assertAlmostEqual(time_to_limit_minutes(58, 75, 4.0), 4.25)
@@ -237,13 +242,17 @@ class LongRunTests(unittest.TestCase):
         self.assertEqual(long_run_level_cm(58, 4.0), 100.0)
         self.assertEqual(long_run_level_cm(8, 1.2), 100.0)
 
-    def test_non_positive_rate_stays_at_the_current_level(self) -> None:
+    def test_zero_rate_stays_at_the_current_level(self) -> None:
         self.assertEqual(long_run_level_cm(8, 0), 8.0)
-        self.assertEqual(long_run_level_cm(62, -4.5), 62.0)
 
-    def test_limit_is_clamped_to_the_channel(self) -> None:
-        self.assertEqual(long_run_level_cm(150, 0), 100.0)
-        self.assertEqual(long_run_level_cm(-5, 0), 0.0)
+    def test_negative_rate_trends_to_dry(self) -> None:
+        self.assertEqual(long_run_level_cm(62, -4.5), 0.0)
+
+    def test_level_outside_the_channel_is_rejected(self) -> None:
+        with self.assertRaises(ModelError):
+            long_run_level_cm(150, 0)
+        with self.assertRaises(ModelError):
+            long_run_level_cm(-5, 0)
 
     def test_limit_requires_finite_values(self) -> None:
         with self.assertRaises(ModelError):

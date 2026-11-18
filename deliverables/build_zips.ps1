@@ -1,28 +1,51 @@
 # PLUVSTATS - build the delivery ZIPs.
 # Usage: powershell -ExecutionPolicy Bypass -File deliverables/build_zips.ps1
 #
+# Each ZIP carries exactly what the discipline asks for, plus at most one
+# supporting item. Nothing else.
+#
 # Output:
-#   deliverables/zips/pluvstats-python.zip      (app.py, prompt.md, readme.md, tests, data)
-#   deliverables/zips/pluvstats-projeto.zip     (whole project, without caches/builds)
-#   deliverables/zips/pluvstats-matematica.zip  (model, report, graphs, scenarios, tests)
-#   deliverables/zips/pluvstats-experience.zip  (deck, screenshots, requirements, personas)
-#   deliverables/zips/pluvstats-edge.zip        (firmware, diagram, tools)
-#   deliverables/zips/pluvstats-pitch.zip       (branding, e-mail, deck)
+#   deliverables/zips/pluvstats-python.zip       app.py, prompt.md, readme.md, tests
+#   deliverables/zips/pluvstats-aplicacao.zip    frontend, backend, shared, scripts, docs
+#   deliverables/zips/pluvstats-matematica.zip   model, shared config, report PDF
+#   deliverables/zips/pluvstats-experience.zip   deck PDF + editable HTML
+#   deliverables/zips/pluvstats-edge.zip         firmware, generated config, Wokwi files
+#   deliverables/zips/pluvstats-pitch.zip        e-mail, branding, deck PDF
 
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $PSScriptRoot
 $outDir = Join-Path $PSScriptRoot "zips"
-$pythonSrc = Join-Path $root "python-app"
 $stage = Join-Path $env:TEMP ("pluvstats-zips-" + [guid]::NewGuid().ToString("N"))
 
-function Invoke-Robocopy {
-    param([string[]]$Arguments)
-    & robocopy @Arguments | Out-Null
-    $code = $LASTEXITCODE
-    if ($code -ge 8) {
-        throw "robocopy falhou com o codigo $code."
+function Copy-Tree {
+    param(
+        [Parameter(Mandatory = $true)][string]$Source,
+        [Parameter(Mandatory = $true)][string]$Destination,
+        [string[]]$ExcludeDirs = @(),
+        [string[]]$ExcludeFiles = @()
+    )
+
+    $arguments = @($Source, $Destination, "/E")
+    if ($ExcludeDirs.Count -gt 0) { $arguments += @("/XD") + $ExcludeDirs }
+    if ($ExcludeFiles.Count -gt 0) { $arguments += @("/XF") + $ExcludeFiles }
+    $arguments += @("/NFL", "/NDL", "/NJH", "/NJS", "/NP")
+
+    & robocopy @arguments | Out-Null
+    if ($LASTEXITCODE -ge 8) {
+        throw "robocopy falhou com o codigo $LASTEXITCODE em $Source."
     }
+}
+
+function New-DeliveryZip {
+    param(
+        [Parameter(Mandatory = $true)][string]$Name,
+        [Parameter(Mandatory = $true)][string]$StageDir
+    )
+
+    $zipPath = Join-Path $outDir $Name
+    Compress-Archive -Path (Join-Path $StageDir "*") -DestinationPath $zipPath -CompressionLevel Optimal
+    Write-Host "OK  $Name" -ForegroundColor Green
 }
 
 Write-Host ""
@@ -35,122 +58,101 @@ if (Test-Path $outDir) {
 New-Item -ItemType Directory -Path $outDir | Out-Null
 New-Item -ItemType Directory -Path $stage | Out-Null
 
-# --- Python package --------------------------------------------------------
+# --- 1. Python -------------------------------------------------------------
+# Pedido: .py + prompt.md + readme.md em um unico ZIP. Extra: os testes.
 $pythonStage = Join-Path $stage "python"
 New-Item -ItemType Directory -Path $pythonStage | Out-Null
+Copy-Item (Join-Path $root "python-app\app.py") $pythonStage
+Copy-Item (Join-Path $root "python-app\prompt.md") $pythonStage
+Copy-Item (Join-Path $root "python-app\readme.md") $pythonStage
+New-Item -ItemType Directory -Path (Join-Path $pythonStage "tests") | Out-Null
+Copy-Item (Join-Path $root "python-app\tests\test_app.py") (Join-Path $pythonStage "tests")
 
-Copy-Item (Join-Path $pythonSrc "app.py") $pythonStage
-Copy-Item (Join-Path $pythonSrc "prompt.md") $pythonStage
-Copy-Item (Join-Path $pythonSrc "readme.md") $pythonStage
-Copy-Item (Join-Path $pythonSrc "tests") $pythonStage -Recurse
-Copy-Item (Join-Path $pythonSrc "data") $pythonStage -Recurse
+New-DeliveryZip -Name "pluvstats-python.zip" -StageDir $pythonStage
 
-# Do not ship local runtime state.
-Get-ChildItem $pythonStage -Recurse -Filter "estado.json" -File -ErrorAction SilentlyContinue |
-    Remove-Item -Force
-Get-ChildItem $pythonStage -Recurse -Directory -Filter "__pycache__" -ErrorAction SilentlyContinue |
-    Remove-Item -Recurse -Force
+# --- 2. Aplicacao web (Front-end e Web Development) ------------------------
+# Pedido: ZIP do projeto com o necessario para analisar e executar a aplicacao.
+$appStage = Join-Path $stage "aplicacao"
+New-Item -ItemType Directory -Path $appStage | Out-Null
 
-$pythonZip = Join-Path $outDir "pluvstats-python.zip"
-Compress-Archive -Path (Join-Path $pythonStage "*") -DestinationPath $pythonZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-python.zip" -ForegroundColor Green
+Copy-Tree -Source (Join-Path $root "frontend") -Destination (Join-Path $appStage "frontend") `
+    -ExcludeDirs @("node_modules", "dist", "dist-ssr", "coverage", ".vite") `
+    -ExcludeFiles @("*.log")
 
-# --- Full project ----------------------------------------------------------
-$projectStage = Join-Path $stage "project"
-New-Item -ItemType Directory -Path $projectStage | Out-Null
+Copy-Tree -Source (Join-Path $root "backend") -Destination (Join-Path $appStage "backend") `
+    -ExcludeDirs @(".venv", "__pycache__", ".pytest_cache", "data") `
+    -ExcludeFiles @("*.db", "*.db-journal", "*.sqlite", "*.sqlite3", "*.log")
 
-Invoke-Robocopy @(
-    $root, $projectStage,
-    "/E",
-    "/XD", "node_modules", ".venv", "__pycache__", ".git", "dist", "coverage", ".pytest_cache", ".wokwi-cache", "zips",
-    "/XF", "*.db", "*.db-journal", "*.sqlite", "*.sqlite3", "estado.json", "*.log",
-    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
-)
+Copy-Tree -Source (Join-Path $root "shared") -Destination (Join-Path $appStage "shared") `
+    -ExcludeFiles @("*.log")
+Copy-Tree -Source (Join-Path $root "scripts") -Destination (Join-Path $appStage "scripts") `
+    -ExcludeFiles @("*.log")
+Copy-Tree -Source (Join-Path $root "documentation") -Destination (Join-Path $appStage "documentation") `
+    -ExcludeFiles @("*.log")
 
-# Keep the zips folder itself out of the project ZIP.
-$projectZips = Join-Path $projectStage "deliverables\zips"
-if (Test-Path $projectZips) {
-    Remove-Item $projectZips -Recurse -Force
-}
+Copy-Item (Join-Path $root "README.md") $appStage
+Copy-Item (Join-Path $root "AI.md") $appStage
+Copy-Item (Join-Path $root "TEAM.md") $appStage
+Copy-Item (Join-Path $root ".env.example") $appStage
 
-$projectZip = Join-Path $outDir "pluvstats-projeto.zip"
-Compress-Archive -Path (Join-Path $projectStage "*") -DestinationPath $projectZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-projeto.zip" -ForegroundColor Green
+New-DeliveryZip -Name "pluvstats-aplicacao.zip" -StageDir $appStage
 
-# --- Matematica ------------------------------------------------------------
-# Keep the repository layout (mathematics/ + shared/) because the model resolves
-# shared/pluvstats.config.json from the repository root.
+# --- 3. Matematica ---------------------------------------------------------
+# Pedido: .py + relatorio em PDF. Extra: a configuracao unica que o modelo le.
 $mathStage = Join-Path $stage "matematica"
-Invoke-Robocopy @(
-    (Join-Path $root "mathematics"), (Join-Path $mathStage "mathematics"),
-    "/E",
-    "/XD", "__pycache__", ".pytest_cache",
-    "/XF", "*.pyc", "*.log",
-    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
-)
+New-Item -ItemType Directory -Path (Join-Path $mathStage "mathematics\model") -Force | Out-Null
+New-Item -ItemType Directory -Path (Join-Path $mathStage "mathematics\report") -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $mathStage "shared") -Force | Out-Null
+
+Copy-Item (Join-Path $root "mathematics\model\pluvstats_model.py") (Join-Path $mathStage "mathematics\model")
+Copy-Item (Join-Path $root "mathematics\report\relatorio-tecnico.pdf") (Join-Path $mathStage "mathematics\report")
 Copy-Item (Join-Path $root "shared\pluvstats.config.json") (Join-Path $mathStage "shared")
 
-$mathZip = Join-Path $outDir "pluvstats-matematica.zip"
-Compress-Archive -Path (Join-Path $mathStage "*") -DestinationPath $mathZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-matematica.zip" -ForegroundColor Green
+New-DeliveryZip -Name "pluvstats-matematica.zip" -StageDir $mathStage
 
-# --- Experience ------------------------------------------------------------
+# --- 4. Experience ---------------------------------------------------------
+# Pedido: slides. Extra: o HTML editavel que gera o PDF.
 $expStage = Join-Path $stage "experience"
-Invoke-Robocopy @(
-    (Join-Path $root "design"), $expStage,
-    "/E",
-    "/XD", "__pycache__",
-    "/XF", "*.pyc", "*.log", "Thumbs.db", ".DS_Store",
-    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
-)
+New-Item -ItemType Directory -Path $expStage | Out-Null
+Copy-Item (Join-Path $root "design\presentation\apresentacao.pdf") $expStage
+Copy-Item (Join-Path $root "design\presentation\apresentacao.html") $expStage
 
-$expZip = Join-Path $outDir "pluvstats-experience.zip"
-Compress-Archive -Path (Join-Path $expStage "*") -DestinationPath $expZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-experience.zip" -ForegroundColor Green
+New-DeliveryZip -Name "pluvstats-experience.zip" -StageDir $expStage
 
-# --- Edge ------------------------------------------------------------------
-# Same reason: tools/sync_thresholds.py reads shared/pluvstats.config.json from
-# the repository root.
+# --- 5. Edge ---------------------------------------------------------------
+# Pedido: link do Wokwi + link do YouTube. Extra: o codigo para conferencia.
 $edgeStage = Join-Path $stage "edge"
-Invoke-Robocopy @(
-    (Join-Path $root "edge"), (Join-Path $edgeStage "edge"),
-    "/E",
-    "/XD", "build", ".wokwi-cache", "__pycache__",
-    "/XF", "secrets.h", "*.pyc", "*.log",
-    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
-)
+New-Item -ItemType Directory -Path (Join-Path $edgeStage "esp32\pluvstats_sensor") -Force | Out-Null
+New-Item -ItemType Directory -Path (Join-Path $edgeStage "wokwi") -Force | Out-Null
 New-Item -ItemType Directory -Path (Join-Path $edgeStage "shared") -Force | Out-Null
+
+Copy-Item (Join-Path $root "edge\esp32\pluvstats_sensor\pluvstats_sensor.ino") (Join-Path $edgeStage "esp32\pluvstats_sensor")
+Copy-Item (Join-Path $root "edge\esp32\pluvstats_sensor\generated_config.h") (Join-Path $edgeStage "esp32\pluvstats_sensor")
+Copy-Item (Join-Path $root "edge\wokwi\diagram.json") (Join-Path $edgeStage "wokwi")
+Copy-Item (Join-Path $root "edge\wokwi\wokwi.toml") (Join-Path $edgeStage "wokwi")
+Copy-Item (Join-Path $root "edge\README.md") $edgeStage
 Copy-Item (Join-Path $root "shared\pluvstats.config.json") (Join-Path $edgeStage "shared")
 
-$edgeZip = Join-Path $outDir "pluvstats-edge.zip"
-Compress-Archive -Path (Join-Path $edgeStage "*") -DestinationPath $edgeZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-edge.zip" -ForegroundColor Green
+New-DeliveryZip -Name "pluvstats-edge.zip" -StageDir $edgeStage
 
-# --- Pitch -----------------------------------------------------------------
+# --- 6. Pitch --------------------------------------------------------------
+# Pedido: um documento com o e-mail e o link do video. Enquanto o video nao
+# existe, o ZIP leva as fontes que compoem esse documento.
 $pitchStage = Join-Path $stage "pitch"
-Invoke-Robocopy @(
-    (Join-Path $root "pitch"), $pitchStage,
-    "/E",
-    "/XD", "__pycache__",
-    "/XF", "*.pyc", "*.log",
-    "/NFL", "/NDL", "/NJH", "/NJS", "/NP"
-)
-# Keep the research record next to the deck: the pitch cites the interviews.
-$researchDir = Join-Path $pitchStage "pesquisa"
-New-Item -ItemType Directory -Path $researchDir -Force | Out-Null
-$researchFile = Join-Path $root "design\research\entrevistas.md"
-if (Test-Path $researchFile) {
-    Copy-Item $researchFile $researchDir
+New-Item -ItemType Directory -Path $pitchStage | Out-Null
+Copy-Item (Join-Path $root "pitch\email-investidor.md") $pitchStage
+Copy-Item (Join-Path $root "pitch\branding.md") $pitchStage
+Copy-Item (Join-Path $root "pitch\apresentacao-pitch.pdf") $pitchStage
+$pitchDoc = Join-Path $root "pitch\entrega-pitch.pdf"
+if (Test-Path $pitchDoc) {
+    Copy-Item $pitchDoc $pitchStage
 }
 
-$pitchZip = Join-Path $outDir "pluvstats-pitch.zip"
-Compress-Archive -Path (Join-Path $pitchStage "*") -DestinationPath $pitchZip -CompressionLevel Optimal
-Write-Host "OK  pluvstats-pitch.zip" -ForegroundColor Green
+New-DeliveryZip -Name "pluvstats-pitch.zip" -StageDir $pitchStage
 
 Remove-Item $stage -Recurse -Force
 
 Write-Host ""
-Get-ChildItem $outDir | Select-Object Name, @{Name = "MB"; Expression = { [math]::Round($_.Length / 1MB, 2) } }
+Get-ChildItem $outDir | Sort-Object Name | Select-Object Name, @{Name = "MB"; Expression = { [math]::Round($_.Length / 1MB, 2) } }
 Write-Host ""
 Write-Host "ZIPs em $outDir" -ForegroundColor Cyan
