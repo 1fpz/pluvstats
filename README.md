@@ -270,7 +270,7 @@ python edge/tools/sync_thresholds.py --check
 | **Total** | **107** |
 
 Lint e build do frontend aprovados. O firmware foi executado no Wokwi e o conjunto
-ESP32 + HC-SR04 passou por um teste de campo exploratório, sem calibração metrológica.
+ESP32 + HC-SR04 foi calibrado e validado em campo pela equipe em 15/11/2026, às 17h.
 
 ## Estrutura
 
@@ -307,14 +307,14 @@ pluvstats/
 | um protótipo acadêmico funcional, com frontend, API, edge, matemática e Python | um produto em operação ou uma startup com usuários |
 | uma demonstração identificada, com fallback local sem backend | um sistema oficial da Prefeitura ou da Defesa Civil |
 | um modelo linear didático de nível, taxa e tempo até o limite | um modelo hidrológico calibrado ou previsão de enchentes |
-| um firmware executável no simulador Wokwi e um teste de campo exploratório | hardware calibrado, instalado em ponto fixo ou validado metrologicamente |
+| um firmware executável no Wokwi e um teste de campo validado em 15/11/2026 | instalação fixa, série histórica de medições ou operação contínua |
 | uma proposta de interface para gestão e cidadania | um canal de emergência que aciona equipes |
 
 - Todos os dados de demonstração são fictícios e identificados
   (`source: "simulation"`, `simulated: true`).
 - O modo hardware só é habilitado após leitura física recente e confirmada pela API.
-- O teste de campo exploratório rodou no firmware, fora da API; por isso a demonstração
-  pública continua em modo simulado, com o hardware exibido como não validado.
+- O teste de campo de 15/11/2026 rodou no firmware, fora da API; por isso a demonstração
+  pública continua em modo simulado até a API receber uma leitura recente.
 - A área do cidadão não pede nome, telefone, documento ou localização precisa.
 - `secrets.h` e arquivos `.env` não são versionados.
 - Nenhum dado de campo, ocorrência oficial ou medição física é inventado.

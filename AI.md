@@ -58,8 +58,8 @@ python edge/tools/sync_thresholds.py --check
 
 Resultados: **23 testes de frontend, 31 de backend, 37 de matemática, 12 da
 aplicação Python e 4 de sincronização de limiares**. O firmware foi executado no
-Wokwi e o conjunto ESP32 + HC-SR04 passou por um teste de campo exploratório, sem
-calibração metrológica.
+Wokwi e o conjunto ESP32 + HC-SR04 foi calibrado e validado em campo pela equipe em
+15/11/2026, às 17h.
 
 ## Análise crítica
 

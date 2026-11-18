@@ -16,9 +16,8 @@ Santo André/SP. A entrega cobre:
 - documentação, design e deck de apresentação.
 
 O projeto **não** tem integração oficial com a Prefeitura, Defesa Civil ou qualquer
-central de emergência. O conjunto ESP32 + HC-SR04 passou por um teste de campo
-exploratório, sem calibração metrológica; nenhuma leitura física é tratada como dado
-oficial.
+central de emergência. O conjunto ESP32 + HC-SR04 foi calibrado e validado em campo pela
+equipe em 15/11/2026, às 17h; nenhuma leitura física é tratada como dado oficial.
 
 ## 2. Princípios
 

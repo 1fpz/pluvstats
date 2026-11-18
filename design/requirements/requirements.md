@@ -43,7 +43,7 @@ inexistentes.
 | FR-13 | Diagnosticar origem dos dados, fallback, hardware e simulador | Implementado | `DiagnosticsPage` |
 | FR-14 | Restaurar o estado demonstrativo | Implementado | `SettingsPage`, `POST /api/demo/reset` |
 | FR-15 | Servir um snapshot único para o frontend | Implementado | `GET /api/snapshot` |
-| FR-16 | Aceitar leitura física somente com hardware habilitado e credencial | Implementado, não validado fisicamente | `POST /api/hardware/readings`, testes |
+| FR-16 | Aceitar leitura física somente com hardware habilitado e credencial | Implementado, sem ingestão testada com dispositivo físico | `POST /api/hardware/readings`, testes |
 | FR-17 | Expor séries, bairros, estatísticas de sensor e prioridades | Implementado | `/api/analytics/*` |
 | FR-18 | Ler limiares de uma única fonte compartilhada | Implementado | `shared/pluvstats.config.json` |
 | FR-19 | Gerar header de limiares do firmware a partir da mesma fonte | Implementado | `edge/tools/sync_thresholds.py` |

@@ -2,15 +2,16 @@
 
 Deck da disciplina **Software & Total Experience Design** para a Global Solution
 2026.2 (CitizenTech). O material cobre os sete entregáveis pedidos no enunciado e
-mantém a postura do restante do repositório: nenhuma métrica de mercado, medição
-física ou generalização a partir da amostra qualitativa.
+mantém a postura do restante do repositório: nenhuma métrica de mercado, nenhuma
+generalização a partir da amostra qualitativa e nenhuma medição de campo além do teste
+que a equipe realmente fez.
 
 ## Arquivos
 
 | Arquivo | Uso |
 | --- | --- |
-| [`apresentacao.html`](apresentacao.html) | deck editável, 20 slides em 1280 × 720 px |
-| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (20 páginas) |
+| [`apresentacao.html`](apresentacao.html) | deck editável, 21 slides em 1280 × 720 px |
+| [`apresentacao.pdf`](apresentacao.pdf) | versão para entrega e impressão (21 páginas) |
 | [`caso-de-uso.svg`](caso-de-uso.svg) | diagrama completo de casos de uso |
 | [`caso-de-uso-deck.svg`](caso-de-uso-deck.svg) | versão resumida usada no slide 9 |
 | [`assets/`](assets/) | capturas reais do protótipo em demonstração |
@@ -29,7 +30,7 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
 | 4 | Requisitos, RNF e RN | 8–9 | RF-01 a RF-09, RNF-01 a RNF-08 e RN-01 a RN-08 |
 | 5 | Caso de uso | 10–11 | diagrama, atores, objetivos, relações e fronteira do sistema |
 | 6 | Protótipo, heurísticas e tom de voz | 12–16 | telas de gestão e cidadão, 10 heurísticas e guia de linguagem |
-| 7 | Roadmap | 17–20 | próximos passos, riscos, evidências, limites e encerramento |
+| 7 | Roadmap | 17–21 | próximos passos, riscos, evidências, teste de campo, limites e encerramento |
 
 ## Decisões editoriais
 
@@ -41,7 +42,8 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
   O rodapé do slide diz que são ilustrativas, que não vêm do protótipo e que não
   substituem a Defesa Civil.
 - **Proveniência acima do número.** Todo dado simulado aparece identificado; o status
-  do hardware é sempre explícito, incluindo o teste de campo exploratório do sensor.
+  do hardware é sempre explícito, incluindo o teste de campo de 15/11/2026, às 17h, com
+  calibração prévia e slide próprio (20) explicando o que ele prova e o que não prova.
 - **Duas densidades, um compromisso.** A gestão usa painel denso; o cidadão usa
   linguagem simples e piso tipográfico maior (14–15 px no texto-base).
 - **Heurísticas com evidência.** Cada princípio aponta um elemento real da
