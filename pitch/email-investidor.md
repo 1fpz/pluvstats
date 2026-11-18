@@ -85,8 +85,9 @@ listado, e o link está no início deste e-mail:
 
 Para ser honesto com você: o PLUVSTATS **não** prevê enchentes, **não** substitui
 a Defesa Civil, **não** aciona equipes e **não** possui dados oficiais. O
-hardware não foi validado fisicamente e o modelo é linear e didático. Não há
-tração, usuários ou parceria institucional. O que existe é um protótipo
+conjunto ESP32 + HC-SR04 foi calibrado e validado em campo em 15/11/2026, mas
+não há instalação fixa nem série histórica, e o modelo é linear e didático. Não
+há tração, usuários ou parceria institucional. O que existe é um protótipo
 funcional, testado no que se propõe a fazer, com as lacunas documentadas.
 
 Se a tese fizer sentido, gostaríamos de conversar sobre como estruturar a

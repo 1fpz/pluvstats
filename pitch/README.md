@@ -57,8 +57,9 @@ Não. O ambiente padrão é demonstrativo e identifica os dados como simulados.
 Não. Nenhuma credencial, convênio ou canal oficial existe no projeto.
 
 **O hardware funciona?**
-O firmware foi executado no Wokwi, mas não foi testado em bancada nem em um
-dispositivo físico. Nenhum hardware real foi validado.
+O firmware foi executado no Wokwi e o conjunto ESP32 + HC-SR04 foi calibrado e
+validado em campo pela equipe em 15/11/2026, às 17h, em um ponto de alagamento
+recorrente. Não houve instalação fixa nem série histórica de medições.
 
 **Por que não Supabase?**
 Não há conexão configurada. A persistência atual é SQLite local. Supabase pode
@@ -82,6 +83,6 @@ arquitetura modular e documentação dos limites — não uma promessa de previs
 - que o sistema salva vidas;
 - que prevê alagamentos com precisão;
 - que possui dados oficiais;
-- que o hardware foi testado;
+- que o hardware está instalado em campo de forma permanente;
 - que há usuários, piloto ou parceria institucional;
 - que o modelo foi validado por especialistas.
