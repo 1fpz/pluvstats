@@ -6,8 +6,6 @@
 
 *Dados que antecipam decisões.*
 
-[![Deploy](https://img.shields.io/badge/deploy-pluvstats.vercel.app-000000?style=flat-square&logo=vercel&logoColor=white)](https://pluvstats.vercel.app/)
-[![Wokwi](https://img.shields.io/badge/simula%C3%A7%C3%A3o-Wokwi-2dd4bf?style=flat-square)](https://wokwi.com/projects/480625234214048769)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=0B0D10)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -15,7 +13,9 @@
 [![Testes](https://img.shields.io/badge/testes%20automatizados-107-2dd4bf?style=flat-square)](#testes)
 [![Status](https://img.shields.io/badge/status-prot%C3%B3tipo%20acad%C3%AAmico-f59e0b?style=flat-square)](#transpar%C3%AAncia)
 
-**[Demonstração](https://pluvstats.vercel.app/)** · **[Simulação do edge](https://wokwi.com/projects/480625234214048769)** · **[Arquitetura](documentation/architecture/overview.md)** · **[API](documentation/api/README.md)**
+**[▶ Abrir a demonstração](https://pluvstats.vercel.app/)**
+
+<sub>[Simulação do edge](https://wokwi.com/projects/480625234214048769) · [Arquitetura](documentation/architecture/overview.md) · [API](documentation/api/README.md) · [Como rodar](#rodando)</sub>
 
 </div>
 
