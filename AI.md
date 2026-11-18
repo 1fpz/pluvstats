@@ -58,7 +58,8 @@ python edge/tools/sync_thresholds.py --check
 
 Resultados: **23 testes de frontend, 31 de backend, 37 de matemática, 12 da
 aplicação Python e 4 de sincronização de limiares**. O firmware foi executado no
-Wokwi; não houve teste em hardware físico.
+Wokwi e o conjunto ESP32 + HC-SR04 passou por um teste de campo exploratório, sem
+calibração metrológica.
 
 ## Análise crítica
 

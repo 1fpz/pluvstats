@@ -202,7 +202,7 @@
     <div class="grid-3" style="margin-top:34px;max-width:880px">
       <div class="card"><div class="big" style="font-size:34px">5</div><p>pontos monitorados na demonstração</p></div>
       <div class="card"><div class="big" style="font-size:34px">2</div><p>experiências: gestão e cidadania</p></div>
-      <div class="card"><div class="big" style="font-size:34px">0</div><p>sensores físicos validados em campo</p></div>
+      <div class="card"><div class="big" style="font-size:34px">1</div><p>teste de campo com o sensor</p></div>
     </div>
   </div>
   <div>
@@ -212,8 +212,9 @@
       <div class="person"><strong>Michel Tatsuya Hanada</strong><span>RM 571987 · Testes e Storytelling</span></div>
     </div>
     <div class="note-strip" style="margin-top:16px">
-      Protótipo acadêmico experimental. Não há dados oficiais, integração com a Prefeitura,
-      hardware validado em campo ou promessa de previsão de enchentes.
+      Protótipo acadêmico experimental. Não há dados oficiais, integração com a Prefeitura
+      nem promessa de previsão de enchentes. O sensor foi levado a campo em teste
+      exploratório, sem calibração metrológica.
     </div>
   </div>
   <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>1 / 20</span></div>
@@ -301,7 +302,7 @@
       <ul class="clean">
         <li>Transformar distância medida em nível, taxa e tempo até um limite.</li>
         <li>Mostrar a origem e a idade de cada leitura em todas as camadas.</li>
-        <li>Separar claramente simulação, demonstração e hardware não validado.</li>
+        <li>Separar simulação, demonstração e leitura física, com o status de cada uma.</li>
         <li>Oferecer uma experiência de gestão e outra de cidadania, com a mesma base.</li>
       </ul>
     </div>
@@ -370,7 +371,7 @@
       <tr><td><strong>O território tem pontos de alagamento</strong></td><td><span class="tag warn">premissa do projeto</span></td><td>O projeto adota Santo André/SP como território demonstrativo a partir do briefing, sem afirmar ocorrências oficiais ou localizações exatas.</td></tr>
       <tr><td><strong>A informação é fragmentada</strong></td><td><span class="tag teal">evidência qualitativa</span></td><td>As três conversas descreveram informação espalhada entre WhatsApp, notícias e GPS, sem horário ou origem. O produto trata isso com proveniência explícita.</td></tr>
       <tr><td><strong>O cidadão precisa de linguagem simples</strong></td><td><span class="tag warn">hipótese de design</span></td><td>A área do cidadão usa frases curtas, piso tipográfico maior e nenhum dado pessoal no registro.</td></tr>
-      <tr><td><strong>O hardware funciona em campo</strong></td><td><span class="tag rose">não validado</span></td><td>O firmware e o diagrama estão preparados, mas não foram testados fisicamente. O status aparece no produto.</td></tr>
+      <tr><td><strong>O hardware funciona em campo</strong></td><td><span class="tag teal">teste exploratório</span></td><td>O conjunto ESP32 + HC-SR04 foi levado a um ponto de alagamento recorrente e respondeu fora do simulador. Foi verificação pontual, sem calibração nem série de medições.</td></tr>
       <tr><td><strong>O modelo prevê enchentes</strong></td><td><span class="tag rose">não</span></td><td>O modelo é linear e didático. Ele calcula nível, taxa e tempo até um limite; não é hidrologia calibrada.</td></tr>
     </tbody>
   </table>
@@ -861,7 +862,7 @@
     <div class="card"><div class="big">37</div><p>testes de matemática (unittest)</p></div>
     <div class="card"><div class="big">12</div><p>testes da aplicação Python</p></div>
   </div>
-  <div class="grid-2" style="margin-top:20px">
+  <div class="grid-2" style="margin-top:14px">
     <div class="card">
       <h3>Também verificado</h3>
       <ul class="clean">
@@ -869,8 +870,7 @@
         <li>Fluxo de ocorrência persistido no SQLite com API local.</li>
         <li>Fallback com API configurada e indisponível.</li>
         <li>4 testes de sincronização de limiares do firmware.</li>
-        <li>PDFs e gráficos gerados a partir do código.</li>
-        <li>Simulação no Wokwi executada em 16/11/2026, sem validação física.</li>
+        <li>Simulação no Wokwi em 16/11/2026 e teste de campo do conjunto ESP32 + HC-SR04.</li>
         <li>Wokwi e frontend publicados: wokwi.com/projects/480625234214048769 · pluvstats.vercel.app</li>
         <li>Três conversas qualitativas com morador, analista municipal e motorista de aplicativo.</li>
         <li>Nomes e RMs no README, no deck e no firmware.</li>
@@ -879,12 +879,18 @@
     <div class="card" style="border-color: rgba(248, 113, 113, 0.3);">
       <h3 class="warn">Fora do escopo desta entrega</h3>
       <ul class="clean">
-        <li>Hardware físico e calibração em bancada.</li>
+        <li>Calibração metrológica e série de medições em bancada.</li>
         <li>Teste de usabilidade e amostra representativa.</li>
         <li>Auditoria WCAG e teste com leitor de tela.</li>
         <li>Teste de carga, segurança ofensiva e observabilidade.</li>
       </ul>
     </div>
+  </div>
+  <div class="note-strip" style="margin-top:12px;padding:9px 14px;background:rgba(45,212,191,0.07);border-color:rgba(45,212,191,0.35)">
+    <strong style="color:#5eead4">Teste de campo exploratório.</strong>
+    ESP32 + HC-SR04 levado a um ponto de alagamento recorrente; respondeu à variação de
+    nível fora do simulador. O sensor testado não está integrado à demonstração, então a
+    interface segue exibindo hardware não validado até haver leitura recente pela API.
   </div>
   <div class="footer"><span>PLUVSTATS · CitizenTech 2026.2</span><span>19 / 20</span></div>
 </section>

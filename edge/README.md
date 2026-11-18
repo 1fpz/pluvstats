@@ -171,8 +171,11 @@ O projeto usa a extensão Wokwi para VS Code:
 
 A simulação foi executada pela equipe com troca **manual** da distância no HC-SR04.
 O firmware usa `tone()`/`noTone()` no buzzer porque o componente do Wokwi só toca com
-frequência. Não trate a execução no Wokwi como validação física: o simulador não
-reproduz calibração, ruído, splashes, obstrução ou falhas de alimentação.
+frequência. Além da simulação, o conjunto ESP32 + HC-SR04 foi levado a campo em um
+teste exploratório: o sensor respondeu fora do simulador, sem calibração e sem série
+de medições. Nem a simulação nem o teste de campo substituem uma validação
+metrológica — o simulador não reproduz ruído, splashes, obstrução ou falhas de
+alimentação.
 
 ## Limitações e segurança
 

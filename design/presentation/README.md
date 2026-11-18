@@ -40,8 +40,8 @@ Não há mockup desenhado à mão: o que aparece no deck existe no código.
   registros de alagamento divulgados na imprensa, reproduzidos para uso acadêmico.
   O rodapé do slide diz que são ilustrativas, que não vêm do protótipo e que não
   substituem a Defesa Civil.
-- **Proveniência acima do número.** Todo dado simulado aparece identificado; o
-  hardware é sempre descrito como não validado.
+- **Proveniência acima do número.** Todo dado simulado aparece identificado; o status
+  do hardware é sempre explícito, incluindo o teste de campo exploratório do sensor.
 - **Duas densidades, um compromisso.** A gestão usa painel denso; o cidadão usa
   linguagem simples e piso tipográfico maior (14–15 px no texto-base).
 - **Heurísticas com evidência.** Cada princípio aponta um elemento real da
