@@ -132,7 +132,7 @@ corrompido, cenários e relatório. Eles não substituem um teste de usabilidade
 ## Uso de IA
 
 O apoio do DeepSeek, com prompts, validação e análise crítica, está em
-[`prompt.md`](prompt.md).
+[`AI.md`](../AI.md).
 
 ## Equipe
 

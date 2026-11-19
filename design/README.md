@@ -1,8 +1,7 @@
 # Design — PLUVSTATS
 
-Requisitos, personas e jornadas do protótipo acadêmico. O que é evidência
-qualitativa, premissa de projeto ou hipótese de design aparece identificado em
-cada documento.
+Requisitos, personas e jornadas do protótipo. O que é evidência qualitativa,
+premissa de projeto ou hipótese de design aparece identificado em cada documento.
 
 - [Requisitos](requirements/requirements.md) — funcionais, não funcionais, regras
   de domínio e rastreabilidade.
@@ -11,8 +10,6 @@ cada documento.
   validação de hardware.
 - [Entrevistas qualitativas](research/entrevistas.md) — três conversas anônimas,
   o que se repetiu e o que mudou no produto.
-- [Apresentação de Experience](presentation/README.md) — deck com os sete
-  entregáveis da disciplina, PDF e diagrama de caso de uso.
 
 ## Identidade
 

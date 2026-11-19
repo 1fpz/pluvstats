@@ -20,7 +20,7 @@
 </div>
 
 <p align="center">
-  <img src="design/presentation/assets/gestao-visao-geral.png" alt="Painel de gestão do PLUVSTATS com mapa, contadores e central de alertas" width="920">
+  <img src="documentation/assets/screens/gestao-visao-geral.png" alt="Painel de gestão do PLUVSTATS com mapa, contadores e central de alertas" width="920">
 </p>
 
 ## O que é
@@ -46,48 +46,35 @@ apresenta simulação como medição de campo.
 <table>
   <tr>
     <td width="50%">
-      <img src="design/presentation/assets/gestao-visao-geral.png" alt="Visão geral da gestão">
+      <img src="documentation/assets/screens/gestao-visao-geral.png" alt="Visão geral da gestão">
       <br><sub><b>Gestão · visão geral</b> — contadores, série temporal e central de alertas</sub>
     </td>
     <td width="50%">
-      <img src="design/presentation/assets/gestao-mapa.png" alt="Mapa urbano da gestão">
+      <img src="documentation/assets/screens/gestao-mapa.png" alt="Mapa urbano da gestão">
       <br><sub><b>Gestão · mapa urbano</b> — camadas, filtros e seleção de ponto</sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="design/presentation/assets/gestao-ocorrencias.png" alt="Lista de ocorrências">
+      <img src="documentation/assets/screens/gestao-ocorrencias.png" alt="Lista de ocorrências">
       <br><sub><b>Gestão · ocorrências</b> — CRUD, triagem e prioridade</sub>
     </td>
     <td>
-      <img src="design/presentation/assets/gestao-diagnostico.png" alt="Diagnóstico do sistema">
+      <img src="documentation/assets/screens/gestao-diagnostico.png" alt="Diagnóstico do sistema">
       <br><sub><b>Gestão · diagnóstico</b> — fallback, hardware e limites explícitos</sub>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="design/presentation/assets/cidadao-inicio.png" alt="Início da área do cidadão">
+      <img src="documentation/assets/screens/cidadao-inicio.png" alt="Início da área do cidadão">
       <br><sub><b>Cidadão · início</b> — situação do entorno em linguagem direta</sub>
     </td>
     <td>
-      <img src="design/presentation/assets/cidadao-registrar.png" alt="Registro de problema pelo cidadão">
+      <img src="documentation/assets/screens/cidadao-registrar.png" alt="Registro de problema pelo cidadão">
       <br><sub><b>Cidadão · registrar</b> — sem nome, telefone ou localização precisa</sub>
     </td>
   </tr>
 </table>
-
-## Ficha da CitizenTech
-
-| Campo | Resposta |
-| --- | --- |
-| **Nome da CitizenTech** | PLUVSTATS — inteligência territorial para águas urbanas |
-| **Cidade e bairro** | Santo André/SP — pontos demonstrativos em Vila Metalúrgica, Jardim, Centro, Jardim Bela Vista e Jardim Bom Pastor |
-| **Cidadão beneficiado** | Moradores expostos a alagamentos — pedestres, motoristas, idosos e pessoas com mobilidade reduzida —, gestores municipais e equipes de campo |
-| **Problema, em uma frase** | A informação sobre alagamentos é fragmentada, sem origem clara e difícil de transformar em decisão para o gestor e para o cidadão. |
-| **Como funciona** | Sensores medem a distância até a água; o sistema converte em nível, taxa de elevação e tempo até o limite, exibe mapa, alertas, ocorrências e intervenções, e oferece uma área do cidadão. Dados simulados são identificados e há fallback local sem API. |
-| **Link do repositório** | <https://github.com/1fpz/pluvstats> |
-| **Indicador de impacto** | Tempo entre registro e triagem; percentual de pontos com origem e idade visíveis; ocorrências com intervenção concluída. Linha de base a medir no piloto. |
-| **ODS conectados** | ODS 6, ODS 11 e ODS 13 |
 
 ## O problema
 
@@ -103,7 +90,7 @@ diferentes; priorizar uma vistoria exige cruzar fontes que não conversam.
 | Falha | Como aparece hoje | O que o projeto faz |
 | --- | --- | --- |
 | **Fragmentação** | chuva, relatos, planilhas e sensores em canais separados, sem horário ou ponto comum | reúne leitura, ocorrência, alerta e intervenção no mesmo ponto do mapa |
-| **Proveniência** | número sem origem e sem idade parece oficial sem ser | marca origem, idade da leitura, modo demonstração e hardware não validado |
+| **Proveniência** | número sem origem e sem idade parece oficial sem ser | marca origem, idade da leitura, modo demonstração e bancada validada em campo |
 | **Comunicação** | quem está na rua não sabe se o ponto é seguro, o que é oficial e a quem recorrer | área do cidadão com linguagem simples, texto maior e nenhum dado pessoal |
 
 O problema foi discutido em **três entrevistas qualitativas** com um morador, um
@@ -169,7 +156,7 @@ origem de cada número.
 | Domínio | JavaScript puro, funções testáveis | simulação, alertas, histerese e inteligência territorial |
 | API | FastAPI, Pydantic, SQLite (`sqlite3` da stdlib) | CRUD, snapshot, ingestão e validação de hardware |
 | Edge | ESP32, HC-SR04, LEDs e buzzer | decisão local mesmo sem internet |
-| Matemática | Python puro, `unittest` e SVG | derivadas, integrais, limites e relatório |
+| Matemática | Python puro, `unittest` e SVG | derivadas, integrais, limites e gráficos dos cenários |
 | Python | biblioteca padrão, menu e JSON | operação dos pontos sem o frontend |
 | Configuração | `shared/pluvstats.config.json` | fonte única de limiares e geometria |
 
@@ -280,25 +267,12 @@ pluvstats/
 ├── backend/        FastAPI + SQLite
 ├── shared/         limiares e geometria — fonte única
 ├── edge/           firmware ESP32 e projeto Wokwi
-├── mathematics/    modelo, gráficos e relatório técnico
+├── mathematics/    modelo, cenários e testes de cálculo
 ├── python-app/     aplicação de console com menu e JSON
-├── design/         requisitos, personas, jornadas e deck de Experience
-├── pitch/          arquétipo de marca, e-mail ao investidor e deck
+├── design/         requisitos, personas e jornadas
 ├── scripts/        atalhos para subir a demonstração
-└── documentation/  arquitetura, API e deploy
+└── documentation/  arquitetura, API, deploy e capturas
 ```
-
-## Disciplinas
-
-| Disciplina | Entrega |
-| --- | --- |
-| **Computational Thinking with Python** | [`python-app/`](python-app/) — console com menu, validação e persistência JSON |
-| **Differentiated Problem Solving** | [`mathematics/`](mathematics/) — modelo de cálculo e [relatório técnico](mathematics/report/relatorio-tecnico.pdf) |
-| **Edge Computing & Computer Systems** | [`edge/`](edge/) — firmware e [simulação no Wokwi](https://wokwi.com/projects/480625234214048769) |
-| **Front-end Design** | [`frontend/`](frontend/) — interface React de gestão e cidadão |
-| **Software & Total Experience Design** | [`design/`](design/) — requisitos, jornadas e [apresentação](design/presentation/apresentacao.pdf) |
-| **Storytelling & Inspiração Empreendedora** | [`pitch/`](pitch/) — marca, [e-mail ao investidor](pitch/email-investidor.md) e deck |
-| **Web Development** | [`frontend/src/services/`](frontend/src/services/) e [`backend/`](backend/) — hooks, CRUD e API |
 
 ## Transparência
 
@@ -327,8 +301,8 @@ parte do código, a execução de testes e a otimização da entrega.
 | Integrante | RM | Participação |
 | --- | --- | --- |
 | Felipe Ilek | 571322 | Autoria e desenvolvimento do projeto |
-| Marcos Vinícius Tudisco | 569366 | Integração e Edge Computing & Computer Systems |
-| Michel Tatsuya Hanada | 571987 | Testes e Storytelling & Inspiração Empreendedora |
+| Marcos Vinícius Tudisco | 569366 | Integração e edge |
+| Michel Tatsuya Hanada | 571987 | Testes e documentação |
 
 Global Solution 2026.2 · CitizenTech · FIAP · Engenharia de Software, 1º ano.
 
@@ -339,9 +313,7 @@ Global Solution 2026.2 · CitizenTech · FIAP · Engenharia de Software, 1º ano
 - [Deploy na Vercel](documentation/deploy.md)
 - [Requisitos, personas e jornadas](design/README.md)
 - [Entrevistas qualitativas](design/research/entrevistas.md)
-- [Apresentação de Experience](design/presentation/README.md)
-- [Pitch e marca](pitch/README.md)
 - [Aplicação Python](python-app/readme.md)
 - [Firmware e Wokwi](edge/README.md)
-- [Relatório de matemática](mathematics/report/relatorio-tecnico.pdf)
+- [Modelo matemático](mathematics/README.md)
 - [Equipe e organização](TEAM.md)

@@ -17,7 +17,7 @@
 
 | Frente | Responsável | Evidências no repositório |
 | --- | --- | --- |
-| Produto e experiência | Felipe Ilek | `design/`, `frontend/src/pages/citizen/`, `design/presentation/` |
+| Produto e experiência | Felipe Ilek | `design/`, `frontend/src/pages/citizen/` |
 | Front-end e interação | Felipe Ilek | `frontend/src/` |
 | Backend e dados | Felipe Ilek | `backend/` |
 | Matemática | Felipe Ilek | `mathematics/` |
@@ -25,15 +25,13 @@
 | Integração | Marcos Vinícius Tudisco | `frontend/src/services/`, `frontend/src/hooks/`, `backend/app/` |
 | Edge Computing & Computer Systems | Marcos Vinícius Tudisco | `edge/` — firmware ESP32, HC-SR04, Wokwi e limiares |
 | Testes | Michel Tatsuya Hanada | `frontend/src/**/*.test.*`, `backend/tests/`, `mathematics/tests/`, `python-app/tests/`, `edge/tools/` |
-| Storytelling & Inspiração Empreendedora | Michel Tatsuya Hanada | `pitch/` — marca, e-mail ao investidor e deck |
 
 ## Declaração de uso de IA
 
 O apoio do **DeepSeek** — usado para auxiliar na criação de parte do código, na
 execução de testes e na otimização da entrega — está documentado em
-[`AI.md`](AI.md) e, para a aplicação Python, em
-[`python-app/prompt.md`](python-app/prompt.md). Nenhum dado real de campo,
-entrevista ou teste físico foi inventado.
+[`AI.md`](AI.md). Nenhum dado real de campo, entrevista ou teste físico foi
+inventado.
 
 ## Contato acadêmico
 

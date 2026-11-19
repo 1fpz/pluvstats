@@ -17,7 +17,6 @@ mathematics/
 ├── scenarios/               séries didáticas de distância no tempo
 ├── tools/plot_scenarios.py  gerador de SVG (somente biblioteca padrão)
 ├── graphs/                  gráficos versionados
-├── report/                  relatório técnico (HTML e PDF)
 ├── tests/test_model.py      37 testes com unittest
 └── README.md
 ```

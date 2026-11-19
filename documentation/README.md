@@ -6,6 +6,7 @@ da API e como publicar a aplicação.
 - [`architecture/`](architecture/overview.md) — módulos, contratos, fluxos e lacunas.
 - [`api/`](api/README.md) — endpoints, payloads, erros e regras de ingestão.
 - [`deploy.md`](deploy.md) — publicação do frontend na Vercel.
+- [`assets/screens/`](assets/screens) — capturas reais da interface.
 
 Toda limitação conhecida é documentada aqui. Nenhum dado simulado é apresentado
 como medição física, e nenhuma entrevista ou teste de campo é inventado.
@@ -25,5 +26,4 @@ como medição física, e nenhuma entrevista ou teste de campo é inventado.
 - [Requisitos](../design/requirements/requirements.md)
 - [Personas hipotéticas](../design/personas/personas.md)
 - [Jornadas](../design/journeys/journeys.md)
-- [Pitch](../pitch/README.md)
 - [Uso de IA](../AI.md)
