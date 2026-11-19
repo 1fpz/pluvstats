@@ -118,7 +118,7 @@ depois e precisa saber se o dispositivo está realmente enviando dados.
 - O painel de gestão prioriza densidade, filtros e proveniência.
 - O formulário de intervenção exige nível final ao concluir.
 - O diagnóstico separa hardware validado de simulação.
-- O pitch e a documentação usam ressalvas visíveis.
+- A documentação usa ressalvas visíveis.
 
 ## Limites das personas
 

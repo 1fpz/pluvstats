@@ -13,7 +13,7 @@ Santo André/SP. A entrega cobre:
 - runtime demonstrativo local, executável sem backend;
 - firmware ESP32 preparado para um sensor ultrassônico;
 - modelo matemático de nível, taxa e tempo até o limite;
-- documentação, design e deck de apresentação.
+- documentação e design.
 
 O projeto **não** tem integração oficial com a Prefeitura, Defesa Civil ou qualquer
 central de emergência. O conjunto ESP32 + HC-SR04 foi calibrado e validado em campo pela
