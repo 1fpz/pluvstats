@@ -8,7 +8,7 @@ contato real com investidor, parceiro ou membro de equipe externo.
 
 **Assunto:** PLUVSTATS — a marca que transforma dado de chuva em decisão com origem e limite
 
-**Para:** [nome do investidor ou parceiro] — [fundo / aceleradora / parceiro institucional]
+**Para:** parceiro institucional convidado — aceleradora ou fundo de impacto (contato simulado)
 
 **De:** Felipe Ilek — RM 571322 (autor e desenvolvedor) · Marcos Vinícius Tudisco — RM 569366 (integração e Edge) · Michel Tatsuya Hanada — RM 571987 (testes e Storytelling)
 
@@ -16,9 +16,11 @@ contato real com investidor, parceiro ou membro de equipe externo.
 
 **Link do videopitch:** [LINK DO VÍDEO NO YOUTUBE — PÚBLICO OU NÃO LISTADO]
 
+**Documento final:** [`entrega-pitch.pdf`](entrega-pitch.pdf) — mesma carta, em A4, com o link do vídeo.
+
 ---
 
-Olá, [nome],
+Olá,
 
 Meu nome é Felipe Ilek e escrevo em nome da equipe do **PLUVSTATS**, um protótipo
 acadêmico de inteligência territorial para águas urbanas. O projeto nasceu de uma

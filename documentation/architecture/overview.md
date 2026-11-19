@@ -254,9 +254,10 @@ Lacunas conhecidas:
 - sem Supabase; o backend usa SQLite;
 - bundle de entrada de 299,79 kB com code splitting por rota e vendor, mas sem
   medição de desempenho em rede real;
-- nenhum teste físico, de carga, de acessibilidade com usuários ou de segurança
+- nenhum teste de carga, de acessibilidade com usuários ou de segurança
   ofensiva;
-- Wokwi simulado; nenhum hardware físico foi montado ou validado.
+- bancada ESP32 + HC-SR04 validada em campo em 15/11/2026, às 17h; sem
+  instalação fixa, série histórica ou operação contínua em via pública.
 
 O detalhamento de testes e evidências está em
 [seção Testes do README](../../README.md#testes).

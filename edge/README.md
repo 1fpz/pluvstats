@@ -9,9 +9,10 @@ A frente de **Edge Computing & Computer Systems** foi conduzida por
 
 > **Estado de validação:** a simulação foi executada no **Wokwi** pela equipe e o
 > firmware foi ajustado até os cinco estados funcionarem com troca manual de
-> distância. **Não houve hardware físico**: nenhum dispositivo real foi calibrado,
-> instalado ou testado. O caminho de rede é opcional e não foi validado contra um
-> ESP32 real. Nada aqui comprova conectividade física.
+> distância. O conjunto ESP32 + HC-SR04 foi **calibrado e validado em campo em
+> 15/11/2026, às 17h**. Não há instalação fixa, série histórica nem operação
+> contínua em via pública. O caminho de rede é opcional e não foi validado contra
+> um ESP32 real.
 
 ## Estrutura
 
